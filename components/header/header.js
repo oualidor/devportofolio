@@ -61,18 +61,32 @@ const LanTag = ({label, lang, country, style}) => {
   );
 };
 
-const SocialIcons = styled.a`
-transition: 0.3s ease;
-color: white;
-border-radius: 50px;
-  padding: 8px;
-&:hover {
-    background-color: #212d45;
-    transform: scale(1.2);
-    cursor: pointer;
-    
+
+const NavIcon = ({Icon, link}) => {
+  const style = {
+    width: ["8vw", "8vw", "7vw", "6vw", "5vw", "4vw", "2.5vw"], 
+    marginRight: "5px", cursor: "pointer", 
+    transition: "0.3s ease",
+    alignItems: "center", justifyContent: "center",
+    padding: "5px",
+    '&:hover': {
+      backgroundColor: "#212d45",
+      transform: "scale(1.2)",
+      cursor: "pointer",
+      borderRadius: "50%",
+    }
   }
-`
+  return (
+    <a href={link} target="blank">
+      <Box sx={style} >
+      <Icon  size="100%" />
+    </Box>
+    </a>
+    
+  );
+};
+
+
 const SectionTitle = (props) => {
   const style = {
     color: "",
@@ -85,6 +99,8 @@ const SectionTitle = (props) => {
     <Text  sx={{fontSize: "25px", fontWeight: "800"}}style={style}>{props.children}</Text>
   )
 }
+
+
 
 export default function Header({ className }) {
   const [openMenu, setOpenMenu] = useState(false)
@@ -109,7 +125,7 @@ export default function Header({ className }) {
     header: {
       color: 'white',
       fontWeight: 'normal',
-      py: 4,
+      py: 2,
       width: '100%',
       position: 'absolute',
       top: 0,
@@ -156,7 +172,7 @@ export default function Header({ className }) {
     },
     nav: {
       height: "100%",
-      width: "30%",
+   
       alignItems: "center",
       justifyContent: 'right',
       display: 'flex',
@@ -187,16 +203,9 @@ export default function Header({ className }) {
         <Box sx={styles.container}>
           <SectionTitle>Oualid KHIAL</SectionTitle>
           <Box sx={styles.nav} id={"navContent"}>
-          
-            <SocialIcons href="https://google.com" style={{marginRight: "10px"}}>
-              <AiFillGithub size="2rem" />
-            </SocialIcons>
-            <SocialIcons href="https://google.com" style={{marginRight: "10px"}}>
-              <AiFillLinkedin size="2rem" />
-            </SocialIcons>
-            <SocialIcons href="https://google.com" >
-              <AiTwotoneContainer size="2rem" />
-            </SocialIcons>
+            <NavIcon Icon={AiFillGithub} link={"https://github.com/oualidor"}></NavIcon>
+            <NavIcon Icon={AiFillLinkedin} link={"https://www.linkedin.com/in/oualidkhial/"}></NavIcon>
+            <NavIcon Icon={AiTwotoneContainer}></NavIcon>
           </Box>
         </Box>
         </Container>
