@@ -5,6 +5,7 @@ import {Box, Button, Container, Text} from "theme-ui";
 import StyledText from '../../../components/StyledComponents/StyledText';
 
 import SkillTag from '../../../components/SkillTag/SkillTag';
+import {keyframes} from "@emotion/react";
 
 const BackgroundAnimation = () => (
     <div>
@@ -369,20 +370,34 @@ const BackgroundAnimation = () => (
   );
 
 
+const langBoxAnim = keyframes`
+  from {
+   
+    opacity: 0;
+  }
+  to {
+ 
+    opacity: 1;
+    transition: all 0.4s ease;
+  }
+`;
 function Landing(){
     const style = {
         con :{
             width: "100%"   , display: "flex", flexDirection: ["column", "column", "column", "column", "row", "row", "row"],
-            py: ["20vh", "20vh", "20vh", "20vh", "10vh", "10vh", "10vh"]
+            py: ["20vh", "20vh", "20vh", "20vh", "10vh", "10vh", "10vh"],
+            height: ["100vh", "20vh", "20vh", "20vh", "10vh", "10vh", "auto"],
         },
         left: {
-            width: ["100%", "100%", "100%", "100%",  "50%", "50%", "50%"],  display: "flex",  flexDirection: "column", justifyContent: "center", 
+            width: ["100%", "100%", "100%", "100%",  "50%", "50%", "50%"],  display: "flex",  flexDirection: "column", justifyContent: "center",
             alignItems:  ["center", "center", "center", "flex-start",  "flex-start", "flex-start", "flex-start"],
         },
         right : {
-            width: "50%"
+            display: ["block", "block", "none", "block", "block", "block", "block"],
+            width: "50%",
+            animation: [`${langBoxAnim} 2s ease`, "block", "none", "block", "block", "block", `${langBoxAnim} 2s ease`]
         }
-        
+
     }
     useState(()=>{
 
@@ -395,7 +410,7 @@ function Landing(){
                 <StyledText variant="fullAndHalf">There is a lot that I dont know <br></br> </StyledText>
                 <StyledText sx={{}} variant={"fullAndHalf"}>But I am always learning</StyledText>
                 <br></br>
-                
+
                 <Text sx={{fontSize: ["5vw", "4vw", "4vw", "4vw", "2vw", "2vw", "2vw"],     backgroundColor: "",    textAlign: [
                     'center',
                     'center',
@@ -404,9 +419,9 @@ function Landing(){
                     'left',
                     'left',
                     'left',
-                
+
                 ],}}>
-                  I am a Full stack developper, A PhD researcher and a comuter scince teacher</Text>
+                  I am a Full stack developer, A PhD researcher and a computer science teacher</Text>
                 <br></br>
                 <Box sx={{display: "flex", backgroundColor: ""}}>
                   <Button sx={{mr: 3}} variant='whiteButton'>Schedule a meet</Button>
@@ -418,7 +433,7 @@ function Landing(){
             </Box>
         </Box>
     )
-  
-} 
+
+}
  export default Landing
-  
+

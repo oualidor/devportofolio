@@ -4,9 +4,9 @@ import React, {useEffect, useState} from 'react';
 import Sticky from 'react-stickynode';
 import Header from './header/header';
 import Footer from './footer/footer';
-
+import Head from 'next/head'
 import {useDispatch, useSelector} from "react-redux";
-
+import SEO from "../components/seo"
 import {HideBackDrop, MountBackDrop, RemoveNotification} from "../src/Apis/Redux/Actions/Types";
 
 import {rgba} from "polished";
@@ -86,6 +86,7 @@ function Layout({ children }) {
 
   return (
     <Box>
+        <SEO author={"Oualid KHIAL"} title={"Oualid KHIAL"}></SEO>
         <Sticky innerZ={1002} top={0} >
             <Box
                 id={'BackDrop'}
