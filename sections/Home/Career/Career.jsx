@@ -150,7 +150,9 @@ const CareerEntry = ({skills, date, role, tags, company, desc}) =>{
           display: "flex", flexDirection: 'row', 
           width: "100%", 
           backgroundColor: "", justifyContent:  ['center', 'center', 'center', 'center', "space-between", "space-between", "space-between"] ,  alignItems: "center",
-          boxShadow: "5px 10px 10px #0F1620", border: "5px solid #0F1620"
+          boxShadow: '0px 6px 10px rgba(38, 78, 118, 0.1)',
+          p: 2,
+          mb: 2
         }
           }>
        

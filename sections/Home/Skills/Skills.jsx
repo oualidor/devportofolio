@@ -121,7 +121,7 @@ function Skills(){
                         <LanguageEntry name={"English"} level={"Adnaced (A1)"}></LanguageEntry>
                         <LanguageEntry name={"French"} level={"Very good (B2)"}></LanguageEntry>
                     </Box>
-                    <Box sx={{display: "flex", flexDirection: 'column', width: "100%", backgroundColor: "tran", marginBottom: 5}}>
+                    <Box sx={{display: "flex", flexDirection: 'column', width: "100%", backgroundColor: "tran", marginBottom: 5, p: 4}}>
                         <StyledText  sx={{marginLeft: "5px", fontSize: "24px"}}>{"Tech Expertise"}</StyledText>
                         <Text variant='muted' sx={{marginLeft: "20px", fontSize: "18px"}}>
                             Basically i am good with any thing based on Javascript en term of experince but,

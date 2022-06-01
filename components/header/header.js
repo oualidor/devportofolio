@@ -105,7 +105,6 @@ const SectionTitle = (props) => {
 export default function Header({ className }) {
   const [openMenu, setOpenMenu] = useState(false)
 
-
   const styles = {
     link: {
       fontSize: [null, null, null, null, null, "20px", "20px"],
@@ -123,6 +122,7 @@ export default function Header({ className }) {
       fontFamily: "en" == "en" ? "'DM Sans', sans-serif;": "'Amiri', serif;"
     },
     header: {
+   
       color: 'white',
       fontWeight: 'normal',
       py: 2,
@@ -133,20 +133,12 @@ export default function Header({ className }) {
       backgroundColor: 'transparent',
       transition: 'all 0.5s ease',
       animation: `${positionAnim} 0.4s ease`,
-      '.donate__btn': {
-        display: "none",
-        flexShrink: 0,
-        mr: [15, 20, null, null, 0],
-        ml: ['auto', null, null, null, 0],
-        '@media screen and (min-width: 1220px)': {
-          display: 'flex',
-        },
-      },
       '&.sticky': {
+
         position: 'fixed',
-        backgroundColor: 'white',
-        color: 'primary',
-        boxShadow: '0 1px 2px rgba(0, 0, 0, 0.06)',
+        backgroundColor: '#0F1624',
+        color: '',
+        boxShadow: '0px 6px 30px rgba(38, 78, 118, 0.1)',
         py: 3,
         'nev > a': {
           color: 'text',
@@ -155,7 +147,7 @@ export default function Header({ className }) {
           borderColor: 'primary',
           color: 'primary',
           '&:hover': {
-            boxShadow: 'rgba(31, 62, 118, 0.57) 0px 9px 20px -5px',
+           
             backgroundColor: 'primary',
             color: 'white',
           },

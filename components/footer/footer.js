@@ -97,7 +97,7 @@ export default function Footer({ className }) {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
-      flexDirection: ['column', 'column', 'column', 'row', 'row', 'row', 'row'], 
+      flexDirection: ['column', 'column', 'column', 'row', 'row', 'row', 'row'],
 
 
     },
@@ -119,6 +119,9 @@ export default function Footer({ className }) {
       width: 80, mb:1,
       justifyContent: "space-between",
 
+    },
+    footerEntry: {
+      fontSize: ["15px", "20px", 16, 20, 20, 25, "15px"]
     }
 
   };
@@ -133,16 +136,16 @@ export default function Footer({ className }) {
       <hr></hr>
         <Box sx={styles.container}>
           <Box sx={{display: "flex", flexDirection: "column", backgroundColor: ""}}>
-            <StyledText variant="title" sx={{fontSize:"28px"}}>Oualid KHIAL</StyledText>
+            <StyledText variant="title" sx={{fontSize: [5, 5, 16, 20, 20, 25, 30]}}>Oualid KHIAL</StyledText>
           </Box>
-          <Box sx={{display: "flex", flexDirection: "column", backgroundColor: ""}}> 
+          <Box sx={{display: "flex", flexDirection: "column", backgroundColor: ""}}>
           <Box>
-              <StyledText variant="title">WhatsUp: </StyledText>
-              <StyledText variant="title" sx={{fontSize: "16px"}}>+213550750576</StyledText>
+              <StyledText variant="title"  sx={styles.footerEntry}>WhatsUp: </StyledText>
+              <StyledText variant="title"  sx={styles.footerEntry}>+213550750576</StyledText>
             </Box>
             <Box>
-              <StyledText variant="title" sx={{fontSize: "18px"}}>Mail: </StyledText>
-              <StyledText variant="title" sx={{fontSize: "16px"}}>walid.khial@gmail.com</StyledText>
+              <StyledText variant="title" sx={styles.footerEntry}>Mail: </StyledText>
+              <StyledText variant="title" sx={styles.footerEntry}>walid.khial@gmail.com</StyledText>
             </Box>
           </Box>
         </Box>
