@@ -3,10 +3,12 @@ import {useState, useEffect, useRef} from 'react';
 
 import {Box, Button, Container, Text} from "theme-ui";
 import StyledText from '../../../components/StyledComponents/StyledText';
-
+import {useDispatch} from "react-redux";
 import SkillTag from '../../../components/SkillTag/SkillTag';
 import {keyframes} from "@emotion/react";
 import { useThemeUI } from 'theme-ui'
+import {MountBackDrop} from "../../../src/Apis/Redux/Actions/Types";
+import MeetScheduler from "../../../components/MeetScheduler";
 const BackgroundAnimation = () => (
     <div>
       <svg
@@ -373,6 +375,7 @@ const BackgroundAnimation = () => (
 function Landing(){
     const imageHolderRef = useRef(null)
     const context = useThemeUI()
+    const dispatch = useDispatch()
     const index = useBreakpointIndex()
     const style = {
         con :{
@@ -385,7 +388,7 @@ function Landing(){
             alignItems:  ["center", "center", "center", "flex-start",  "flex-start", "flex-start", "flex-start"],
         },
         right : {
-         
+
             width: "50%",
             transition: "1s ease",
             display:  index <= 3 ? "none": "block",
@@ -423,7 +426,13 @@ function Landing(){
                   I am a Full stack developer, A PhD researcher and a computer science teacher</Text>
                 <br></br>
                 <Box sx={{display: "flex", backgroundColor: ""}}>
-                  <Button sx={{mr: 3}} variant='whiteButton'>Schedule a meet</Button>
+                  <Button
+                      sx={{mr: 3}} variant='whiteButton'
+                      onClick={()=> {
+                          dispatch({type: MountBackDrop, Component: <MeetScheduler/> , props:{} ,test: "hi"})
+                      }}
+                  >
+                      Schedule a meet</Button>
                   <Button variant='secondary'>Downlod CV</Button>
                 </Box>
             </Box>
