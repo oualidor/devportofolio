@@ -1,12 +1,12 @@
-
-import  { useState, useEffect } from 'react';
+import { useResponsiveValue, useBreakpointIndex } from '@theme-ui/match-media'
+import {useState, useEffect, useRef} from 'react';
 
 import {Box, Button, Container, Text} from "theme-ui";
 import StyledText from '../../../components/StyledComponents/StyledText';
 
 import SkillTag from '../../../components/SkillTag/SkillTag';
 import {keyframes} from "@emotion/react";
-
+import { useThemeUI } from 'theme-ui'
 const BackgroundAnimation = () => (
     <div>
       <svg
@@ -370,35 +370,34 @@ const BackgroundAnimation = () => (
   );
 
 
-const langBoxAnim = keyframes`
-  from {
-   
-    opacity: 0;
-  }
-  to {
- 
-    opacity: 1;
-    transition: all 0.4s ease;
-  }
-`;
 function Landing(){
+    const imageHolderRef = useRef(null)
+    const context = useThemeUI()
+    const index = useBreakpointIndex()
     const style = {
         con :{
-            width: "100%"   , display: "flex", flexDirection: ["column", "column", "column", "column", "row", "row", "row"],
+            width: "100%"   , display: "flex", flexDirection: ["column-reverse", "column-reverse", "column-reverse", "column-reverse", "row", "row", "row"],
             py: ["20vh", "20vh", "20vh", "20vh", "10vh", "10vh", "10vh"],
-            height: ["100vh", "20vh", "20vh", "20vh", "10vh", "10vh", "auto"],
+            height: ["100vh", "20vh", "auto", "auto", "auto", "auto", "auto"],
         },
         left: {
             width: ["100%", "100%", "100%", "100%",  "50%", "50%", "50%"],  display: "flex",  flexDirection: "column", justifyContent: "center",
             alignItems:  ["center", "center", "center", "flex-start",  "flex-start", "flex-start", "flex-start"],
         },
         right : {
-            display: ["block", "block", "none", "block", "block", "block", "block"],
+         
             width: "50%",
-            animation: [`${langBoxAnim} 2s ease`, "block", "none", "block", "block", "block", `${langBoxAnim} 2s ease`]
+            transition: "1s ease",
+            display:  index <= 3 ? "none": "block",
+
         }
 
     }
+
+    useEffect(()=>{
+
+
+    }, [index])
     useState(()=>{
 
     }, [])
@@ -428,7 +427,7 @@ function Landing(){
                   <Button variant='secondary'>Downlod CV</Button>
                 </Box>
             </Box>
-            <Box sx={style.right}>
+            <Box sx={style.right} ref={imageHolderRef}>
                 <BackgroundAnimation />
             </Box>
         </Box>
