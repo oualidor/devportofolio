@@ -47,7 +47,7 @@ export default function SEO({
       ))}
       <script
           async
-          src={`https://www.googletagmanager.com/gtag/js?id=G-YMXJ4DDWG8`}
+          src={`https://www.googletagmanager.com/gtag/js?id=G-8L31KNNS3F`}
       />
       <script
           dangerouslySetInnerHTML={{
@@ -55,7 +55,7 @@ export default function SEO({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-YMXJ4DDWG8', {
+            gtag('config', 'G-8L31KNNS3F', {
               page_path: window.location.pathname,
             });
           `,
