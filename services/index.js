@@ -8,3 +8,9 @@ export const getCarrer = async () => {
   return careerData
 };
 
+export const getTestimonials = async () => {
+  const query = '*[_type == "testimonial"][0..4]{ ..., contactInfo[]{..., type->}}';
+  let careerData  = await _SanityClient.fetch(query)
+  return careerData
+};
+

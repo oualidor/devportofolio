@@ -1,66 +1,11 @@
-
 import { Container, Heading, Text, Box, Image, Button } from 'theme-ui';
 import { GoLinkExternal } from "react-icons/go";
 import ButtonGroup from "../../../components/button-group";
 import Carousel from 'react-multi-carousel';
 import StyledText from '../../../components/StyledComponents/StyledText';
-import Avatar1 from './assets/avatar1.png';
-import Avatar2 from './assets/avatar2.png';
-import Avatar3 from './assets/avatar3.png';
-import Avatar4 from './assets/avatar4.png';
-
-const data = [
-  {
-    id: 1,
-    title: 'Modern look & trending design',
-    description:
-      'Working with Mr Oualid KHIAL was defintly some thing I reallt enjoyed and appreciated, he was one of my best student and one of my best friends',
-    avatar: Avatar1,
-    name: 'Dr Moustfai AEK',
-    designation: '@denny.hil',
-    review: 4,
-  },
-  {
-    id: 2,
-    title: 'Design Quality & performance',
-    description:
-      'Get working experience to work with this amazing team & in future want to work together for bright future projects and also make deposit to freelancer.',
-    avatar: Avatar2,
-    name: 'Dr Youcef Saidi',
-    designation: '@denny.hil',
-    review: 5,
-  },
-  {
-    id: 3,
-    title: 'Layout and organized layers',
-    description:
-      'Having Oulid KHIAL as A CBC ALTEC IT consultant was a good add to our company and his aconsulting eally move our busniss forword ',
-    avatar: Avatar3,
-    name: 'Zine el abadine CHAKROUN',
-    designation: '@denny.hi',
-    review: 5,
-  },
-  {
-    id: 4,
-    title: 'Modern look & trending design',
-    description:
-      'Get working experience to work with this amazing team & in future want to work together for bright future projects and also make deposit to freelancer.',
-    avatar: Avatar4,
-    name: 'Ihab CHERITI',
-    designation: '@denny.hil',
-    review: 4,
-  },
-  {
-    id: 4,
-    title: 'Modern look & trending design',
-    description:
-      'Oualid is one of my best students that i am curremtly looking to colaborate with in PhD reserches',
-    avatar: Avatar4,
-    name: 'Dr Mokadem',
-    designation: '@denny.hil',
-    review: 4,
-  },
-];
+import {AiFillLinkedin, AiFillMail, AiFillPhone, AiOutlineMail} from "react-icons/ai";
+import {useEffect, useState} from "react";
+import {getTestimonials} from "../../../services";
 
 const responsive = {
   desktop: {
@@ -86,6 +31,15 @@ const responsive = {
 };
 
 export default function Testimonial() {
+
+  const [testimonials, setTestimonials] = useState([])
+
+  useEffect(()=>{
+    getTestimonials().then(testimonials=>{
+      console.log(testimonials)
+      setTestimonials(testimonials)
+    })
+  }, [])
   return (
     <Box id="testimonial" sx={{  }}>
       <StyledText variant="sectionTitle">Testimonials I am proud of</StyledText>
@@ -112,22 +66,37 @@ export default function Testimonial() {
           sliderClass=""
           slidesToSlide={1}
         >
-          {data.map((item) => (
+          {testimonials.map((item) => (
             <Box sx={styles.reviewCard} key={`testimonial--key${item.id}`}>
-    
+
               {/* <Heading as="h3" sx={styles.title}>
                 {item.title}
               </Heading> */}
-              <Text sx={styles.description}>{item.description}</Text>
+              <Text sx={styles.description}>{item.excerpt}</Text>
               <div className="card-footer">
-                <div className="image">
-                  <Image src={item.avatar} alt="Client Image" />
-                </div>
+
                 <div className="reviewer-info">
                   <Heading as="h4" sx={styles.heading}>
                     {item.name}
                   </Heading>
-                  <Text sx={styles.designation}>{item.designation}</Text>
+                  <Text sx={styles.designation}>
+                    {
+                      item.contactInfo.map(link=>{
+                        switch (link.type.type){
+                          case "linkedIn":
+                            return <a href={link.link} target={"_blank"}><AiFillLinkedin></AiFillLinkedin></a>
+                            break;
+                          case "mail":
+                            return <a href={"mailto://"+link.link} target={"_blank"}><AiOutlineMail></AiOutlineMail></a>
+                            break;
+                          case "phone":
+                            return <a href={"tel://"+link.link} target={"_blank"}><AiFillPhone></AiFillPhone></a>
+                            break;
+                        }
+                      })
+                    }
+
+                  </Text>
                 </div>
               </div>
             </Box>
@@ -135,7 +104,7 @@ export default function Testimonial() {
         </Carousel>
       </Box>
       <Box sx={{display: "flex", backgroundColor: "", alignItems: "center", justifyContent: "right"}}>
-                <Button sx={{display: "flex", backgroundColor: "", alignItems: "center", justifyContent: "right"}} variant="textButton" onClick={()=> {setLimit(10)}}> 
+                <Button sx={{display: "flex", backgroundColor: "", alignItems: "center", justifyContent: "right"}} variant="textButton" onClick={()=> {setLimit(10)}}>
                     <Text sx={{mr: 1, color: "white"}}>Add Testimonial</Text><GoLinkExternal style={{color: "white"}}></GoLinkExternal>
                 </Button>
             </Box>
@@ -145,7 +114,7 @@ export default function Testimonial() {
 
 const styles = {
   carouselWrapper: {
-  
+
   },
   reviewCard: {
     display: "flex", flexDirection: "column", justifyItems: "space-between",
@@ -224,6 +193,7 @@ const styles = {
     fontWeight: 'normal',
     color: 'text',
     lineHeight: [1.85, null, 2],
+    minHeight: 180
   },
   heading: {
     fontSize: [1, null, null, 2],
@@ -235,7 +205,7 @@ const styles = {
   designation: {
     color: 'primary',
     fontWeight: '500',
-    fontSize: 1,
+    fontSize: 4,
     lineHeight: 1.4,
   },
 };
