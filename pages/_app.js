@@ -1,6 +1,5 @@
 import '../styles/globals.css'
 import '../styles/timeLine.css'
-import '../styles/github.css'
 import {Fragment, useEffect} from 'react';
 import _Entry from "../components/_Entry";
 

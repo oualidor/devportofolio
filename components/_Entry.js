@@ -14,7 +14,6 @@ function _Entry({ Component, pageProps }) {
 
     return (<Fragment>
         <ReduxProvider store={reduxStore}>
-            <link href="/github.css" rel="stylesheet" type="text/css"></link>
             <ThemeProvider theme={theme("en")}>
                 <Layout>
                     <Component {...pageProps} />
