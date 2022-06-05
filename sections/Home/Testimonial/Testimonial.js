@@ -79,24 +79,32 @@ export default function Testimonial() {
                   <Heading as="h4" sx={styles.heading}>
                     {item.name}
                   </Heading>
-                  <Text sx={styles.designation}>
+                  <Box sx={
                     {
-                      item.contactInfo.map(link=>{
-                        switch (link.type.type){
-                          case "linkedIn":
-                            return <a href={link.link} target={"_blank"}><AiFillLinkedin></AiFillLinkedin></a>
-                            break;
-                          case "mail":
-                            return <a href={"mailto://"+link.link} target={"_blank"}><AiOutlineMail></AiOutlineMail></a>
-                            break;
-                          case "phone":
-                            return <a href={"tel://"+link.link} target={"_blank"}><AiFillPhone></AiFillPhone></a>
-                            break;
-                        }
-                      })
+                      display: "flex", alignItems: "center", alignContent: "center"
                     }
+                  }>
 
-                  </Text>
+
+                      {
+                        item.contactInfo.map(link=>{
+                          switch (link.type.type){
+                            case "linkedIn":
+                              return    <Text sx={styles.designation}><a href={link.link} target={"_blank"}><AiFillLinkedin></AiFillLinkedin></a> </Text>
+                              break;
+                            case "mail":
+                              return    <Text sx={styles.designation}><a href={"mailto://"+link.link} target={"_blank"}><AiOutlineMail></AiOutlineMail></a> </Text>
+                              break;
+                            case "phone":
+                              return       <Text sx={styles.designation}><a href={"tel://"+link.link} target={"_blank"}><AiFillPhone></AiFillPhone></a> </Text>
+                              break;
+                          }
+                        })
+                      }
+
+
+                  </Box>
+
                 </div>
               </div>
             </Box>
@@ -205,7 +213,8 @@ const styles = {
   designation: {
     color: 'primary',
     fontWeight: '500',
-    fontSize: 4,
+    fontSize: 6,
     lineHeight: 1.4,
+    mr: 2
   },
 };
