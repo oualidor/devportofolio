@@ -191,7 +191,7 @@ function Career(){
     let [limit, setLimit ] = useState(primaryLimit)
     useEffect( ()=>{
         getCarrer().then(careerData =>{
-
+            setData(careerData)
         }).catch(e =>{
             console.log(e)
         })
