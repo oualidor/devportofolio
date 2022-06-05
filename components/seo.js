@@ -9,6 +9,7 @@ export default function SEO({
   meta,
   title = 'YouIT Department DZ',
 }) {
+
   const metaData = [
     {
       name: `description`,
@@ -23,20 +24,12 @@ export default function SEO({
       content: title,
     },
     {
-      property: `og:description`,
-      content: description,
-    },
-    {
       property: `og:type`,
       content: `website`,
     },
     {
       name: `creator`,
       content: author,
-    },
-    {
-      name: "google-site-verification",
-      content: "7sQBDs4nlwu1NCKEJpfCLnrrZ8cGijZhUfFXcZrHG0s"
     }
   ].concat(meta);
   return (
@@ -45,6 +38,7 @@ export default function SEO({
       {metaData.map(({ name, content }, i) => (
         <meta key={i} name={name} content={content} />
       ))}
+      <meta http-equiv='content-language' content='en-gb'/>
       <script
           async
           src={`https://www.googletagmanager.com/gtag/js?id=G-8L31KNNS3F`}

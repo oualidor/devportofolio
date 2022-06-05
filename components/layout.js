@@ -86,7 +86,7 @@ function Layout({ children }) {
 
   return (
     <Box>
-        <SEO author={"Oualid KHIAL"} title={"Oualid KHIAL"}></SEO>
+        <SEO author={"Oualid KHIAL"} title={"Oualid KHIAL, Full stack developer and tech teacher"}></SEO>
         <Sticky innerZ={1002} top={0} >
             <Box
                 id={'BackDrop'}
