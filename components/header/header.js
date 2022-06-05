@@ -64,8 +64,8 @@ const LanTag = ({label, lang, country, style}) => {
 
 const NavIcon = ({Icon, link}) => {
   const style = {
-    width: ["8vw", "8vw", "7vw", "6vw", "5vw", "4vw", "2.5vw"], 
-    marginRight: "5px", cursor: "pointer", 
+    width: ["8vw", "35px", "36px", "38px", "38px", "40px", "40px"],
+    marginRight: "5px", cursor: "pointer",
     transition: "0.3s ease",
     alignItems: "center", justifyContent: "center",
     padding: "5px",
@@ -82,7 +82,7 @@ const NavIcon = ({Icon, link}) => {
       <Icon  size="100%" />
     </Box>
     </a>
-    
+
   );
 };
 
@@ -96,7 +96,12 @@ const SectionTitle = (props) => {
     backgroundClip: "text",
   }
   return (
-    <Text  sx={{fontSize: "25px", fontWeight: "800"}}style={style}>{props.children}</Text>
+    <Text
+        sx={{
+          fontSize: ["15px", "15px", "15px", "15px", "15px", "20px", "22px", ],
+          fontWeight: "800"
+    }}
+           style={style}>{props.children}</Text>
   )
 }
 
@@ -122,7 +127,7 @@ export default function Header({ className }) {
       fontFamily: "en" == "en" ? "'DM Sans', sans-serif;": "'Amiri', serif;"
     },
     header: {
-   
+
       color: 'white',
       fontWeight: 'normal',
       py: 2,
@@ -147,7 +152,7 @@ export default function Header({ className }) {
           borderColor: 'primary',
           color: 'primary',
           '&:hover': {
-           
+
             backgroundColor: 'primary',
             color: 'white',
           },
@@ -164,7 +169,7 @@ export default function Header({ className }) {
     },
     nav: {
       height: "100%",
-   
+
       alignItems: "center",
       justifyContent: 'right',
       display: 'flex',
@@ -201,7 +206,7 @@ export default function Header({ className }) {
           </Box>
         </Box>
         </Container>
-     
+
       </Box>
     </DrawerProvider>
   );
