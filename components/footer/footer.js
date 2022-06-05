@@ -145,7 +145,7 @@ export default function Footer({ className }) {
             </Box>
             <Box>
               <StyledText variant="title" sx={styles.footerEntry}>Mail: </StyledText>
-              <StyledText variant="title" sx={styles.footerEntry}>walid.khial@gmail.com</StyledText>
+              <StyledText variant="title" sx={styles.footerEntry}>contact@oualidkhial.me</StyledText>
             </Box>
           </Box>
         </Box>
