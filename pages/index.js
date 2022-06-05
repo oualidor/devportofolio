@@ -11,12 +11,10 @@ import ReactGA from 'react-ga';
 import Router, {useRouter} from 'next/router';
 
 export const initGA = () => {
-    console.log('GA init');
     ReactGA.initialize('G-8L31KNNS3F');
 };
 
 export const logPageView = () => {
-    console.log(`Logging pageview for ${window.location.pathname}`);
     ReactGA.set({ page: window.location.pathname });
     ReactGA.pageview(window.location.pathname);
 };

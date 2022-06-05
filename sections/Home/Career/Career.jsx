@@ -192,8 +192,6 @@ function Career(){
     useEffect( ()=>{
         getCarrer().then(careerData =>{
 
-            console.log(careerData)
-            setData(careerData)
         }).catch(e =>{
             console.log(e)
         })

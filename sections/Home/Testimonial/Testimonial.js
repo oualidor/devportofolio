@@ -36,7 +36,6 @@ export default function Testimonial() {
 
   useEffect(()=>{
     getTestimonials().then(testimonials=>{
-      console.log(testimonials)
       setTestimonials(testimonials)
     })
   }, [])
