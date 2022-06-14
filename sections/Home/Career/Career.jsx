@@ -156,6 +156,7 @@ const CareerEntry = ({skills, date, role, tags, company, desc}) =>{
         }
           }>
 
+
                <CarrerCard
                     date={date}
                     role={role}
@@ -204,7 +205,10 @@ function Career(){
 
             <StyledText variant="sectionTitle">Skills & Profesional Carrer</StyledText>
             <br></br>
-
+            <Text variant='muted' sx={{marginLeft: "20px", fontSize: "18px"}}>
+                Basically, I am good with all teh technologies labeled i used in the projects bellow, But, I do believe that I do have a good understanding of the philosophy behind giving orders
+                to the computer and problem solving, I can adapt
+            </Text>
             <Box sx={{
                 width: "100%",
                 display: "flex", flexDirection: ['row', 'column', 'column', 'row', 'row', 'row', 'colmun'],

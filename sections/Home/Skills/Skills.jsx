@@ -86,7 +86,8 @@ const CareerEntry = ({skills, start, end, degree, spec, school}) =>{
     )
   }
 
-const LanguageEntry = ({name, level}) =>{
+
+  const LanguageEntry = ({name, level}) =>{
 
     return (
     <Box sx={{display: "flex", flexDirection: 'row', width: "100%", backgroundColor: "tran", marginBottom: 5, alignItems: "center"}}>
@@ -95,7 +96,8 @@ const LanguageEntry = ({name, level}) =>{
     </Box>
     )
   }
-function Skills(){
+
+  function Skills(){
     useState(()=>{
 
     }, [])
@@ -115,20 +117,16 @@ function Skills(){
                 justifyContent: 'space-around', alignItems: 'center', flexWrap: "", ml: 5,
                 '&::-webkit-scrollbar': { width: 0, }
                 }}>
+
                     <Box sx={{display: "flex", flexDirection: 'column', width: "100%", backgroundColor: "tran", marginBottom: 5}}>
                         <StyledText  sx={{marginLeft: "5px", fontSize: "24px"}}>{"Languages"}</StyledText>
                         <LanguageEntry name={"Arabic"} level={"Native"}></LanguageEntry>
                         <LanguageEntry name={"English"} level={"Adnaced (A1)"}></LanguageEntry>
                         <LanguageEntry name={"French"} level={"Very good (B2)"}></LanguageEntry>
                     </Box>
-                    <Box sx={{display: "flex", flexDirection: 'column', width: "100%", backgroundColor: "tran", marginBottom: 5, p: 4}}>
-                        <StyledText  sx={{marginLeft: "5px", fontSize: "24px"}}>{"Tech Expertise"}</StyledText>
-                        <Text variant='muted' sx={{marginLeft: "20px", fontSize: "18px"}}>
-                            Basically,  I am good with any thing based on Node and Javascript en term of experience but,
-                             I do believe that I do have a good understanding of the philosophy behind giving orders
-                             to the computer and problem solving, I can adapt
-                        </Text>
-                        <StyledText  sx={{marginLeft: "5px", fontSize: "24px"}}>{"No tech"}</StyledText>
+                    <Box sx={{display: "flex", flexDirection: 'column', width: "100%", backgroundColor: "tran", marginBottom: 5, pr: 6}}>
+
+                        <StyledText  sx={{marginLeft: "5px", fontSize: "24px"}}>{"No tech Expertise"}</StyledText>
                         <Text variant='muted' sx={{marginLeft: "20px", fontSize: "18px"}}>
                         I am a social element with a good ability to work alone or in a team, I can supervise people or get supervised.
                         I can be integrated silently in any tech community. I would really appreciate having time for study and swimming
@@ -139,5 +137,6 @@ function Skills(){
     )
 
 }
- export default Skills
+
+export default Skills
 
