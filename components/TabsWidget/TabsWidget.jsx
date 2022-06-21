@@ -108,8 +108,6 @@ const TabsWidget = ({tabs, categories}) => {
             let entry = tabs[tabIndex]
             return (entry.component)
         }catch (e){
-            console.log("///////////////////////////////////////////////////////////")
-            console.log(e)
             return (<div>No projects Yet</div>)
         }
 

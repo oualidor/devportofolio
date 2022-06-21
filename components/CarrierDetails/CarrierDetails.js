@@ -118,8 +118,6 @@ export default function CarrierDetails({id}) {
 
         getOneCarrier(id).then(carrier =>{
             setCarrier(carrier)
-            console.log("/////////////////////////////////////////////////////")
-            console.log(carrier)
             setLoaded(true)
         })
     }, [id]);

@@ -65,7 +65,7 @@ export default function Testimonial() {
           sliderClass=""
           slidesToSlide={1}
         >
-          {testimonials.map((item) => (
+          {testimonials.map((item, i) => (
             <Box sx={styles.reviewCard} key={`testimonial--key${item.id}`}>
 
               {/* <Heading as="h3" sx={styles.title}>
@@ -86,16 +86,16 @@ export default function Testimonial() {
 
 
                       {
-                        item.contactInfo.map(link=>{
+                        item.contactInfo.map((link, i)=>{
                           switch (link.type.type){
                             case "linkedIn":
-                              return    <Text sx={styles.designation}><a href={link.link} target={"_blank"}><AiFillLinkedin></AiFillLinkedin></a> </Text>
+                              return    <Text key={i} sx={styles.designation}><a href={link.link} target={"_blank"}><AiFillLinkedin></AiFillLinkedin></a> </Text>
                               break;
                             case "mail":
-                              return    <Text sx={styles.designation}><a href={"mailto://"+link.link} target={"_blank"}><AiOutlineMail></AiOutlineMail></a> </Text>
+                              return    <Text key={i} sx={styles.designation}><a href={"mailto://"+link.link} target={"_blank"}><AiOutlineMail></AiOutlineMail></a> </Text>
                               break;
                             case "phone":
-                              return       <Text sx={styles.designation}><a href={"tel://"+link.link} target={"_blank"}><AiFillPhone></AiFillPhone></a> </Text>
+                              return       <Text key={i}  sx={styles.designation}><a href={"tel://"+link.link} target={"_blank"}><AiFillPhone></AiFillPhone></a> </Text>
                               break;
                           }
                         })
@@ -210,7 +210,7 @@ const styles = {
     lineHeight: 1.3,
   },
   designation: {
-    color: 'primary',
+    color: 'muted',
     fontWeight: '500',
     fontSize: 6,
     lineHeight: 1.4,

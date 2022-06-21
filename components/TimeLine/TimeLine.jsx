@@ -36,15 +36,15 @@ const Entry = ({start, end, degree, spec, school}) =>{
     }
     }
       >
-                  
+
 
         <Box sx={{display: "flex", backgroundColor: "", flexDirection: "row", alignItems: 'center'}}>
         <StyledText variant="timeLineTitle">
         {start}
         </StyledText>
-      
+
         </Box>
-      
+
       <Text variant='muted'>{degree}</Text>
       <Text variant='muted'>{spec}</Text>
       <Text variant='muted'>{school}</Text>
@@ -90,8 +90,9 @@ const Timeline = ({Title, Text, Data}) => {
           slidesToSlide={1}
   >
           {
-          Data.map(entry =>{
-            return (<Entry 
+          Data.map((entry, i) =>{
+            return (<Entry
+                key={i}
               start={entry.year}
               degree={entry.degree}
               school={entry.school}

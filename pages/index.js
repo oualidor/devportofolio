@@ -1,7 +1,7 @@
 
 import {useEffect} from "react";
 import Timeline from '../components/TimeLine/TimeLine';
-import Career from "../sections/Home/Career/Career"
+import Carrier from "../sections/Home/Career/Carrier"
 import Landing from "../sections/Home/Landing/Landing"
 import Skills from "../sections/Home/Skills/Skills"
 import Testimonial from "../sections/Home/Testimonial/Testimonial"
@@ -49,7 +49,7 @@ export default function Home(props) {
      <Landing></Landing>
       <Timeline Title={"Educational Background"} Data={EducationalBackgroundData}/>
       <Skills></Skills>
-      <Career></Career>
+      <Carrier></Carrier>
       {/* <ShowRoom></ShowRoom> */}
 
 
