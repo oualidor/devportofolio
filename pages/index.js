@@ -9,6 +9,9 @@ import 'react-multi-carousel/lib/styles.css';
 import 'rc-drawer/assets/index.css';
 import ReactGA from 'react-ga';
 import Router, {useRouter} from 'next/router';
+import {MountBackDrop} from "../src/Apis/Redux/Actions/Types";
+import CarrierDetails from "../components/CarrierDetails/CarrierDetails";
+import {useDispatch} from "react-redux";
 
 export const initGA = () => {
     ReactGA.initialize('G-8L31KNNS3F');
@@ -26,21 +29,20 @@ const EducationalBackgroundData = [
     { year: "2019 - Now", degree: 'Phd Degree, ', spec:  "Modeling and optimization of computer systems", school: "Mustapha STAMBOULI Univeristy"},
   ];
 
-  const ProfessionalData = [
-    { year: "2012 - 2015", degree: "Front end devolper", spec:  "Front end devolper", school:  "    "},
-    { year: "2015 - 2017", degree: 'Front end devolper, ', spec:  "Modjib Digital", school:  ""},
-    { year: "2018 - 2019", degree: 'Full Stack Developper, ', spec:  "El Manaheel School"},
-    { year: "2019 - 2022", degree: 'Tech Lead, ', spec:  "YourIT Deparmtent", school: ""},
-  ];
 
 export default function Home(props) {
+    let router = useRouter()
+    let dispatch =  useDispatch()
 
     useEffect(() => {
+        if(router.query.carrierId !== undefined){
+            dispatch({type: MountBackDrop, Component: <CarrierDetails id={router.query.carrierId}/> , props:{} ,test: "hi"})
+        }
 
         initGA();
-        logPageView();
+
         Router.events.on('routeChangeComplete', logPageView);
-    }, []);
+    }, [router.query]);
 
   return (
       <>

@@ -4,12 +4,14 @@ import React, {useEffect, useState} from 'react';
 import Sticky from 'react-stickynode';
 import Header from './header/header';
 import Footer from './footer/footer';
-import Head from 'next/head'
+
 import {useDispatch, useSelector} from "react-redux";
 import SEO from "../components/seo"
 import {HideBackDrop, MountBackDrop, RemoveNotification} from "../src/Apis/Redux/Actions/Types";
 
 import {rgba} from "polished";
+import {useRouter} from "next/router";
+
 
 
 
@@ -50,12 +52,12 @@ function Layout({ children }) {
     // const selectedLang = lang => {
     //     return router.locale === lang ? <CheckSquareOutlined /> : <BorderOutlined />
     // }
-
+    const router = useRouter();
     const style={
         Backdrop : {
             width: "99vw", height: "100vh", position: "absolute", zIndex: 999999,
-            backgroundColor: rgba(0, 0, 0, 0.8),
-            display: BackDrop.mount ? "flex":"none",
+            backgroundColor: rgba(0, 0, 0, 0.6),
+            display: BackDrop.mount? "flex":"none",
             alignItems: "center",
             justifyContent: "center",
             p: 1
@@ -75,7 +77,7 @@ function Layout({ children }) {
 
     useEffect(()=>{
 
-    }, [])
+    }, [router])
   const handleStateChange = (status) => {
     if (status.status === Sticky.STATUS_FIXED) {
       setIsSticky(true);
@@ -93,7 +95,9 @@ function Layout({ children }) {
                 sx={style.Backdrop}
                 onClick={(e)=>{
                     if(e.target.id == "BackDrop"){
-                        dispatch({type: HideBackDrop})}
+                        dispatch({type: HideBackDrop, props:{} ,test: "hi"})
+                        router.push("/", undefined, { shallow: true })
+                    }
                     }
                 }
             >
@@ -111,6 +115,7 @@ function Layout({ children }) {
         <Container
             sx={{
               variant: 'layout.main',
+                pt: 0
             }}
         >
             {children}

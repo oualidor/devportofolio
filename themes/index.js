@@ -11,7 +11,7 @@ export default function createTheme(language) {
             background: '#FFFFFF', // body background color
             background_secondary: '#F9FBFD', // secondary background color
             border_color: '#E5ECF4', // border color
-            primary: language == "en" ? '#1F3E76': "#1F3E76", // primary button and link color
+            primary: language == "en" ? '#0F1624': "#1F3E76", // primary button and link color
             secondary: '#25CB9E', // secondary color - can be used for hover states
             muted: '#7B8188', // muted color
             accent: '#609', // a contrast color for emphasizing UI
@@ -267,7 +267,7 @@ export default function createTheme(language) {
                     'left',
                     'left',
                     'left',
-                
+
                 ],
                 lineHeight: 1.2,
                 fontWeight: 700,
@@ -395,6 +395,7 @@ export default function createTheme(language) {
             },
             tabsButton: {
                 fontWeight: 'bold',
+                fontFamily: language == "en" ? "Space Grotesk, sans-serif": "'Amiri', serif;",
                 color: 'white',
                 bg: 'primary',
                 cursor: 'pointer',

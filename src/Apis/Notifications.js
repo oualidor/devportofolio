@@ -39,7 +39,6 @@ export const Notifications = {
             }
 
         } catch (err) {
-            console.log("could not render teh notifications, check again")
             console.log(err)
         }
     }

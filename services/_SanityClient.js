@@ -12,3 +12,37 @@ export const _SanityClient = sanityClient({
 const builder = imageUrlBuilder(_SanityClient);
 
 export const urlFor = (source) => builder.image(source);
+
+const CodeBlock = ({code, lang}) =>{
+
+
+  return(
+      <pre data-language={lang} style={{direction: "ltr"}} >
+          <code style={{direction: "ltr"}}>
+
+            {code}
+
+          </code>
+        </pre>
+  )
+}
+
+export const Serializer = {
+  types: {
+    mainImage: props => (
+        <figure>
+          <img
+              src={urlFor(props.asset)
+                  .width(600)
+                  .url()}
+              alt={props.node.alt}
+          />
+
+          <figcaption>{props.node.caption}</figcaption>
+        </figure>
+    ),
+    code: props => {
+      return(<CodeBlock lang={props.node.language} code={props.node.code}></CodeBlock>)}
+  }
+};
+

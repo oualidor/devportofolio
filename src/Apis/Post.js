@@ -4,7 +4,7 @@ class Postt{
 }
 
 const Post = (post)=>{
-    console.log(post)
+
     post['PostData']['author']['name'] = "hihihi"
     return post
 }
