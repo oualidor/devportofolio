@@ -1,33 +1,34 @@
 
-import {  Box, Container, Flex } from 'theme-ui';
+import {Box, Button, Container, Flex} from 'theme-ui';
 import { IoIosArrowRoundBack, IoIosArrowRoundForward } from 'react-icons/io';
 
 export default function ButtonGroup({ next, previous }) {
   return (
-   
-      <Container>
-        <Box sx={styles.buttonGroup} className="button__group">
-          <button onClick={previous} aria-label="Previous">
+
+
+        <Box sx={styles.buttonGroup}>
+          <Button onClick={previous} aria-label="Previous" sx={{}}>
             <IoIosArrowRoundBack />
-          </button>
+          </Button>
           <button onClick={next} aria-label="Next">
             <IoIosArrowRoundForward />
           </button>
         </Box>
-      </Container>
-   
+
+
   );
 }
 const styles = {
   buttonGroup: {
+
     display: [
-      "flex", 
-      "flex", 
-      "flex", 
-      "flex", 
-      "flex", 
-      "flex", 
-      "flex", 
+      "flex",
+      "flex",
+      "flex",
+      "flex",
+      "flex",
+      "flex",
+      "flex",
     ],
     justifyContent: 'center',
     mb: -4,
