@@ -150,13 +150,10 @@ function Carrier(){
                 }}>
                     <Carousel
                         additionalTransfrom={0}
-                        arrows={true}
+                        arrows={false}
                         autoPlaySpeed={30000000}
                         centerMode={false}
-                        className=""
-                        containerClass="carousel-container"
                         customButtonGroup={<ButtonGroup />}
-                        dotListClass=""
                         draggable
                         focusOnSelect={false}
                         infinite={false}
@@ -164,13 +161,10 @@ function Carrier(){
                         keyBoardControl
                         minimumTouchDrag={80}
                         renderButtonGroupOutside
-                        renderDotsOutside={false}
                         responsive={responsive}
                         showDots={false}
-                        sliderClass=""
                         slidesToSlide={1}
                     >
-
                         {
                             data.map((entry, index) => (<CarrierCard
                                 key={entry._id}
