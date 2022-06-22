@@ -383,6 +383,8 @@ export default function createTheme(language) {
                 },
             },
             textButton: {
+                padding: 0,
+
                 variant: 'buttons.defaultBtn',
                 backgroundColor: 'transparent',
                 color: 'white',

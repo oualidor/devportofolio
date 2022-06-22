@@ -1,21 +1,22 @@
 import {useEffect, useState} from "react";
-import { AiFillDollarCircle, AiFillPieChart } from 'react-icons/ai';
+import {AiFillDollarCircle, AiFillLinkedin, AiFillPhone, AiFillPieChart, AiOutlineMail} from 'react-icons/ai';
 import { FaBriefcase, FaCog } from 'react-icons/fa';
-
+import { AiFillCloseCircle } from "react-icons/ai";
 import 'react-multi-carousel/lib/styles.css';
 import 'rc-drawer/assets/index.css';
 import ImageGallery from "../../components/image-gallery"
-import {Box, Button, Container, Text} from "theme-ui";
+import {Box, Button, Container, Flex, Text} from "theme-ui";
 import PortableText from "@sanity/block-content-to-react";
 import StyledText from "../StyledComponents/StyledText";
 import SkillTag from "../SkillTag/SkillTag";
 import {getOneCarrier} from "../../services";
 import TabsWidget from "../TabsWidget/TabsWidget";
-import ButtonGroup from "../button-group";
+
 import Carousel from "react-multi-carousel";
 import {Serializer, urlFor} from "../../services/_SanityClient";
 import Project from "./Project";
 import CarrierCard from "./CarrierCard";
+
 const responsive = {
     desktop: {
         breakpoint: { max: 3000, min: 1619 },
@@ -39,17 +40,6 @@ const responsive = {
     },
 };
 
-const CustomRightArrow = ({ onClick, ...rest }) => {
-    const {
-        onMove,
-        carouselState: { currentSlide, deviceType }
-    } = rest;
-    // onMove means if dragging or swiping in progress.
-    return <Text>kjghkjhkj</Text>;
-};
-
-
-
 export default function CarrierDetails({id}) {
 
     let [carrier, setCarrier] = useState({skills: [], company: {}, projects: [{images: []}]})
@@ -57,30 +47,8 @@ export default function CarrierDetails({id}) {
     const tabs = [
         {
             id: 0,
-            component:
-                <Box>
-                    <Box sx={{display: "flex", flexDirection: "column", mb: 5}}>
-                        <StyledText  sx={{fontSize: "25px"}}>The company</StyledText>
-                        <Text sx={{color: "", textIndent: "2vw"}} variant={"muted"}>
-                            <PortableText blocks={carrier.company.description} serializers={Serializer} />
-                        </Text>
-                    </Box>
-                    <Box>
-                        <StyledText  sx={{fontSize: "25px"}}>The role</StyledText>
-                        <Text sx={{color: "", textIndent: "2vw"}} variant={"muted"}>
-                            <PortableText blocks={carrier.content} serializers={Serializer} />
-                        </Text>
-                        <Box sx={{flexDirection: 'row', backgroundColor: "", width: "100%", display: "flex", marginLeft: "20px", alignItems: "center"}}>
-                            <Box sx={{display: "flex", flexDirection: 'row', alignItems: "center", flexWrap: "wrap"}}>
-                                {
-                                    carrier.skills.map(skill =>{
-                                        return (<SkillTag name={skill}></SkillTag>)
-                                    })
-                                }
-                            </Box>
-                        </Box>
-                    </Box>
-                </Box>
+            component: <CarrierAbout carrier={carrier}></CarrierAbout>
+
         },
         {
             id: 1,
@@ -89,7 +57,6 @@ export default function CarrierDetails({id}) {
 
         }
     ]
-
     const categories = [
         {
             id: 0,
@@ -108,55 +75,140 @@ export default function CarrierDetails({id}) {
             flexDirection: ["column", "column", "column", "column", "row", "row", "row"],
         },
         GalleryHolder: {
-            display: "none", backgroundColor: "primary", width: "85vw", height: "85vh", p:1, overflow: "auto", overflowX: "hidden",
-            flexDirection: ["column", "column", "column", "column", "row", "row", "row"], alignItems: "center", justifyContent: "center"
+            display: "none", backgroundColor: "primary", width: "85vw", height: "85vh", p:0, overflow: "auto", overflowX: "hidden",
+            flexDirection: ["column", "column", "column", "column", "column", "column", "column"], alignItems: "center", justifyContent: "space-around"
         }
     }
 
     useEffect(() => {
-
-
         getOneCarrier(id).then(carrier =>{
             setCarrier(carrier)
+            console.log(carrier)
             setLoaded(true)
         })
     }, [id]);
-    const imagess= [
-        {
-            original: 'https://picsum.photos/id/1018/1000/600/',
-            thumbnail: 'https://picsum.photos/id/1018/250/150/',
-        },
-        {
-            original: 'https://picsum.photos/id/1015/1000/600/',
-            thumbnail: 'https://picsum.photos/id/1015/250/150/',
-        },
-        {
-            original: 'https://picsum.photos/id/1019/1000/600/',
-            thumbnail: 'https://picsum.photos/id/1019/250/150/',
-        },
-    ];
   return (
       <Box>
           <Box sx={style.CarrierHolder} id={"CarrierHolder"}>
               <Box sx={{backgroundColor: "primary", p:5, mb:5, width: ["100%", "25%", "25%", "25%", "25%", "25%", "25%"]}}>
                   {loaded && <CarrierCard {...carrier } ></CarrierCard>}
               </Box>
-              <Box sx={{backgroundColor: "primary", p:5, width: "80%"}}>
+              <Box sx={{backgroundColor: "primary", p:5, width: "80%", overflow: "auto", overflowX: "hidden"}}>
                   {loaded && <TabsWidget tabs={tabs} categories={categories}></TabsWidget>}
               </Box>
           </Box>
-          <Box sx={style.GalleryHolder} id={"GalleryHolder"}>
-              <ImageGallery items={imagess} />
+          <Box sx={style.GalleryHolder} id={"GalleryHolderContainer"}>
+              <Box sx={{width: "100%", display: "flex", justifyContent: "right", alignItems: "center"}}>
+                  <AiFillCloseCircle
+                      size={"2em"} style={{marginRight: "20px"}}
+                      onClick={()=>{
+                          let CarrierHolder = document.getElementById("CarrierHolder");
+                          let GalleryHolder = document.getElementById("GalleryHolder");
+                          let GalleryHolderContainer = document.getElementById("GalleryHolderContainer");
+                          CarrierHolder.style.display= "flex"
+                          GalleryHolderContainer.style.display= "none"
+
+
+
+                      }}
+                  ></AiFillCloseCircle>
+              </Box>
+              <Box id={"GalleryHolder"}>
+
+              </Box>
           </Box>
       </Box>
-
   )
 }
 
 
+const CarrierAbout = ({carrier})=>{
+    try {
+        return(
+            <Box>
 
 
+                <Box sx={{display: "flex", flexDirection: "column", mb: 5}}>
+                    <StyledText  sx={{fontSize: "25px"}}>The company</StyledText>
+                    <Text sx={{color: "", textIndent: "2vw"}} variant={"muted"}>
+                        <PortableText blocks={carrier.company.description} serializers={Serializer} />
+                    </Text>
+                </Box>
+                <br/>
+                <br/>
+                <Box>
+                    <StyledText  sx={{fontSize: "25px"}}>The role</StyledText>
+                    <Text sx={{color: "", textIndent: "2vw"}} variant={"muted"}>
+                        <PortableText blocks={carrier.content} serializers={Serializer} />
+                    </Text>
+                    <Box sx={{flexDirection: 'row', backgroundColor: "", width: "100%", display: "flex", marginLeft: "20px", alignItems: "center"}}>
+                        <Box sx={{display: "flex", flexDirection: 'row', alignItems: "center", flexWrap: "wrap"}}>
+                            {
+                                carrier.skills.map((skill, i) =>{
+                                    return (<SkillTag name={skill} key={i}></SkillTag>)
+                                })
+                            }
+                        </Box>
+                    </Box>
+                </Box>
 
+            </Box>
+        )
+    }catch (e){
+        return (<Box></Box>)
+    }
+
+}
+
+const CompanyCard = ({company})=>{
+    try {
+        return(
+
+                <Flex sx={{display: "flex", flexDirection: "row", mb: 5, ml: 5}} >
+                    <Flex sx={{flexDirection: "column", mr: 5}}>
+                        <StyledText  sx={{fontSize: "25px"}}>{company.name}</StyledText>
+                        <Box sx={
+                            {
+                                display: "flex",  alignContent: "center", flexDirection: "column"
+                            }
+                        }>
+                            {
+                                company.contactInfo.map((entry, i)=>{
+                                    switch (entry.type.type){
+                                        case "Web":
+                                            return    <a key={i} href={entry.link} target={"_blank"}><Text  > {entry.link}</Text></a>
+                                            break;
+                                        case "Mail":
+                                            return    <a key={i} href={"mailto://"+entry.link} target={"_blank"}><Text>{entry.link}</Text></a>
+                                            break;
+                                        case "phone":
+                                            return       <Text key={i}  ><a href={"tel://"+entry.link} target={"_blank"}><AiFillPhone></AiFillPhone></a> </Text>
+                                            break;
+                                    }
+                                })
+                            }
+
+
+                        </Box>
+                    </Flex>
+                    <Box sx={{width: "60%"}}>
+                        <Text sx={{color: "", textIndent: "2vw"}} variant={"muted"}>
+                            <PortableText blocks={company.description} serializers={Serializer} />
+                        </Text>
+                        <Text sx={{color: "", textIndent: "2vw"}} variant={"muted"}>
+                            <PortableText blocks={company.description} serializers={Serializer} />
+                        </Text>
+                    </Box>
+
+
+                </Flex>
+
+        )
+    }catch (e){
+        return (<Box></Box>)
+    }
+
+}
 
 const CarrierProjects = ({projects})=>{
 
@@ -179,8 +231,8 @@ const CarrierProjects = ({projects})=>{
                 showDots={true}
                 renderDotsOutside={true}
             >
-                {projects.map((project) => (
-                    <Project {...project} />
+                {projects.map((project, i) => (
+                    <Project {...project} key={"project"+i}/>
                 ))}
             </Carousel>
         )

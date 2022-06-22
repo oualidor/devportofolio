@@ -3,13 +3,13 @@ import { _SanityClient } from './_SanityClient';
 
 
 export const getCarrier = async () => {
-  const query = '*[_type == "career"][0..4]{..., company->}';
+  const query = '*[_type == "career"][0..10]{..., company->}';
   let careerData  = await _SanityClient.fetch(query)
   return careerData
 };
 
 export const getOneCarrier = async (id) => {
-  const query = '*[_type == "career" && _id == "'+id+'"][0..1]{...,  company->, projects[]->{..., skills[]->}}';
+  const query = '*[_type == "career" && _id == "'+id+'"][0..1]{...,  company->{..., contactInfo[]{..., type->}}, projects[]->{..., skills[]->}}';
   let careerData  = await _SanityClient.fetch(query)
   return careerData[0]
 };

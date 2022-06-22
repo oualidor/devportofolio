@@ -1,7 +1,8 @@
 import {AiFillDollarCircle} from "react-icons/ai";
 import {FaBriefcase} from "react-icons/fa";
+
 import StyledText from "../StyledComponents/StyledText";
-import {Box, Text} from "theme-ui";
+import {Box, Button, Text} from "theme-ui";
 import PortableText from "@sanity/block-content-to-react";
 import SkillTag from "../SkillTag/SkillTag";
 import ImageGallery from "../image-gallery"
@@ -11,6 +12,8 @@ import DataParser from "../../Apis/DateParser";
 import dateParser from "../../Apis/DateParser";
 import {GoLinkExternal} from "react-icons/go";
 import Carousel from "react-multi-carousel";
+import {render} from "react-dom";
+import {useEffect, useState} from "react";
 const responsive = {
     desktop: {
         breakpoint: { max: 3000, min: 1619 },
@@ -34,51 +37,21 @@ const responsive = {
     },
 };
 const Project = ({name, from, to, title, skills, content, outcome, images}) =>{
-    const imagess= [
-        {
-            original: 'https://picsum.photos/id/1018/1000/600/',
-            thumbnail: 'https://picsum.photos/id/1018/250/150/',
-        },
-        {
-            original: 'https://picsum.photos/id/1015/1000/600/',
-            thumbnail: 'https://picsum.photos/id/1015/250/150/',
-        },
-        {
-            original: 'https://picsum.photos/id/1019/1000/600/',
-            thumbnail: 'https://picsum.photos/id/1019/250/150/',
-        },
-    ];
-    const categories = [
-        {
-            id: 0,
-            title : "About",
-            icon: AiFillDollarCircle
-        },
-        {
-            id: 1,
-            title : "Gallery",
-            icon: FaBriefcase
-        }
-    ]
-    const tabs = [
-        {
-            id: 0,
-            component:
-                <>
+    console.log(images)
+    let [preparedImages, setImages] = useState([])
+    useEffect(()=>{
 
-                </>
-        },
-        {
-            id: 1,
-            component:
-                <>
-                    <Box>
-                        <ImageGallery items={imagess} />
-                    </Box>
-                </>
+        if(images !== undefined && images !== null){
+            setImages( images.map((im =>{
+                return    {
+                    original: urlFor(im),
+                    thumbnail: urlFor(im),
+                }
+            })))
         }
-    ]
 
+
+    }, [images])
     return (
         <Box sx={{display: "flex", flexDirection: 'column',  backgroundColor: "",  width: "100%"}} id={"projecttt"}>
             <StyledText variant="timeLineTitle">{title + " [ "+ DataParser.toString(from) + " - " +dateParser.toString(to) + " ]"}</StyledText>
@@ -107,17 +80,6 @@ const Project = ({name, from, to, title, skills, content, outcome, images}) =>{
                         return (<SkillTag name={skill.title} ></SkillTag>)
                     })
                 }
-            </Box>
-            <br></br>
-            <StyledText  sx={{marginLeft: "20px", fontSize: "26px"}} onClick={()=>{
-                let CarrierHolder = document.getElementById("CarrierHolder");
-                let GalleryHolder = document.getElementById("GalleryHolder");
-                CarrierHolder.style.display= "none"
-                GalleryHolder.style.display= "flex"
-
-            }}>Images Gallery <GoLinkExternal style={{color: "white"}}></GoLinkExternal></StyledText>
-            <Box>
-                <ProjectImages images={images}></ProjectImages>
             </Box>
         </Box>
     )

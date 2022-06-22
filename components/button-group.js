@@ -7,9 +7,9 @@ export default function ButtonGroup({ next, previous }) {
 
 
         <Box sx={styles.buttonGroup}>
-          <Button onClick={previous} aria-label="Previous" sx={{}}>
+          <button  onClick={previous} aria-label="Previous" sx={{}}>
             <IoIosArrowRoundBack />
-          </Button>
+          </button>
           <button onClick={next} aria-label="Next">
             <IoIosArrowRoundForward />
           </button>

@@ -15,6 +15,8 @@ import {useRouter} from "next/router";
 import ButtonGroup from "../../../components/button-group";
 import Carousel from "react-multi-carousel";
 
+
+
 const CodeBlock = ({code, lang}) =>{
 
 
@@ -75,7 +77,7 @@ const CarrierCard = ({id, date, end, role, tags, company, skills}) =>{
     let router = useRouter()
     return (
     <Box
-        sx={{display: "flex", flexDirection: 'column',  backgroundColor: "", marginBottom: 5}}
+        sx={{display: "flex", flexDirection: 'column',  backgroundColor: "", marginBottom: 5, ml: 20, cursor: "pointer"}}
         onClick={()=>{
             dispatch({type: MountBackDrop, Component: <CarrierDetails id={id}/> , props:{} ,test: "hi"})
             router.push("/?carrierId="+id, undefined, { shallow: true })
@@ -133,7 +135,7 @@ function Carrier(){
 
     return(
 
-            <Box sx={{backgroundColor: "", cursor: "pointer"}}>
+            <Box sx={{backgroundColor: "", }}>
 
                 <StyledText variant="sectionTitle">Skills & Profesional Carrer</StyledText>
                 <br></br>
@@ -148,8 +150,8 @@ function Carrier(){
                 }}>
                     <Carousel
                         additionalTransfrom={0}
-                        arrows={false}
-                        autoPlaySpeed={3000}
+                        arrows={true}
+                        autoPlaySpeed={30000000}
                         centerMode={false}
                         className=""
                         containerClass="carousel-container"
@@ -157,7 +159,7 @@ function Carrier(){
                         dotListClass=""
                         draggable
                         focusOnSelect={false}
-                        infinite={true}
+                        infinite={false}
                         itemClass=""
                         keyBoardControl
                         minimumTouchDrag={80}
