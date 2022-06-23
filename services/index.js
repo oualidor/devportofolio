@@ -20,3 +20,9 @@ export const getTestimonials = async () => {
   return careerData
 };
 
+export const getPerson = async () => {
+  const query = '*[_type == "person" ][0..1]{..., contactInfo[]{..., type->} }';
+  let careerData  = await _SanityClient.fetch(query)
+  return careerData[0]
+};
+

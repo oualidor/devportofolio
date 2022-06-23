@@ -1,14 +1,18 @@
 import { useResponsiveValue, useBreakpointIndex } from '@theme-ui/match-media'
-import {useState, useEffect, useRef} from 'react';
+import {useState, useEffect, useRef, forwardRef} from 'react';
 
 import {Box, Button, Container, Text} from "theme-ui";
 import StyledText from '../../../components/StyledComponents/StyledText';
 import {useDispatch} from "react-redux";
-import SkillTag from '../../../components/SkillTag/SkillTag';
-import {keyframes} from "@emotion/react";
 import { useThemeUI } from 'theme-ui'
 import {MountBackDrop} from "../../../src/Apis/Redux/Actions/Types";
 import MeetScheduler from "../../../components/MeetScheduler";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
+import ReactToPrint, {PrintContextConsumer} from "react-to-print";
+import {CV} from "../../../components/CV/CV";
+
+
 const BackgroundAnimation = () => (
     <div>
       <svg
@@ -373,12 +377,26 @@ const BackgroundAnimation = () => (
 
 
 function Landing(){
+    function printDocument() {
+        const input = document.getElementById('CV');
+        html2canvas(input)
+            .then((canvas) => {
+                const imgData = canvas.toDataURL('image/png');
+                const pdf = new jsPDF();
+                pdf.addImage(imgData, 'JPEG', 0, 0);
+                // pdf.output('dataurlnewwindow');
+                pdf.save("download.pdf");
+            })
+        ;
+    }
     const imageHolderRef = useRef(null)
     const context = useThemeUI()
     const dispatch = useDispatch()
     const index = useBreakpointIndex()
+    const ref = useRef();
     const style = {
         con :{
+
             width: "100%"   , display: "flex", flexDirection: ["column-reverse", "column-reverse", "column-reverse", "column-reverse", "row", "row", "row"],
             py: ["20vh", "20vh", "20vh", "20vh", "10vh", "10vh", "10vh"],
             height: ["100vh", "20vh", "auto", "auto", "auto", "auto", "auto"],
@@ -408,6 +426,7 @@ function Landing(){
 
     return(
         <Box sx={style.con}>
+            <CV ref={ref}></CV>
             <Box sx={style.left}>
                 <StyledText variant="fullAndHalf">There is a lot that I dont know <br></br> </StyledText>
                 <StyledText sx={{}} variant={"fullAndHalf"}>But I am always learning</StyledText>
@@ -432,8 +451,20 @@ function Landing(){
                           dispatch({type: MountBackDrop, Component: <MeetScheduler/> , props:{} ,test: "hi"})
                       }}
                   >
-                      Schedule a meet</Button>
-                  <Button variant='secondary'>Downlod CV</Button>
+                      Schedule a meet
+                  </Button>
+
+                    <ReactToPrint
+                        trigger={() =>          <Button
+                            variant='secondary'
+                            onClick={()=> {
+                                // printDocument()
+                            }}
+                        >
+                            Download CV
+                        </Button>}
+                        content={() => ref.current}
+                    />
                 </Box>
             </Box>
             <Box sx={style.right} ref={imageHolderRef}>

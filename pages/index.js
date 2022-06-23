@@ -1,5 +1,5 @@
 
-import {useEffect} from "react";
+import {useEffect, useRef} from "react";
 import Timeline from '../components/TimeLine/TimeLine';
 import Carrier from "../sections/Home/Career/Carrier"
 import Landing from "../sections/Home/Landing/Landing"
@@ -12,6 +12,12 @@ import Router, {useRouter} from 'next/router';
 import {MountBackDrop} from "../src/Apis/Redux/Actions/Types";
 import CarrierDetails from "../components/CarrierDetails/CarrierDetails";
 import {useDispatch} from "react-redux";
+
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
+import {Box} from "theme-ui";
+import ReactToPrint,  { PrintContextConsumer }from "react-to-print";
+import {CV} from "../components/CV/CV";
 
 export const initGA = () => {
     ReactGA.initialize('G-8L31KNNS3F');
@@ -30,23 +36,26 @@ const EducationalBackgroundData = [
   ];
 
 
+
 export default function Home(props) {
     let router = useRouter()
     let dispatch =  useDispatch()
 
     useEffect(() => {
+
         if(router.query.carrierId !== undefined){
             dispatch({type: MountBackDrop, Component: <CarrierDetails id={router.query.carrierId}/> , props:{} ,test: "hi"})
         }
-
+            dispatch({type: MountBackDrop, Component: <CV /> , props:{} ,test: "hi"})
         initGA();
 
         Router.events.on('routeChangeComplete', logPageView);
-    }, [router.query]);
+    }, []);
 
   return (
-      <>
-     <Landing></Landing>
+      <Box id={"testst"}>
+
+          <Landing></Landing>
       <Timeline Title={"Educational Background"} Data={EducationalBackgroundData}/>
       <Skills></Skills>
       <Carrier></Carrier>
@@ -55,6 +64,6 @@ export default function Home(props) {
 
       <Testimonial></Testimonial>
 
-      </>
+      </Box>
   )
 }
