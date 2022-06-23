@@ -53,7 +53,7 @@ export default function Home(props) {
     }, []);
 
   return (
-      <Box id={"testst"}>
+      <Box sx={{zIndex: 10}}>
 
           <Landing></Landing>
       <Timeline Title={"Educational Background"} Data={EducationalBackgroundData}/>

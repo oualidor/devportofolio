@@ -114,8 +114,9 @@ function Layout({ children }) {
         </Sticky>
         <Container
             sx={{
-              variant: 'layout.main',
-                pt: 0
+
+                pt: 0,
+
             }}
         >
             {children}

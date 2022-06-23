@@ -39,7 +39,7 @@ function Landing(){
     const style = {
         con :{
 
-            width: "100%"   , display: "flex", flexDirection: ["column-reverse", "column-reverse", "column-reverse", "column-reverse", "row", "row", "row"],
+            width: "100%", display: "flex", flexDirection: ["column-reverse", "column-reverse", "column-reverse", "column-reverse", "row", "row", "row"],
             py: ["20vh", "20vh", "20vh", "20vh", "10vh", "10vh", "10vh"],
             height: ["100vh", "20vh", "auto", "auto", "auto", "auto", "auto"],
         },
@@ -67,60 +67,64 @@ function Landing(){
 
 
     return(
-        <Box sx={style.con}>
-            <CV ref={ref} ></CV>
-            <Box sx={style.left}>
-                <StyledText variant="fullAndHalf">There is a lot that I dont know <br></br> </StyledText>
-                <StyledText sx={{}} variant={"fullAndHalf"}>But I am always learning</StyledText>
-                <br></br>
+        <>
+            {/*<CV ref={ref} ></CV>*/}
+            <Box sx={style.con}>
 
-                <Text sx={{fontSize: ["5vw", "4vw", "4vw", "4vw", "2vw", "2vw", "2vw"],     backgroundColor: "",    textAlign: [
-                    'center',
-                    'center',
-                    'center',
-                    'left',
-                    'left',
-                    'left',
-                    'left',
+                <Box sx={style.left}>
+                    <StyledText variant="fullAndHalf">There is a lot that I dont know <br></br> </StyledText>
+                    <StyledText sx={{}} variant={"fullAndHalf"}>But I am always learning</StyledText>
+                    <br></br>
 
-                ],}}>
-                  I am a Full stack developer, A PhD researcher and a computer science teacher</Text>
-                <br></br>
-                <Box sx={{display: "flex", backgroundColor: ""}}>
-                  <Button
-                      sx={{mr: 3}} variant='whiteButton'
-                      onClick={()=> {
-                          dispatch({type: MountBackDrop, Component: <MeetScheduler/> , props:{} ,test: "hi"})
-                      }}
-                  >
-                      Schedule a meet
-                  </Button>
+                    <Text sx={{fontSize: ["5vw", "4vw", "4vw", "4vw", "2vw", "2vw", "2vw"],     backgroundColor: "",    textAlign: [
+                            'center',
+                            'center',
+                            'center',
+                            'left',
+                            'left',
+                            'left',
+                            'left',
 
-                    {/*<ReactToPrint*/}
-                    {/*    trigger={() =>          <Button*/}
-                    {/*        variant='secondary'*/}
-                    {/*        onClick={()=> {*/}
-                    {/*            printDocument()*/}
-                    {/*        }}*/}
-                    {/*    >*/}
-                    {/*        Download CV*/}
-                    {/*    </Button>}*/}
-                    {/*    content={() => ref.current}*/}
-                    {/*/>*/}
-                    <Button
-                        variant='secondary'
-                        onClick={()=> {
-                            printDocument()
-                        }}
-                    >
-                        Download CV
-                    </Button>
+                        ],}}>
+                        I am a Full stack developer, A PhD researcher and a computer science teacher</Text>
+                    <br></br>
+                    <Box sx={{display: "flex", backgroundColor: ""}}>
+                        <Button
+                            sx={{mr: 3}} variant='whiteButton'
+                            onClick={()=> {
+                                dispatch({type: MountBackDrop, Component: <MeetScheduler/> , props:{} ,test: "hi"})
+                            }}
+                        >
+                            Schedule a meet
+                        </Button>
+
+                        {/*<ReactToPrint*/}
+                        {/*    trigger={() =>          <Button*/}
+                        {/*        variant='secondary'*/}
+                        {/*        onClick={()=> {*/}
+                        {/*            printDocument()*/}
+                        {/*        }}*/}
+                        {/*    >*/}
+                        {/*        Download CV*/}
+                        {/*    </Button>}*/}
+                        {/*    content={() => ref.current}*/}
+                        {/*/>*/}
+                        <Button
+                            variant='secondary'
+                            onClick={()=> {
+                                // printDocument()
+                            }}
+                        >
+                            Download CV
+                        </Button>
+                    </Box>
+                </Box>
+                <Box sx={style.right} ref={imageHolderRef}>
+                    <BackgroundAnimation />
                 </Box>
             </Box>
-            <Box sx={style.right} ref={imageHolderRef}>
-                <BackgroundAnimation />
-            </Box>
-        </Box>
+        </>
+
     )
 
 }

@@ -46,7 +46,7 @@ export const CV = forwardRef((props, ref) => {
         })
     }, []);
     const sx = {
-        container: { width: "21cm", height: "29.7cm", backgroundColor: "white", padding: 2, display: "flex", zIndex: -1, position: "absolute"},
+        container: { width: "21cm", height: "29.7cm", backgroundColor: "white", padding: 2, display: "flex", zIndex: -11, position: "absolute", top: 0, left: 0},
         left: { width: "35%", height: "100%", backgroundColor: "white", padding: 5},
         right: { width: "64%", height: "100%", backgroundColor: "", padding: 5},
         imageHolder: { width: "100%", height: "7cm", backgroundColor: ""},
@@ -54,7 +54,7 @@ export const CV = forwardRef((props, ref) => {
     return (
 
 
-        <Box ref={ref} sx={sx.container} id={"cvContainer"}>
+        <div ref={ref} style={sx.container} id={"cvContainer"}>
             <Box sx={sx.left}>
                 <Box sx={sx.imageHolder}>
                     <img src={Me} width={"100%"} height={"100%"}/>
@@ -126,7 +126,7 @@ export const CV = forwardRef((props, ref) => {
                 </Box>
             </Box>
 
-        </Box>
+        </div>
 
 
     );
