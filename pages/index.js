@@ -31,7 +31,7 @@ export const logPageView = () => {
 const EducationalBackgroundData = [
     { year: "2009 - 2012", degree: 'High School degree, ', spec:  "Experimengal Scince", school:  "Youcfi Bouchrit High School"},
     { year: "2012 - 2015", degree: 'Bachaloreas degree, ', spec:  "Computer Scince", school:  "Mouley TAHAR University"},
-    { year: "2015 - 2017", degree: 'Master Degree, ', spec:  "MICR",school: "Mouley TAHAR University"},
+    { year: "2015 - 2017", degree: 'Master Degree, ', spec:  "A",school: "Mouley TAHAR University"},
     { year: "2019 - Now", degree: 'Phd Degree, ', spec:  "Modeling and optimization of computer systems", school: "Mustapha STAMBOULI Univeristy"},
   ];
 
@@ -46,7 +46,7 @@ export default function Home(props) {
         if(router.query.carrierId !== undefined){
             dispatch({type: MountBackDrop, Component: <CarrierDetails id={router.query.carrierId}/> , props:{} ,test: "hi"})
         }
-            dispatch({type: MountBackDrop, Component: <CV /> , props:{} ,test: "hi"})
+            // dispatch({type: MountBackDrop, Component: <CV /> , props:{} ,test: "hi"})
         initGA();
 
         Router.events.on('routeChangeComplete', logPageView);

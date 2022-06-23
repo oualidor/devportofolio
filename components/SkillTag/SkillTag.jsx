@@ -16,7 +16,7 @@ const ProfessionalData = [
 const theme = createTheme({
 
 });
-function SkillTag({name, level, style}){
+function SkillTag({name, level, style, props}){
     useState(()=>{
 
     }, [])
@@ -25,14 +25,14 @@ function SkillTag({name, level, style}){
     return(
         <Box sx={{marginRight: "10px", mb: 1}}>
             <ThemeProvider theme={theme}>
-            <Chip label={name} variant="outlined" color="primary" style={style} />
+            <Chip label={name} variant="outlined" color="primary" style={style}  {...props}/>
             </ThemeProvider>
-    
+
             {/* <Text sx={{backgroundColor: "green", borderRadius: "20px", height: "40px", py: "1px", px: 4, display: "flex", alignItems: "center", color: "white"}}>{name}</Text> */}
         </Box>
-      
+
     )
-  
-} 
+
+}
  export default SkillTag
-  
+

@@ -6,19 +6,37 @@ import {useDispatch} from "react-redux";
 import {useRouter} from "next/router";
 import {getCarrier} from "../../services";
 import QRCode from "react-qr-code";
+import PortableText from "@sanity/block-content-to-react";
+import {Serializer} from "../../services/_SanityClient";
+import SkillTag from "../SkillTag/SkillTag";
 
 
-const CarrierCard = ({id, date, end, role, tags, company, skills}) =>{
+const CarrierCard = ({id, date, end, role, tags, company, skills, desc}) =>{
     let dispatch = useDispatch()
     let router = useRouter()
     return (
         <Box sx={{display: "flex", flexDirection: "row", justifyContent: "space-between"    }}>
             <Box
-                sx={{display: "flex", flexDirection: 'column',  marginBottom: "0.5cm"}}
+                sx={{display: "flex", flexDirection: 'column',  marginBottom: "10px"}}
             >
-                <Text  sx={{marginLeft: "0px", fontSize: "14px", color: "red"}}>{date}</Text>
-                <Text  sx={{marginLeft: "20px", fontSize: "13px"}}>{role}</Text>
+                <Text sx={{ml: "5px"}}>{date}</Text>
+                <Text  sx={{ml: "20px", fontSize: "16px", fontWeight: "bold"}}>{role}</Text>
                 <Text  sx={{marginLeft: "20px", fontSize: "13px"}}>{"@ " + company}</Text>
+                {/*<Box sx={{flexDirection: 'row', backgroundColor: "", width: "100%", display: "flex", marginLeft: "20px", alignItems: "center"}}>*/}
+                {/*    <Box sx={{display: "flex", flexDirection: 'row', alignItems: "center", flexWrap: "wrap"}}>*/}
+                {/*        {*/}
+                {/*            skills.map((skill, i) =>{*/}
+                {/*                if(i < 2){*/}
+                {/*                    return (<SkillTag name={skill} key={i}  style={{fontSize: "10px"}} props={{size: "small"}}></SkillTag>)*/}
+                {/*                }*/}
+
+                {/*            })*/}
+                {/*        }*/}
+                {/*    </Box>*/}
+                {/*</Box>*/}
+            </Box>
+            <Box>
+
             </Box>
         </Box>
 
