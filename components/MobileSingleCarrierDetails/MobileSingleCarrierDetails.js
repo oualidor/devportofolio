@@ -90,7 +90,7 @@ export default function MobileSingleCarrierDetails({id}) {
     useEffect(() => {
         getOneCarrier(id).then(carrier =>{
             setCarrier(carrier)
-            console.log(carrier)
+
             setLoaded(true)
         })
     }, [id]);

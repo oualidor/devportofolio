@@ -37,7 +37,7 @@ const responsive = {
     },
 };
 const Project = ({name, from, to, title, skills, content, outcome, images}) =>{
-    console.log(images)
+
     let [preparedImages, setImages] = useState([])
     useEffect(()=>{
 

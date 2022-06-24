@@ -101,7 +101,7 @@ export default function CarrierDetails({}) {
     useEffect(() => {
         getCarrier().then(carrier =>{
             setCarrier(carrier)
-            console.log(carrier)
+
             setLoaded(true)
         })
     }, []);

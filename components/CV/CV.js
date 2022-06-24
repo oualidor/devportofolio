@@ -42,7 +42,7 @@ export const CV = forwardRef((props, ref) => {
     useEffect(() => {
         getPerson().then(person =>{
             setPerson(person)
-            console.log(person)
+
         })
     }, []);
     const sx = {
