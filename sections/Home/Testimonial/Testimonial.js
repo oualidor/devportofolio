@@ -40,7 +40,7 @@ export default function Testimonial() {
     })
   }, [])
   return (
-    <Box id="testimonial" sx={{  }}>
+    <Box  sx={{  }} id="Testimonial">
       <StyledText variant="sectionTitle">Testimonials I am proud of</StyledText>
       <Box sx={styles.carouselWrapper}>
         <Carousel

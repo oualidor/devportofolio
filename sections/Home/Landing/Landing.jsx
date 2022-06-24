@@ -39,7 +39,7 @@ function Landing(){
     const style = {
         con :{
 
-            width: "100%", display: "flex", flexDirection: ["column-reverse", "column-reverse", "column-reverse", "column-reverse", "row", "row", "row"],
+            display: "flex", flexDirection: ["column-reverse", "column-reverse", "column-reverse", "column-reverse", "row", "row", "row"],
             py: ["20vh", "20vh", "20vh", "20vh", "10vh", "10vh", "10vh"],
             height: ["100vh", "20vh", "auto", "auto", "auto", "auto", "auto"],
         },
@@ -68,8 +68,8 @@ function Landing(){
 
     return(
         <>
-            {/*<CV ref={ref} ></CV>*/}
-            <Box sx={style.con}>
+
+            <Box sx={style.con} id={"Landing"}>
 
                 <Box sx={style.left}>
                     <StyledText variant="fullAndHalf">There is a lot that I dont know <br></br> </StyledText>

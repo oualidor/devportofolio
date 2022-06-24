@@ -45,9 +45,9 @@ const Entry = ({start, end, degree, spec, school}) =>{
 
         </Box>
 
-      <Text variant='muted'>{degree}</Text>
-      <Text variant='muted'>{spec}</Text>
-      <Text variant='muted'>{school}</Text>
+      <Text variant='muted' sx={{fontWeight: "bold"}}>{degree}</Text>
+      <Text variant='muted'  sx={{marginLeft: "10px"}}>{spec}</Text>
+      <Text variant='muted' sx={{marginLeft: "10px"}}>{school}</Text>
     </Box>
   )
 }
@@ -65,7 +65,7 @@ const Timeline = ({Title, Text, Data}) => {
   }, []);
 
   return (
-    <Box sx={{display: "flex", flexDirection: "column"}}>
+    <Box sx={{display: "flex", flexDirection: "column"}} id={"Education"}>
       <StyledText variant="sectionTitle">{Title}</StyledText>
       <Carousel
           additionalTransfrom={0}
@@ -78,7 +78,7 @@ const Timeline = ({Title, Text, Data}) => {
           dotListClass=""
           draggable
           focusOnSelect={false}
-          infinite={true}
+          infinite={false}
           itemClass=""
           keyBoardControl
           minimumTouchDrag={80}

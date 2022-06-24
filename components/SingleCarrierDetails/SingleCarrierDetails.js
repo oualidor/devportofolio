@@ -9,7 +9,7 @@ import {Box, Button, Container, Flex, Text} from "theme-ui";
 import PortableText from "@sanity/block-content-to-react";
 import StyledText from "../StyledComponents/StyledText";
 import SkillTag from "../SkillTag/SkillTag";
-import {getCarrier, getOneCarrier} from "../../services";
+import {getOneCarrier} from "../../services";
 import TabsWidget from "../TabsWidget/TabsWidget";
 
 import Carousel from "react-multi-carousel";
@@ -40,37 +40,19 @@ const responsive = {
     },
 };
 
-export default function CarrierDetails({}) {
-    let [carrier, setCarrier] = useState([{skills: [], company: {}, projects: [{images: []}]}])
+export default function SingleCarrierDetails({id}) {
+
+    let [carrier, setCarrier] = useState({skills: [], company: {}, projects: [{images: []}]})
     let [loaded, setLoaded] = useState(false)
-    let [currentIndex, setCurrentIndex] = useState(0)
-
-    const LeftMenu = ({carrier})=>{
-        try {
-            return(
-                <Box>
-                    {
-                        carrier.map((entry, i) =>{
-                            return (<CarrierCard {...entry } key={i} onClick={()=>{ setCurrentIndex(i) }}></CarrierCard>)
-                        })
-                    }
-                </Box>
-            )
-        }catch (e){
-            return (<Box></Box>)
-        }
-    }
-
-
     const tabs = [
         {
             id: 0,
-            component: <CarrierAbout carrier={carrier[currentIndex]}></CarrierAbout>
+            component: <CarrierAbout carrier={carrier}></CarrierAbout>
 
         },
         {
             id: 1,
-            component: <CarrierProjects projects={carrier[currentIndex].projects}></CarrierProjects>
+            component: <CarrierProjects projects={carrier.projects}></CarrierProjects>
 
 
         }
@@ -83,7 +65,7 @@ export default function CarrierDetails({}) {
         },
         {
             id: 1,
-            title : (carrier[currentIndex].projects !== null && carrier[currentIndex].projects !== undefined) ? "Projects [ " + carrier[currentIndex].projects.length+ " ]"  : "Projects [0]" ,
+            title : (carrier.projects !== null && carrier.projects !== undefined) ? "Projects [ " + carrier.projects.length+ " ]"  : "Projects [0]" ,
             icon: FaBriefcase
         }
     ]
@@ -99,20 +81,37 @@ export default function CarrierDetails({}) {
     }
 
     useEffect(() => {
-        getCarrier().then(carrier =>{
+        getOneCarrier(id).then(carrier =>{
             setCarrier(carrier)
             console.log(carrier)
             setLoaded(true)
         })
-    }, []);
+    }, [id]);
   return (
       <Box>
           <Box sx={style.CarrierHolder} id={"CarrierHolder"}>
-              <Box sx={{backgroundColor: "primary", p:5, mb:5, width: ["100%", "25%", "25%", "25%", "25%", "25%", "25%"], overflow: "auto"}}>
-                  {loaded && <LeftMenu carrier={carrier}></LeftMenu>}
+              <Box sx={{backgroundColor: "primary", p:5, mb:5, width: ["100%", "25%", "25%", "25%", "25%", "25%", "25%"]}}>
+                  {loaded && <CarrierCard {...carrier } ></CarrierCard>}
               </Box>
-              <Box sx={{backgroundColor: "primary", p:5, width: "80%", overflow: "auto", overflowX: "hidden", ml: "15px"}}>
+              <Box sx={{backgroundColor: "primary", p:5, width: "80%", overflow: "auto", overflowX: "hidden"}}>
                   {loaded && <TabsWidget tabs={tabs} categories={categories}></TabsWidget>}
+              </Box>
+          </Box>
+          <Box sx={style.GalleryHolder} id={"GalleryHolderContainer"}>
+              <Box sx={{width: "100%", display: "flex", justifyContent: "right", alignItems: "center"}}>
+                  <AiFillCloseCircle
+                      size={"2em"} style={{marginRight: "20px"}}
+                      onClick={()=>{
+                          let CarrierHolder = document.getElementById("CarrierHolder");
+                          let GalleryHolder = document.getElementById("GalleryHolder");
+                          let GalleryHolderContainer = document.getElementById("GalleryHolderContainer");
+                          CarrierHolder.style.display= "flex"
+                          GalleryHolderContainer.style.display= "none"
+                      }}
+                  ></AiFillCloseCircle>
+              </Box>
+              <Box id={"GalleryHolder"}>
+
               </Box>
           </Box>
       </Box>
@@ -120,11 +119,12 @@ export default function CarrierDetails({}) {
 }
 
 
-
 const CarrierAbout = ({carrier})=>{
     try {
         return(
             <Box>
+
+
                 <Box sx={{display: "flex", flexDirection: "column", mb: 5}}>
                     <StyledText  sx={{fontSize: "25px"}}>The company</StyledText>
                     <Text sx={{color: "", textIndent: "2vw"}} variant={"muted"}>
@@ -157,6 +157,56 @@ const CarrierAbout = ({carrier})=>{
 
 }
 
+const CompanyCard = ({company})=>{
+    try {
+        return(
+
+                <Flex sx={{display: "flex", flexDirection: "row", mb: 5, ml: 5}} >
+                    <Flex sx={{flexDirection: "column", mr: 5}}>
+                        <StyledText  sx={{fontSize: "25px"}}>{company.name}</StyledText>
+                        <Box sx={
+                            {
+                                display: "flex",  alignContent: "center", flexDirection: "column"
+                            }
+                        }>
+                            {
+                                company.contactInfo.map((entry, i)=>{
+                                    switch (entry.type.type){
+                                        case "Web":
+                                            return    <a key={i} href={entry.link} target={"_blank"}><Text  > {entry.link}</Text></a>
+                                            break;
+                                        case "Mail":
+                                            return    <a key={i} href={"mailto://"+entry.link} target={"_blank"}><Text>{entry.link}</Text></a>
+                                            break;
+                                        case "phone":
+                                            return       <Text key={i}  ><a href={"tel://"+entry.link} target={"_blank"}><AiFillPhone></AiFillPhone></a> </Text>
+                                            break;
+                                    }
+                                })
+                            }
+
+
+                        </Box>
+                    </Flex>
+                    <Box sx={{width: "60%"}}>
+                        <Text sx={{color: "", textIndent: "2vw"}} variant={"muted"}>
+                            <PortableText blocks={company.description} serializers={Serializer} />
+                        </Text>
+                        <Text sx={{color: "", textIndent: "2vw"}} variant={"muted"}>
+                            <PortableText blocks={company.description} serializers={Serializer} />
+                        </Text>
+                    </Box>
+
+
+                </Flex>
+
+        )
+    }catch (e){
+        return (<Box></Box>)
+    }
+
+}
+
 const CarrierProjects = ({projects})=>{
 
     try {
@@ -168,6 +218,7 @@ const CarrierProjects = ({projects})=>{
                 centerMode={false}
                 draggable={true}
                 focusOnSelect={false}
+
                 itemClass=""
                 keyBoardControl
                 minimumTouchDrag={80}

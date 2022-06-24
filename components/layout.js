@@ -87,7 +87,7 @@ function Layout({ children }) {
   };
 
   return (
-    <Box>
+    <Box id={"Layout"}>
         <SEO author={"Oualid KHIAL"} title={"Oualid KHIAL, Full stack developer and tech teacher"}></SEO>
         <Sticky innerZ={1002} top={0} >
             <Box
@@ -113,11 +113,8 @@ function Layout({ children }) {
             <Header className={`${isSticky ? 'sticky' : 'unSticky'}`}  />
         </Sticky>
         <Container
-            sx={{
-
-                pt: 0,
-
-            }}
+            id={"LayoutBody"}
+            sx={{}}
         >
             {children}
         </Container>

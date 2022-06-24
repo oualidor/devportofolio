@@ -10,7 +10,7 @@ import { GoLinkExternal } from "react-icons/go";
 import NextLink from "next/link";
 import {useDispatch} from "react-redux";
 import {MountBackDrop} from "../../../src/Apis/Redux/Actions/Types";
-import CarrierDetails from "../../../components/CarrierDetails/CarrierDetails";
+import SingleCarrierDetails from "../../../components/SingleCarrierDetails/SingleCarrierDetails";
 import {useRouter} from "next/router";
 import ButtonGroup from "../../../components/button-group";
 import Carousel from "react-multi-carousel";
@@ -79,7 +79,7 @@ const CarrierCard = ({id, date, end, role, tags, company, skills}) =>{
     <Box
         sx={{display: "flex", flexDirection: 'column',  backgroundColor: "", marginBottom: 5, ml: 20, cursor: "pointer"}}
         onClick={()=>{
-            dispatch({type: MountBackDrop, Component: <CarrierDetails id={id}/> , props:{} ,test: "hi"})
+            dispatch({type: MountBackDrop, Component: <SingleCarrierDetails id={id}/> , props:{} ,test: "hi"})
             router.push("/?carrierId="+id, undefined, { shallow: true })
 
         }}
@@ -135,7 +135,7 @@ function Carrier(){
 
     return(
 
-            <Box sx={{backgroundColor: "", }}>
+            <Box sx={{backgroundColor: "", }} id={"Carrier"}>
 
                 <StyledText variant="sectionTitle">Skills & Profesional Carrer</StyledText>
                 <br></br>
