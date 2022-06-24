@@ -137,7 +137,7 @@ function Carrier(){
 
             <Box sx={{backgroundColor: "", }} id={"Carrier"}>
 
-                <StyledText variant="sectionTitle">Skills & Profesional Carrer</StyledText>
+                <StyledText variant="sectionTitle">Professional Carrier</StyledText>
                 <br></br>
                 <Text variant='muted' sx={{marginLeft: "20px", fontSize: "18px"}}>
                     Basically, I am good with all teh technologies labeled i used in the projects bellow, But, I do believe that I do have a good understanding of the philosophy behind giving orders

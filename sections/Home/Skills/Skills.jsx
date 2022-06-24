@@ -25,32 +25,24 @@ const SkillEntry = ({name, level}) =>{
 }
 
 function Skills(){
-    useState(()=>{
-
-    }, [])
 
 
     return(
-        <Box sx={{}} id={"AboutMe"}>
-
+        <Box sx={{overflow: "hidden"}} id={"AboutMe"}>
             <StyledText variant="sectionTitle">About Me</StyledText>
-            <br></br>
-            <Text variant='muted' sx={{marginLeft: "20px", fontSize: "18px"}}>
-            </Text>
+            <br/>
             <Box sx={{
                 flexDirection: ["column", "column", "column", "column", "row", "row", "column"],
                 width: "100%",
                 display: "flex",
-                justifyContent: 'space-around',  flexWrap: "", ml: 5,
+                justifyContent: 'space-around',   ml: 0,
                 '&::-webkit-scrollbar': { width: 0, }
                 }}>
-                <Box sx={{display: "flex", flexDirection: 'column', width: "100%", backgroundColor: "tran", marginBottom: 5, pr: 6}}>
-                    <Text variant='muted' sx={{marginLeft: "20px", fontSize: "18px"}}>
-                        I have been talking to computers since I was 12 years old and I still enjoy It.
-                         I am a social element with a good ability to work alone or in a team, I can supervise people or get supervised.
-                        I can be integrated silently in any tech community. I would really appreciate having time for study and swimming
-                    </Text>
-                </Box>
+                <Text variant='muted' sx={{marginLeft: "20px", fontSize: "16px"}}>
+                    I have been talking to computers since I was 12 years old and I still enjoy It.
+                     I am a social element with a good ability to work alone or in a team, I can supervise people or get supervised.
+                    I can be integrated silently in any tech community. I would really appreciate having time for study and swimming
+                </Text>
                 <Box sx={{
                     flexDirection: ["column", "column", "column", "column", "row", "row", "row"],
                     width: "100%",

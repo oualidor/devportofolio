@@ -4,6 +4,8 @@
 @import "image-gallery.css";
 * {
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 html{
@@ -11,6 +13,7 @@ html{
 }
 
 body {
+
   padding: 0;
   margin: 0;
   background-color: #0F1624;
