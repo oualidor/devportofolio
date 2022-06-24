@@ -25,8 +25,8 @@ const TabsWidget = ({tabs, categories}) => {
             mt: '-150px',
         },
         tabButtonTopWrapper: {
-            overflowY: ['hidden', null, null, null, null, 'inherit'],
-            overflowX: ['auto', null, null, null, null, 'inherit'],
+
+
         },
         tabButtonWrapper: {
             width: ['700px', null, null, null, null, '100%'],

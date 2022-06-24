@@ -53,8 +53,9 @@ const Project = ({name, from, to, title, skills, content, outcome, images}) =>{
 
     }, [images])
     return (
-        <Box sx={{display: "flex", flexDirection: 'column',  backgroundColor: "",  width: "100%"}} id={"projecttt"}>
-            <StyledText variant="timeLineTitle">{title + " [ "+ DataParser.toString(from) + " - " +dateParser.toString(to) + " ]"}</StyledText>
+        <Box sx={{display: "flex", flexDirection: 'column',  backgroundColor: "",  width: "100%", lineHeight: 1}} id={"projecttt"}>
+            <StyledText variant="timeLineTitle"  sx={{fontSize: "20px",  lineHeight: 1}}>{title}</StyledText>
+            <StyledText variant="timeLineTitle" sx={{fontSize: "18px"}}>{"[ "+ DataParser.toString(from) + " - " +dateParser.toString(to) + " ]"}</StyledText>
             <br></br>
             <StyledText  sx={{marginLeft: "20px", fontSize: "26px"}}>Description</StyledText>
             <Text sx={{color: "", textIndent: "2vw"}} variant={"muted"}>

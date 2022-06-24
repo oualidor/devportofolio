@@ -40,45 +40,51 @@ const responsive = {
     },
 };
 
-export default function SingleCarrierDetails({id}) {
+export default function MobileSingleCarrierDetails({id}) {
 
     let [carrier, setCarrier] = useState({skills: [], company: {}, projects: [{images: []}]})
     let [loaded, setLoaded] = useState(false)
     const tabs = [
         {
             id: 0,
-            component: <CarrierAbout carrier={carrier}></CarrierAbout>
+            component:        <Box sx={{backgroundColor: "primary", p:5, mb:5, width: ["100%", "100%", "100%", "100%", "100%", "100%", "100%"]}}>
+                {loaded && <CarrierCard {...carrier } ></CarrierCard>}
+            </Box>
 
         },
         {
             id: 1,
+            component: <CarrierAbout carrier={carrier}></CarrierAbout>
+
+        },
+        {
+            id: 2,
             component: <CarrierProjects projects={carrier.projects}></CarrierProjects>
-
-
         }
     ]
     const categories = [
         {
             id: 0,
-            title : "About",
+            title : "Overview",
             icon: AiFillDollarCircle
         },
         {
             id: 1,
+            title : "About",
+            icon: AiFillDollarCircle
+        },
+        {
+            id: 2,
             title : (carrier.projects !== null && carrier.projects !== undefined) ? "Projects [ " + carrier.projects.length+ " ]"  : "Projects [0]" ,
             icon: FaBriefcase
         }
     ]
     const style = {
         CarrierHolder: {
-            display: ["none", "none", "none", "none", "flex", "flex", "flex"],
-            backgroundColor: "primary", width: "85vw", height: "85vh", p:1, overflow: "auto", overflowX: "hidden",
-            flexDirection: ["column", "column", "column", "row", "row", "row", "row"],
+            display: ["flex", "flex", "flex", "flex", "none", "none", "none"],
+            backgroundColor: "primary", width: "90vw", height: "85vh", p:1, overflow: "auto", overflowX: "hidden",
+            flexDirection: ["column", "column", "column", "column", "column", "column", "row"],
         },
-        GalleryHolder: {
-            display: "none", backgroundColor: "primary", width: "85vw", height: "85vh", p:0, overflow: "auto", overflowX: "hidden",
-            flexDirection: ["column", "column", "column", "column", "column", "column", "column"], alignItems: "center", justifyContent: "space-around"
-        }
     }
 
     useEffect(() => {
@@ -91,29 +97,8 @@ export default function SingleCarrierDetails({id}) {
   return (
       <Box>
           <Box sx={style.CarrierHolder} id={"CarrierHolder"}>
-              <Box sx={{backgroundColor: "primary", p:5, mb:5, width: ["100%", "25%", "25%", "25%", "25%", "25%", "25%"]}}>
-                  {loaded && <CarrierCard {...carrier } ></CarrierCard>}
-              </Box>
-              <Box sx={{backgroundColor: "primary", p:5, width: "80%", overflow: "auto", overflowX: "hidden"}}>
                   {loaded && <TabsWidget tabs={tabs} categories={categories}></TabsWidget>}
-              </Box>
-          </Box>
-          <Box sx={style.GalleryHolder} id={"GalleryHolderContainer"}>
-              <Box sx={{width: "100%", display: "flex", justifyContent: "right", alignItems: "center"}}>
-                  <AiFillCloseCircle
-                      size={"2em"} style={{marginRight: "20px"}}
-                      onClick={()=>{
-                          let CarrierHolder = document.getElementById("CarrierHolder");
-                          let GalleryHolder = document.getElementById("GalleryHolder");
-                          let GalleryHolderContainer = document.getElementById("GalleryHolderContainer");
-                          CarrierHolder.style.display= "flex"
-                          GalleryHolderContainer.style.display= "none"
-                      }}
-                  ></AiFillCloseCircle>
-              </Box>
-              <Box id={"GalleryHolder"}>
 
-              </Box>
           </Box>
       </Box>
   )

@@ -19,6 +19,7 @@ import {Box} from "theme-ui";
 import ReactToPrint,  { PrintContextConsumer }from "react-to-print";
 import {CV} from "../components/CV/CV";
 import CarrierDetails from "../components/CarrierDetails/CarrierDetails";
+import MobileSingleCarrierDetails from "../components/MobileSingleCarrierDetails/MobileSingleCarrierDetails";
 
 export const initGA = () => {
     ReactGA.initialize('G-8L31KNNS3F');
@@ -47,7 +48,16 @@ export default function Home(props) {
             dispatch({type: MountBackDrop, Component: <CarrierDetails/> , props:{} ,test: "hi"})
         }
         if(router.query.carrierId !== undefined){
-            dispatch({type: MountBackDrop, Component: <SingleCarrierDetails id={router.query.carrierId}/> , props:{} ,test: "hi"})
+            dispatch({
+                type: MountBackDrop,
+                Component:
+                    <>
+                        <MobileSingleCarrierDetails id={router.query.carrierId}/>
+                        <SingleCarrierDetails id={router.query.carrierId}></SingleCarrierDetails>
+                    </>
+                ,props:{}
+                ,test: "hi"
+            })
         }
             // dispatch({type: MountBackDrop, Component: <CV /> , props:{} ,test: "hi"})
         initGA();

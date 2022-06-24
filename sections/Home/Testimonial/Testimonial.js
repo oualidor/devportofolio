@@ -39,6 +39,42 @@ export default function Testimonial() {
       setTestimonials(testimonials)
     })
   }, [])
+
+  const ContactInfo = ({contactInfo})=>{
+
+    try {
+      return(
+          <Box sx={
+            {
+              display: "flex", alignItems: "center", alignContent: "center"
+            }
+          }>
+          {
+           contactInfo.map((link, i)=>{
+              switch (link.type.type){
+                case "linkedIn":
+                  return    <Text key={i} sx={styles.designation}><a href={link.link} target={"_blank"}><AiFillLinkedin></AiFillLinkedin></a> </Text>
+                  break;
+                case "mail":
+                  return    <Text key={i} sx={styles.designation}><a href={"mailto://"+link.link} target={"_blank"}><AiOutlineMail></AiOutlineMail></a> </Text>
+                  break;
+                case "phone":
+                  return       <Text key={i}  sx={styles.designation}><a href={"tel://"+link.link} target={"_blank"}><AiFillPhone></AiFillPhone></a> </Text>
+                  break;
+              }
+            })
+          }
+          </Box>
+      )
+    }catch (e){
+      <Box sx={
+        {
+          display: "flex", alignItems: "center", alignContent: "center"
+        }
+      }>
+      </Box>
+    }
+  }
   return (
     <Box  sx={{  }} id="Testimonial">
       <StyledText variant="sectionTitle">Testimonials I am proud of</StyledText>
@@ -78,43 +114,13 @@ export default function Testimonial() {
                   <Heading as="h4" sx={styles.heading}>
                     {item.name}
                   </Heading>
-                  <Box sx={
-                    {
-                      display: "flex", alignItems: "center", alignContent: "center"
-                    }
-                  }>
-
-
-                      {
-                        item.contactInfo.map((link, i)=>{
-                          switch (link.type.type){
-                            case "linkedIn":
-                              return    <Text key={i} sx={styles.designation}><a href={link.link} target={"_blank"}><AiFillLinkedin></AiFillLinkedin></a> </Text>
-                              break;
-                            case "mail":
-                              return    <Text key={i} sx={styles.designation}><a href={"mailto://"+link.link} target={"_blank"}><AiOutlineMail></AiOutlineMail></a> </Text>
-                              break;
-                            case "phone":
-                              return       <Text key={i}  sx={styles.designation}><a href={"tel://"+link.link} target={"_blank"}><AiFillPhone></AiFillPhone></a> </Text>
-                              break;
-                          }
-                        })
-                      }
-
-
-                  </Box>
-
+                  <ContactInfo contactInfo={item.contactInfo}></ContactInfo>
                 </div>
               </div>
             </Box>
           ))}
         </Carousel>
       </Box>
-      <Box sx={{display: "flex", backgroundColor: "", alignItems: "center", justifyContent: "right"}}>
-                <Button sx={{display: "flex", backgroundColor: "", alignItems: "center", justifyContent: "right"}} variant="textButton" onClick={()=> {setLimit(10)}}>
-                    <Text sx={{mr: 1, color: "white"}}>Add Testimonial</Text><GoLinkExternal style={{color: "white"}}></GoLinkExternal>
-                </Button>
-            </Box>
     </Box>
   );
 }
