@@ -32,7 +32,7 @@ function Skills(){
             <StyledText variant="sectionTitle">About Me</StyledText>
             <br/>
             <Box sx={{
-                flexDirection: ["column", "column", "column", "column", "row", "row", "column"],
+                flexDirection: "column",
                 width: "100%",
                 display: "flex",
                 justifyContent: 'space-around',   ml: 0,

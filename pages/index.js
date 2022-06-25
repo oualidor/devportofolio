@@ -72,6 +72,7 @@ export default function Home(props) {
           <Skills></Skills>
           <Carrier></Carrier>
           <Testimonial></Testimonial>
+          <br/>
       </Box>
   )
 }

@@ -12,7 +12,6 @@ import jsPDF from "jspdf";
 import ReactToPrint, {PrintContextConsumer} from "react-to-print";
 import {CV} from "../../../components/CV/CV";
 import BackgroundAnimation from "../../../components/BackgroundAnimation";
-import domtoimage from 'dom-to-image';
 
 
 
@@ -70,7 +69,7 @@ function Landing(){
         <>
 
             <Box sx={style.con} id={"Landing"}>
-
+                <CV ref={ref}></CV>
                 <Box sx={style.left}>
                     <StyledText variant="fullAndHalf">There is a lot that I dont know <br></br> </StyledText>
                     <StyledText sx={{}} variant={"fullAndHalf"}>But I am always learning</StyledText>
@@ -112,7 +111,7 @@ function Landing(){
                         <Button
                             variant='secondary'
                             onClick={()=> {
-                                // printDocument()
+                                printDocument()
                             }}
                         >
                             Download CV

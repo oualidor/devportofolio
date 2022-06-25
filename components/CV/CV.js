@@ -22,7 +22,7 @@ const LanguageEntry = ({name, level}) =>{
 }
 const SectionHeader = ({title, qrValue}) =>{
     const sx = {
-        container: { borderBottom: "2px solid", borderColor: "red", width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between"}
+        container: { borderBottom: "2px solid", borderColor: "primary", width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between"}
     }
     return(
         <Box sx={sx.container}>
@@ -31,7 +31,7 @@ const SectionHeader = ({title, qrValue}) =>{
                 {qrValue !== undefined && <Text sx={{fontSize: "10px"}}>Please scan Qr Code or refer to oualidkhial.me for details and projects:</Text>}
             </Box>
 
-            {qrValue !== undefined && <QRCode value={qrValue} size={30}/>}
+            {qrValue !== undefined && <QRCode value={qrValue} size={40}/>}
         </Box>
     )
 }
@@ -49,7 +49,7 @@ export const CV = forwardRef((props, ref) => {
         container: { position: "absolute", top: 0, left: 0, width: "21cm", height: "29.7cm", backgroundColor: "white", padding: 2, display: "flex", zIndex: -11, },
         left: { width: "35%", height: "100%", backgroundColor: "white", padding: 5},
         right: { width: "64%", height: "100%", backgroundColor: "", padding: 5},
-        imageHolder: { width: "100%", height: "7cm", backgroundColor: ""},
+        imageHolder: { width: "100%", height: "7cm", backgroundColor: "", borderRadius: "20%"},
     }
     return (
 
@@ -57,7 +57,7 @@ export const CV = forwardRef((props, ref) => {
         <Box ref={ref} sx={sx.container} id={"cvContainer"}>
             <Box sx={sx.left}>
                 <Box sx={sx.imageHolder}>
-                    <img src={Me} width={"100%"} height={"100%"}/>
+                    <img src={Me} width={"100%"} height={"100%"} style={{boxShadow: "10px 10px 10px grey"}}/>
                 </Box>
                 <Text sx={{fontSize: "26px"}}>{person.name} {person.lName}</Text><br/>
                 <Text></Text>
@@ -73,13 +73,13 @@ export const CV = forwardRef((props, ref) => {
                         person.contactInfo.map((entry, i)=>{
                             switch (entry.type.type){
                                 case "Web":
-                                    return   <Flex sx={{alignItems: "center"}}><AiOutlineIe/> <Text>{entry.link}</Text></Flex>
+                                    return   <Flex sx={{alignItems: "center"}}><AiOutlineIe style={{marginRight: "10px"}}/> <Text>{entry.link}</Text></Flex>
                                     break;
                                 case "Mail":
-                                    return    <Flex sx={{alignItems: "center"}}><AiOutlineMail/> <Text>{entry.link}</Text></Flex>
+                                    return    <Flex sx={{alignItems: "center"}}><AiOutlineMail style={{marginRight: "10px"}}/> <Text>{entry.link}</Text></Flex>
                                     break;
                                 case "Phone":
-                                    return     <Flex sx={{alignItems: "center"}}><AiFillPhone/> <Text>{entry.link}</Text></Flex>
+                                    return     <Flex sx={{alignItems: "center"}}><AiFillPhone style={{marginRight: "10px"}}/> <Text>{entry.link}</Text></Flex>
                                     break;
                             }
                         })

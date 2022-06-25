@@ -27,6 +27,9 @@ const CarrierCard = ({date, end, title, tags, company, skills}) =>{
                             case "phone":
                             return       <Text key={i}  ><a href={"tel://"+entry.link} target={"_blank"}><AiFillPhone></AiFillPhone></a> </Text>
                             break;
+                            case "linkedIn":
+                                return   <a href={entry.link} target={"_blank"}>LinkedIn: {company.name}</a>
+                                break;
                         }
                     })}
                 </Box>
