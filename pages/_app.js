@@ -9,7 +9,7 @@ function CustomApp({ Component, pageProps }) {
 
   useEffect(()=>{
 
-  })
+  }, [])
 
   return (<Fragment>
       <_Entry Component={Component} pageProps={pageProps}></_Entry>

@@ -1,5 +1,5 @@
 
-import {useEffect, useRef} from "react";
+import React, {useEffect, useRef} from "react";
 import Timeline from '../components/TimeLine/TimeLine';
 import Carrier from "../sections/Home/Career/Carrier"
 import Landing from "../sections/Home/Landing/Landing"
@@ -20,6 +20,7 @@ import ReactToPrint,  { PrintContextConsumer }from "react-to-print";
 import {CV} from "../components/CV/CV";
 import CarrierDetails from "../components/CarrierDetails/CarrierDetails";
 import MobileSingleCarrierDetails from "../components/MobileSingleCarrierDetails/MobileSingleCarrierDetails";
+import BasicDocument from "../components/Pdf/Pdf";
 
 export const initGA = () => {
     ReactGA.initialize('G-8L31KNNS3F');
@@ -67,6 +68,7 @@ export default function Home(props) {
 
   return (
       <Box sx={{zIndex: 10}} id={"Home"}>
+          {/*<CV></CV>*/}
           <Landing></Landing>
           <Timeline Title={"Educational Background"} Data={EducationalBackgroundData}/>
           <Skills></Skills>

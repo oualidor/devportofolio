@@ -9,7 +9,8 @@ import CvCarrier from "./CvCarrier";
 import CvEducation from "./CvEducation";
 import StyledText from "../StyledComponents/StyledText";
 import QRCode from "react-qr-code";
-import Me from "../../src/assets/Images/me.jpeg"
+
+import Me from "../../src/assets/Images/Me.png"
 import SkillTag from "../SkillTag/SkillTag";
 const LanguageEntry = ({name, level}) =>{
 
@@ -38,7 +39,7 @@ const SectionHeader = ({title, qrValue}) =>{
 export const CV = forwardRef((props, ref) => {
 
     let [person, setPerson] = useState({contactInfo: [], company: {}, projects: [{images: []}]})
-    let skills = ["Web Development", "NodeJS", "ReactJS", "NextJS", "NestJS", "Linux", "Teaching", "Problem Solving", "Team Work", "Scientific research"]
+    let skills = ["Web Development", "NodeJS", "ReactJS / NextJS", "Linux", "Teaching", "Problem Solving", "Team Work", "Scientific research"]
     useEffect(() => {
         getPerson().then(person =>{
             setPerson(person)
@@ -52,8 +53,6 @@ export const CV = forwardRef((props, ref) => {
         imageHolder: { width: "100%", height: "7cm", backgroundColor: "", borderRadius: "20%"},
     }
     return (
-
-
         <Box ref={ref} sx={sx.container} id={"cvContainer"}>
             <Box sx={sx.left}>
                 <Box sx={sx.imageHolder}>

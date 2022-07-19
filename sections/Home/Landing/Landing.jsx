@@ -69,7 +69,7 @@ function Landing(){
         <>
 
             <Box sx={style.con} id={"Landing"}>
-                <CV ref={ref}></CV>
+
                 <Box sx={style.left}>
                     <StyledText variant="fullAndHalf">There is a lot that I dont know <br></br> </StyledText>
                     <StyledText sx={{}} variant={"fullAndHalf"}>But I am always learning</StyledText>
@@ -110,11 +110,12 @@ function Landing(){
                         {/*/>*/}
                         <Button
                             variant='secondary'
-                            onClick={()=> {
-                                printDocument()
-                            }}
+                            // onClick={()=> {
+                            //     printDocument()
+                            // }}
                         >
-                            Download CV
+                            <a href={'Oualid KHIAL, Full stack developer and tech teacher.pdf'} target={'_blank'}>Download CV</a>
+
                         </Button>
                     </Box>
                 </Box>

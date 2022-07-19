@@ -15,31 +15,18 @@ const CarrierCard = ({id, date, end, role, tags, company, skills, desc}) =>{
     let dispatch = useDispatch()
     let router = useRouter()
     return (
-        <Box sx={{display: "flex", flexDirection: "row", justifyContent: "space-between"    }}>
+        <Box sx={{display: "flex", flexDirection: "row", justifyContent: "space-between", backgroundColor: "", width: "48%"   }}>
             <Box
                 sx={{display: "flex", flexDirection: 'column',  marginBottom: "10px"}}
             >
                 <Text sx={{ml: "5px"}}>{date}</Text>
                 <Text  sx={{ml: "20px", fontSize: "16px", fontWeight: "bold"}}>{role}</Text>
-                <Text  sx={{marginLeft: "20px", fontSize: "13px"}}>{"@ " + company}</Text>
-                {/*<Box sx={{flexDirection: 'row', backgroundColor: "", width: "100%", display: "flex", marginLeft: "20px", alignItems: "center"}}>*/}
-                {/*    <Box sx={{display: "flex", flexDirection: 'row', alignItems: "center", flexWrap: "wrap"}}>*/}
-                {/*        {*/}
-                {/*            skills.map((skill, i) =>{*/}
-                {/*                if(i < 2){*/}
-                {/*                    return (<SkillTag name={skill} key={i}  style={{fontSize: "10px"}} props={{size: "small"}}></SkillTag>)*/}
-                {/*                }*/}
 
-                {/*            })*/}
-                {/*        }*/}
-                {/*    </Box>*/}
-                {/*</Box>*/}
+                <Text  sx={{marginLeft: "20px", fontSize: "13px"}}>{"@ " + company}</Text>
             </Box>
             <Box>
-
             </Box>
         </Box>
-
     )
 }
 
@@ -61,10 +48,13 @@ function CvCarrier(){
 
     return(
 
-        <Box sx={{backgroundColor: "", }}>
             <Box sx={{
+                display: "flex",
+                backgroundColor: "",
                 width: "100%",
-                justifyContent: 'space-around', alignItems: 'center', flexWrap: "wrap",
+                height: "10cm",
+                flexDirection: "column",
+                 flexWrap: "wrap",
                 '&::-webkit-scrollbar': { width: 0, }
             }}>
                 {
@@ -81,9 +71,9 @@ function CvCarrier(){
 
 
                         )
-                    }
+                }
             </Box>
-        </Box>
+
     )
 
 }
