@@ -1,19 +1,16 @@
 import {Box, Text} from "theme-ui";
-import StyledText from "../StyledComponents/StyledText";
-import SkillTag from "../SkillTag/SkillTag";
+import StyledText from "../../StyledComponents/StyledText";
+import SkillTag from "../../SkillTag/SkillTag";
 import {AiFillLinkedin, AiFillPhone, AiOutlineMail} from "react-icons/ai";
 
-const CarrierCard = ({date, end, title, tags, company, skills, onClick}) =>{
+const CarrierCard = ({date, end, title, tags, company, skills}) =>{
 
     const CompanyInfo = ({contactInfo})=>{
 
         try {
             return (
-                <Box
-
-                    sx={
+                <Box sx={
                     {
-
                         fontSize: "18px", flexDirection: "column",
                         marginLeft: "20px",
                         display: "flex",  alignContent: "center"
@@ -30,6 +27,9 @@ const CarrierCard = ({date, end, title, tags, company, skills, onClick}) =>{
                             case "phone":
                             return       <Text key={i}  ><a href={"tel://"+entry.link} target={"_blank"}><AiFillPhone></AiFillPhone></a> </Text>
                             break;
+                            case "linkedIn":
+                                return   <a href={entry.link} target={"_blank"}>LinkedIn: {company.name}</a>
+                                break;
                         }
                     })}
                 </Box>
@@ -39,11 +39,7 @@ const CarrierCard = ({date, end, title, tags, company, skills, onClick}) =>{
         }
     }
     return (
-        <Box
-            onClick={()=>{
-                onClick()
-            }}
-            sx={{display: "flex", flexDirection: 'column',  backgroundColor: "", marginBottom: 5,          cursor: "pointer",}}>
+        <Box sx={{display: "flex", flexDirection: 'column',  backgroundColor: "", marginBottom: 5,}}>
             <StyledText variant="timeLineTitle">{date}</StyledText>
             <StyledText  sx={{marginLeft: "20px", fontSize: "26px"}}>{title}</StyledText>
             <StyledText variant='muted' sx={{marginLeft: "20px", fontSize: "24px"}}>{"@ " + company.name}</StyledText>

@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import {Text, Box } from "theme-ui"
+import Divider from '../../src/assets/Images/divider.svg'
 
 const StyledText = (props) => {
     const style = {
@@ -8,9 +9,16 @@ const StyledText = (props) => {
       webkitTextFillColor: "transparent",
       WebkitBackgroundClip: "text",
       backgroundClip: "text",
+
     }
+
+
+
     return (
-      <Text {...props} style={style}>{props.children}</Text>
+
+            <Text {...props} style={style}>{props.children}</Text>
+
+
     )
 }
 

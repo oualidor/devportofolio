@@ -5,7 +5,9 @@ import Carousel from 'react-multi-carousel';
 import StyledText from '../../../components/StyledComponents/StyledText';
 import {AiFillLinkedin, AiFillMail, AiFillPhone, AiOutlineMail} from "react-icons/ai";
 import {useEffect, useState} from "react";
-import {getTestimonials} from "../../../services";
+import {getCarrier, getTestimonials} from "../../../services";
+import MultiStatesView from "../../../components/MultiStatesView/MultiStatesView";
+import SectionTitle from "../../../components/StyledComponents/SectionTitle";
 
 const responsive = {
   desktop: {
@@ -33,12 +35,23 @@ const responsive = {
 export default function Testimonial() {
 
   const [testimonials, setTestimonials] = useState([])
-
-  useEffect(()=>{
-    getTestimonials().then(testimonials=>{
+  let [state, setState ] = useState(0)
+  const loadData = ()=>{
+    setState(0)
+    getTestimonials().then(testimonials =>{
       setTestimonials(testimonials)
+      setState(1)
+
+    }).catch(e =>{
+      setState(-1)
+      console.log(e)
     })
+  }
+  useEffect( ()=>{
+
+    loadData()
   }, [])
+
 
   const ContactInfo = ({contactInfo})=>{
 
@@ -67,61 +80,66 @@ export default function Testimonial() {
           </Box>
       )
     }catch (e){
-      <Box sx={
-        {
-          display: "flex", alignItems: "center", alignContent: "center"
-        }
-      }>
-      </Box>
+      return (
+          <Box sx={
+            {
+              display: "flex", alignItems: "center", alignContent: "center"
+            }
+          }>
+          </Box>
+          )
+
     }
   }
   return (
-    <Box  sx={{  }} id="Testimonial">
-      <StyledText variant="sectionTitle">Testimonials I am proud of</StyledText>
-      <Box sx={styles.carouselWrapper}>
-        <Carousel
-          additionalTransfrom={0}
-          arrows={false}
-          autoPlaySpeed={3000}
-          centerMode={false}
-          className=""
-          containerClass="carousel-container"
-          customButtonGroup={<ButtonGroup />}
-          dotListClass=""
-          draggable
-          focusOnSelect={false}
-          infinite={true}
-          itemClass=""
-          keyBoardControl
-          minimumTouchDrag={80}
-          renderButtonGroupOutside
-          renderDotsOutside={false}
-          responsive={responsive}
-          showDots={false}
-          sliderClass=""
-          slidesToSlide={1}
-        >
-          {testimonials.map((item, i) => (
-            <Box sx={styles.reviewCard} key={`testimonial--key${item.id}`}>
 
-              {/* <Heading as="h3" sx={styles.title}>
-                {item.title}
-              </Heading> */}
-              <Text sx={styles.description}>{item.excerpt}</Text>
-              <div className="card-footer">
 
-                <div className="reviewer-info">
-                  <Heading as="h4" sx={styles.heading}>
-                    {item.name}
-                  </Heading>
-                  <ContactInfo contactInfo={item.contactInfo}></ContactInfo>
-                </div>
-              </div>
-            </Box>
-          ))}
-        </Carousel>
-      </Box>
-    </Box>
+        <Box  sx={{  }} id="Testimonial">
+            <SectionTitle variant="sectionTitle">Testimonials I am proud of</SectionTitle>
+          <MultiStatesView state={state} dataLoader={loadData}>
+            <Box sx={styles.carouselWrapper}>
+            <Carousel
+                additionalTransfrom={0}
+                arrows={false}
+                autoPlaySpeed={3000}
+                centerMode={false}
+                className=""
+                containerClass="carousel-container"
+                customButtonGroup={<ButtonGroup />}
+                dotListClass=""
+                draggable
+                focusOnSelect={false}
+                infinite={true}
+                itemClass=""
+                keyBoardControl
+                minimumTouchDrag={80}
+                renderButtonGroupOutside
+                renderDotsOutside={false}
+                responsive={responsive}
+                showDots={false}
+                sliderClass=""
+                slidesToSlide={1}
+            >
+              {testimonials.map((item, i) => (
+                  <Box sx={styles.reviewCard} key={`testimonial--key${item.id}`}>
+                    <Text sx={styles.description} variant='muted' >{item.excerpt}</Text>
+                    <div className="card-footer">
+
+                      <div className="reviewer-info">
+                        <Heading as="h4" sx={styles.heading}>
+                          {item.name}
+                        </Heading>
+                        <ContactInfo contactInfo={item.contactInfo}></ContactInfo>
+                      </div>
+                    </div>
+                  </Box>
+              ))}
+            </Carousel>
+          </Box>
+          </MultiStatesView>
+        </Box>
+
+
   );
 }
 
@@ -203,8 +221,6 @@ const styles = {
   },
   description: {
     fontSize: [1, null, null, 2],
-    fontWeight: 'normal',
-    color: 'text',
     lineHeight: [1.85, null, 2],
     minHeight: 180
   },

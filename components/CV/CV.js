@@ -92,7 +92,7 @@ export const CV = forwardRef((props, ref) => {
                 <LanguageEntry name={"English"} level={"Advanced (A1)"}></LanguageEntry>
                 <LanguageEntry name={"Arabic"} level={"Very Good (B2)"}></LanguageEntry>
                 <br/>
-                <SectionHeader title={"Primary Skills"}/>
+                <SectionHeader title={"Primary AboutMe"}/>
                 <br/>
                 <Box sx={{flexDirection: 'row', backgroundColor: "", width: "100%", display: "flex",  alignItems: "center"}}>
                     <Box sx={{display: "flex", flexDirection: 'row', alignItems: "center", flexWrap: "wrap"}}>

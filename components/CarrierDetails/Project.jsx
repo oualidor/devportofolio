@@ -1,6 +1,3 @@
-import {AiFillDollarCircle} from "react-icons/ai";
-import {FaBriefcase} from "react-icons/fa";
-
 import StyledText from "../StyledComponents/StyledText";
 import {Box, Button, Text} from "theme-ui";
 import PortableText from "@sanity/block-content-to-react";
@@ -90,7 +87,7 @@ const ProjectImages = ({images})=>{
     try {
         return(
             <Carousel
-                arrows={false}
+                arrows={true}
                 autoPlay={false}
                 keyBoardControl
                 minimumTouchDrag={80}

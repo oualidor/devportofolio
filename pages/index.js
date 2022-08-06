@@ -3,14 +3,14 @@ import React, {useEffect, useRef} from "react";
 import Timeline from '../components/TimeLine/TimeLine';
 import Carrier from "../sections/Home/Career/Carrier"
 import Landing from "../sections/Home/Landing/Landing"
-import Skills from "../sections/Home/Skills/Skills"
+import AboutMe from "../sections/Home/Skills/AboutMe"
 import Testimonial from "../sections/Home/Testimonial/Testimonial"
 import 'react-multi-carousel/lib/styles.css';
 import 'rc-drawer/assets/index.css';
 import ReactGA from 'react-ga';
 import Router, {useRouter} from 'next/router';
 import {MountBackDrop} from "../src/Apis/Redux/Actions/Types";
-import SingleCarrierDetails from "../components/SingleCarrierDetails/SingleCarrierDetails";
+import SingleCarrierDetails from "../components/CarrierDetails/SingleCarrierDetails/SingleCarrierDetails";
 import {useDispatch} from "react-redux";
 
 import html2canvas from "html2canvas";
@@ -18,9 +18,9 @@ import jsPDF from "jspdf";
 import {Box} from "theme-ui";
 import ReactToPrint,  { PrintContextConsumer }from "react-to-print";
 import {CV} from "../components/CV/CV";
-import CarrierDetails from "../components/CarrierDetails/CarrierDetails";
-import MobileSingleCarrierDetails from "../components/MobileSingleCarrierDetails/MobileSingleCarrierDetails";
+import MobileSingleCarrierDetails from "../components/CarrierDetails/MobileSingleCarrierDetails/MobileSingleCarrierDetails";
 import BasicDocument from "../components/Pdf/Pdf";
+import CarrierDetails from "../components/CarrierDetails/CarrierDetails";
 
 export const initGA = () => {
     ReactGA.initialize('G-8L31KNNS3F');
@@ -45,16 +45,14 @@ export default function Home(props) {
     let dispatch =  useDispatch()
 
     useEffect(() => {
-        if(router.query.carrier !== undefined){
-            dispatch({type: MountBackDrop, Component: <CarrierDetails/> , props:{} ,test: "hi"})
-        }
+
         if(router.query.carrierId !== undefined){
             dispatch({
                 type: MountBackDrop,
                 Component:
                     <>
-                        <MobileSingleCarrierDetails id={router.query.carrierId}/>
-                        <SingleCarrierDetails id={router.query.carrierId}></SingleCarrierDetails>
+                        <CarrierDetails id={router.query.carrierId}/>
+
                     </>
                 ,props:{}
                 ,test: "hi"
@@ -70,8 +68,9 @@ export default function Home(props) {
       <Box sx={{zIndex: 10}} id={"Home"}>
           {/*<CV></CV>*/}
           <Landing></Landing>
+          <AboutMe></AboutMe>
           <Timeline Title={"Educational Background"} Data={EducationalBackgroundData}/>
-          <Skills></Skills>
+
           <Carrier></Carrier>
           <Testimonial></Testimonial>
           <br/>

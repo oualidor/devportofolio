@@ -1,4 +1,4 @@
-import {Container, Flex, Button, Box, Text} from 'theme-ui';
+import {Container, Flex, Button, Box, Text, useThemeUI} from 'theme-ui';
 import NextLink from 'next/link';
 import { keyframes } from '@emotion/react';
 import { DrawerProvider } from '../../contexts/drawer/drawer.provider';
@@ -13,6 +13,10 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ReactCountryFlag from "react-country-flag";
 import styled from 'styled-components';
 import React from 'react';
+import {MountBackDrop} from "../../src/Apis/Redux/Actions/Types";
+import MeetScheduler from "../MeetScheduler";
+import {useDispatch} from "react-redux";
+import Divider from "../../src/assets/Images/divider.svg";
 
 const positionAnim = keyframes`
   from {
@@ -67,6 +71,7 @@ const NavIcon = ({Icon, link}) => {
     width: ["8vw", "35px", "36px", "38px", "38px", "40px", "40px"],
     marginRight: "5px", cursor: "pointer",
     transition: "0.3s ease",
+    display: 'flex',
     alignItems: "center", justifyContent: "center",
     padding: "5px",
     '&:hover': {
@@ -110,6 +115,7 @@ const SectionTitle = (props) => {
 export default function Header({ className }) {
   const [openMenu, setOpenMenu] = useState(false)
 
+  const dispatch = useDispatch()
   const styles = {
     link: {
       fontSize: [null, null, null, null, null, "20px", "20px"],
@@ -168,11 +174,12 @@ export default function Header({ className }) {
 
     },
     nav: {
-      height: "100%",
-
-      alignItems: "center",
-      justifyContent: 'right',
       display: 'flex',
+      height: "100%",
+      bg: '',
+      alignItems: "center",
+      justifyContent: 'center',
+
 
     },
     lanBox: {
@@ -200,10 +207,38 @@ export default function Header({ className }) {
         <Box sx={styles.container}>
           <SectionTitle>Oualid KHIAL</SectionTitle>
           <Box sx={styles.nav} id={"navContent"}>
+
+            <Button
+                 sx={{
+                   flexShrink: 0,
+                   ml: ['auto', null, null, null, 0],
+                   backgroundImage: ['none', null, null, null, `url(${Divider})`],
+                   backgroundRepeat: 'no-repeat',
+                   backgroundPosition: 'center bottom',
+                   width: 'fit-content',
+
+                   backgroundSize: 'contain',
+                   backgroundColor: ['#FEEDEF', null, null, null, 'transparent'],
+                   fontWeight: 'bold',
+                   py: ['12px', null, null, null, 2],
+                   px: [3, null, null, null, 5],
+                   ':hover': {
+                     backgroundColor: ['primary', null, null, null, 'transparent'],
+                     color: ['white', null, null, null, 'white'],
+                   },
+                   mr: 3
+            }}
+                onClick={()=> {
+                  dispatch({type: MountBackDrop, Component: <MeetScheduler/> , props:{} ,test: "hi"})
+                }}
+            >
+              Schedule a meet
+            </Button>
             <NavIcon Icon={AiFillGithub} link={"https://github.com/oualidor"}></NavIcon>
             <NavIcon Icon={AiFillLinkedin} link={"https://www.linkedin.com/in/oualidkhial/"}></NavIcon>
-            <NavIcon Icon={AiTwotoneContainer}></NavIcon>
+            {/*<NavIcon Icon={AiTwotoneContainer}></NavIcon>*/}
           </Box>
+
         </Box>
         </Container>
 

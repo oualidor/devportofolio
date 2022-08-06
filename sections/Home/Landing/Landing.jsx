@@ -12,6 +12,7 @@ import jsPDF from "jspdf";
 import ReactToPrint, {PrintContextConsumer} from "react-to-print";
 import {CV} from "../../../components/CV/CV";
 import BackgroundAnimation from "../../../components/BackgroundAnimation";
+import NextLink from "next/link";
 
 
 
@@ -90,11 +91,11 @@ function Landing(){
                     <Box sx={{display: "flex", backgroundColor: ""}}>
                         <Button
                             sx={{mr: 3}} variant='whiteButton'
-                            onClick={()=> {
-                                dispatch({type: MountBackDrop, Component: <MeetScheduler/> , props:{} ,test: "hi"})
-                            }}
+
                         >
-                            Schedule a meet
+                            <NextLink href={'/#AboutMe'}>
+                                More Details
+                            </NextLink>
                         </Button>
 
                         {/*<ReactToPrint*/}
