@@ -39,9 +39,10 @@ function Landing(){
     const style = {
         con :{
 
-            display: "flex", flexDirection: ["column-reverse", "column-reverse", "column-reverse", "column-reverse", "row", "row", "row"],
-            py: ["20vh", "20vh", "20vh", "20vh", "10vh", "10vh", "10vh"],
-            height: ["100vh", "20vh", "auto", "auto", "auto", "auto", "auto"],
+            display: "flex",
+            flexDirection: ["column-reverse", "column-reverse", "column-reverse", "column-reverse", "row", "row", "row"],
+            height: ["100vh", "100vh", "100vh", "100vh", "auto", "auto", "auto"],
+            alignItems: 'center', justifyContent: 'center'
         },
         left: {
             width: ["100%", "100%", "100%", "100%",  "50%", "50%", "50%"],  display: "flex",  flexDirection: "column", justifyContent: "center",
@@ -69,7 +70,7 @@ function Landing(){
     return(
         <>
 
-            <Box sx={style.con} id={"Landing"}>
+            <Box sx={style.con} id={"Landing"} variant={'section.PageSection'} as={"section"}>
 
                 <Box sx={style.left}>
                     <StyledText variant="fullAndHalf">There is a lot that I dont know <br></br> </StyledText>

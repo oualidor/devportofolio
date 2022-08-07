@@ -93,6 +93,10 @@ export default function createTheme(language) {
                 pt: [8, null, 9, null, null, 120],
                 pb: [8, null, 9, null, null, 180],
             },
+            PageSection:{
+                pt: ['80px', '80px', '80px', '80px', '80px', '80px', '80px'],
+                backgroundColor: '',
+            },
             white: {
                 variant: "section.default",
                 backgroundColor: "white",
@@ -165,6 +169,7 @@ export default function createTheme(language) {
                 pt: [10, null, null, 7],
                 pb: [8, null, 9, null, null, 5],
             },
+
         },
         sectionHeader: {
             width: '100%',
@@ -364,6 +369,7 @@ export default function createTheme(language) {
                 },
             },
             whiteButton: {
+                border: '1.5px solid white',
                 variant: 'buttons.defaultBtn',
                 color: 'heading_secondary',
                 cursor: 'pointer',
@@ -380,6 +386,7 @@ export default function createTheme(language) {
                 '&:hover': {
                     bg: 'white',
                     color: 'heading_secondary',
+                    boxShadow: 'rgba(0, 0, 0, 1) 0px 12px 24px -10px',
                 },
             },
             textButton: {
@@ -537,6 +544,6 @@ export default function createTheme(language) {
             error : {
                 backgroundColor: "#fa493c"
             }
-        }
+        },
     }
 };

@@ -10,8 +10,10 @@ export default function CarrierDetails({id}) {
     let [carrier, setCarrier] = useState({skills: [], company: {}, projects: [{images: []}]})
 
     function loadData() {
+        setState(0)
         getOneCarrier(id)
             .then(carrier =>{
+                console.log(carrier)
                 setCarrier(carrier)
                 setState(1)
             })
@@ -19,6 +21,7 @@ export default function CarrierDetails({id}) {
                 setState(-1)
             })
     }
+    
     useEffect(() => {
         loadData()
     }, [id]);

@@ -77,7 +77,7 @@ const Timeline = ({Title, Text, Data}) => {
   }, []);
 
   return (
-    <Box sx={{display: "flex", flexDirection: "column"}} id={"Education"}>
+    <Box sx={{display: "flex", flexDirection: "column"}} id={"Education"} variant={'section.PageSection'} as={"section"}>
 
       <SectionTitle variant="sectionTitle">{Title}</SectionTitle>
       <Carousel

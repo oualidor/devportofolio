@@ -11,6 +11,8 @@ import {GoLinkExternal} from "react-icons/go";
 import Carousel from "react-multi-carousel";
 import {render} from "react-dom";
 import {useEffect, useState} from "react";
+import NextLink from "next/link";
+import {AiFillLinkedin, AiFillPhone, AiOutlineMail} from "react-icons/ai";
 const responsive = {
     desktop: {
         breakpoint: { max: 3000, min: 1619 },
@@ -33,7 +35,8 @@ const responsive = {
         slidesToSlide: 1, // optional, default to 1.
     },
 };
-const Project = ({name, from, to, title, skills, content, outcome, images}) =>{
+const Project = ({name, from, to, title, skills, content, outcome, images, links}) =>{
+    if (links == undefined){ links = []}
 
     let [preparedImages, setImages] = useState([])
     useEffect(()=>{
@@ -50,13 +53,38 @@ const Project = ({name, from, to, title, skills, content, outcome, images}) =>{
 
     }, [images])
     return (
-        <Box sx={{display: "flex", flexDirection: 'column',  backgroundColor: "",  width: "100%"}} id={"projecttt"}>
+        <Box sx={{display: "flex", flexDirection: 'column',  backgroundColor: "",  width: "100%"}} id={"project"}>
             <StyledText variant="timeLineTitle">{title + " [ "+ DataParser.toString(from) + " - " +dateParser.toString(to) + " ]"}</StyledText>
             <br></br>
             <StyledText  sx={{marginLeft: "20px", fontSize: "26px"}}>Description</StyledText>
             <Text sx={{color: "", textIndent: "2vw"}} variant={"muted"}>
                 <PortableText blocks={content} serializers={Serializer} />
             </Text>
+            <Box
+                sx={{display: "flex", backgroundColor: "", alignItems: "flex-end", justifyContent: "right", mr: '10%'}}>
+                {
+                    links.map((entry, i)=>{
+                        switch (entry.type.type){
+                            case "Web":
+                                return <Button variant={'whiteButton'} sx={{mr: 5, display: "flex"}}>
+                                    <a href={entry.link} target={'_blank'}>
+                                        Visit
+                                    </a>
+                                    <GoLinkExternal style={{marginLeft: 5}} size={20}/>
+                                </Button>
+                                break;
+                            case "mail":
+                                return    <Text key={i}><a href={"mailto://"+entry.link} target={"_blank"}><AiOutlineMail></AiOutlineMail></a> </Text>
+                                break;
+                            case "phone":
+                                return <Text key={i} ><a href={"tel://"+entry.link} target={"_blank"}><AiFillPhone/></a></Text>
+                                break;
+                        }
+                    })
+                }
+
+                <Button variant='secondary' >Gallery</Button>
+            </Box>
             <br></br>
             <StyledText  sx={{marginLeft: "20px", fontSize: "26px"}}>Project out come</StyledText>
             <Text sx={{color: "", textIndent: "2vw"}} variant={"muted"}>

@@ -117,23 +117,9 @@ export default function Header({ className }) {
 
   const dispatch = useDispatch()
   const styles = {
-    link: {
-      fontSize: [null, null, null, null, null, "20px", "20px"],
-      fontWeight: '400',
-      textDecoration: "none",
-      cursor: 'pointer',
 
-      lineHeight: '1.2',
-      '&.active': {
-        color: 'green',
-      },
-      '&.visited': {
-        color: 'yellow',
-      },
-      fontFamily: "en" == "en" ? "'DM Sans', sans-serif;": "'Amiri', serif;"
-    },
     header: {
-
+      height: '70px',
       color: 'white',
       fontWeight: 'normal',
       py: 2,
@@ -145,7 +131,6 @@ export default function Header({ className }) {
       transition: 'all 0.5s ease',
       animation: `${positionAnim} 0.4s ease`,
       '&.sticky': {
-
         position: 'fixed',
         backgroundColor: '#0F1624',
         color: '',
@@ -154,24 +139,27 @@ export default function Header({ className }) {
         'nev > a': {
           color: 'text',
         },
-        '.donate__btn': {
-          borderColor: 'primary',
-          color: 'primary',
-          '&:hover': {
-
-            backgroundColor: 'primary',
-            color: 'white',
-          },
-        },
       },
+    },
+    link: {
+      fontSize: [null, null, null, null, null, "20px", "20px"],
+      fontWeight: '400',
+      textDecoration: "none",
+      cursor: 'pointer',
+      lineHeight: '1.2',
+      '&.active': {
+        color: 'green',
+      },
+      '&.visited': {
+        color: 'yellow',
+      },
+      fontFamily: "en" == "en" ? "'DM Sans', sans-serif;": "'Amiri', serif;"
     },
     container: {
       width: '100%',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
-
-
     },
     nav: {
       display: 'flex',
@@ -179,8 +167,6 @@ export default function Header({ className }) {
       bg: '',
       alignItems: "center",
       justifyContent: 'center',
-
-
     },
     lanBox: {
       display: openMenu? "flex": "none", flexDirection: "column",
@@ -212,14 +198,12 @@ export default function Header({ className }) {
                  sx={{
                    flexShrink: 0,
                    ml: ['auto', null, null, null, 0],
-                   backgroundImage: ['none', null, null, null, `url(${Divider})`],
+                   backgroundImage: `url(${Divider})`,
                    backgroundRepeat: 'no-repeat',
                    backgroundPosition: 'center bottom',
                    width: 'fit-content',
-
                    backgroundSize: 'contain',
-                   backgroundColor: ['#FEEDEF', null, null, null, 'transparent'],
-                   fontWeight: 'bold',
+                     fontWeight: 'bold',
                    py: ['12px', null, null, null, 2],
                    px: [3, null, null, null, 5],
                    ':hover': {

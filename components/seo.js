@@ -1,5 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
+import {NextScript} from "next/document";
 
 export default function SEO({
   description = 'I am a Full stack developer, A PhD researcher and a computer science teacher\n' +
@@ -39,11 +40,11 @@ export default function SEO({
         <meta key={i} name={name} content={content} />
       ))}
       <meta http-equiv='content-language' content='en-gb'/>
-      <script
+      <NextScript
           async
           src={`https://www.googletagmanager.com/gtag/js?id=G-8L31KNNS3F`}
       />
-      <script
+      <NextScript
           dangerouslySetInnerHTML={{
             __html: `
             window.dataLayer = window.dataLayer || [];

@@ -43,6 +43,14 @@ const EducationalBackgroundData = [
 export default function Home(props) {
     let router = useRouter()
     let dispatch =  useDispatch()
+    const sx = {
+        Home: {
+
+            '.Section':{
+                pt: '80px',
+            }
+        }
+    }
 
     useEffect(() => {
 
@@ -65,15 +73,13 @@ export default function Home(props) {
     }, [router.query]);
 
   return (
-      <Box sx={{zIndex: 10}} id={"Home"}>
+      <Box sx={sx.Home} id={"Home"}>
           {/*<CV></CV>*/}
           <Landing></Landing>
           <AboutMe></AboutMe>
           <Timeline Title={"Educational Background"} Data={EducationalBackgroundData}/>
-
           <Carrier></Carrier>
           <Testimonial></Testimonial>
-          <br/>
       </Box>
   )
 }

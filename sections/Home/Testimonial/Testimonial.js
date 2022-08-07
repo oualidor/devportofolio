@@ -72,7 +72,7 @@ export default function Testimonial() {
                   return    <Text key={i} sx={styles.designation}><a href={"mailto://"+link.link} target={"_blank"}><AiOutlineMail></AiOutlineMail></a> </Text>
                   break;
                 case "phone":
-                  return       <Text key={i}  sx={styles.designation}><a href={"tel://"+link.link} target={"_blank"}><AiFillPhone></AiFillPhone></a> </Text>
+                  return <Text key={i}  sx={styles.designation}><a href={"tel://"+link.link} target={"_blank"}><AiFillPhone/></a></Text>
                   break;
               }
             })

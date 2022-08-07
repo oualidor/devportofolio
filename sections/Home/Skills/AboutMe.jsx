@@ -31,7 +31,7 @@ function AboutMe(){
         }
     }
     return(
-        <Box sx={{overflow: "hidden"}} id={"AboutMe"}>
+        <Box sx={{overflow: "hidden"}} id={"AboutMe"}  as={"section"} variant={'section.PageSection'}>
             <SectionTitle variant="sectionTitle">About Me</SectionTitle>
             <br/>
             <Box sx={{
@@ -53,7 +53,7 @@ function AboutMe(){
                     justifyContent: 'space-around',  flexWrap: "", ml: 5,
                     '&::-webkit-scrollbar': { width: 0, }
                 }}>
-                    <Box sx={{display: "flex", flexDirection: 'column', width: "100%", backgroundColor: "", marginBottom: 5,}}>
+                    <Box sx={{display: "flex", flexDirection: 'column', width: "100%", backgroundColor: "", marginBottom: 0}}>
                         <StyledText  sx={{marginLeft: "5px", fontSize: "24px"}}>{"Technical Overview"}</StyledText>
                         <Box sx={{display: "flex", flexDirection: 'row', width: "100%", maxWidth: 300, backgroundColor: "tran", ml:5, flexWrap: "wrap"}}>
                             <SkillTag name={'Web Development'} style={Style.SkillTag}  />
@@ -67,7 +67,7 @@ function AboutMe(){
                             <SkillTag name={'Neural Network'} style={Style.SkillTag}/>
                         </Box>
                     </Box>
-                    <Box sx={{display: "flex", flexDirection: 'column', width: "100%", backgroundColor: "tran", marginBottom: 5}}>
+                    <Box sx={{display: "flex", flexDirection: 'column', width: "100%", backgroundColor: "tran", marginBottom: 0}}>
                         <StyledText  sx={{marginLeft: "5px", fontSize: "24px"}}>{"Languages"}</StyledText>
                         <LanguageEntry name={"Arabic"} level={"Native"}></LanguageEntry>
                         <LanguageEntry name={"English"} level={"Adnaced (A1)"}></LanguageEntry>

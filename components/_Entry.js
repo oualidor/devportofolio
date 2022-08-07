@@ -9,13 +9,14 @@ function _Entry({ Component, pageProps }) {
 
 
     useEffect(()=>{
-
-    })
+        console.log(Component)
+    }, [])
 
     return (<Fragment>
         <ReduxProvider store={reduxStore}>
             <ThemeProvider theme={theme("en")}>
                 <Layout>
+
                     <Component {...pageProps} />
                 </Layout>
             </ThemeProvider>

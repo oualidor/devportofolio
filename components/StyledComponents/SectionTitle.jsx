@@ -20,14 +20,12 @@ const SectionTitle = (props) => {
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center bottom',
         width: 'fit-content',
-
         backgroundSize: 'contain',
         backgroundColor: ['', null, null, null, 'transparent'],
         fontWeight: 'bold',
         py: ['12px', null, null, null, 2],
         px: [3, null, null, null, 0],
         ':hover': {
-
             color: ['white', null, null, null, 'primary'],
         },
     }

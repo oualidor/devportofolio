@@ -114,7 +114,7 @@ function Layout({ children }) {
         </Sticky>
         <Container
             id={"LayoutBody"}
-            sx={{}}
+            sx={{pt: '0px'}}
         >
             {children}
         </Container>
