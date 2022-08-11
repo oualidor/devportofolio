@@ -12,7 +12,7 @@ const MultiStatesView = forwardRef(({state, props,  dataLoader, children, }, ref
     }, [])
 
     return(
-        <Box ref={ref} {...props}  sx={{position: "relative"}}>
+        <Box ref={ref} {...props}>
             {
                 state == -1 &&
                 <Alert sx={{display: "flex", justifyContent: "space-between", my: 5}} variant={'error'}>

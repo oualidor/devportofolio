@@ -25,7 +25,7 @@ const TabsWidget = ({tabs, categories}) => {
             mt: '-150px',
         },
         tabButtonTopWrapper: {
-
+            py: ['20px', '20px', '20px', '0px', '0px', '0px']
 
         },
         tabButtonWrapper: {

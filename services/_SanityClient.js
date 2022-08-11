@@ -26,7 +26,17 @@ const CodeBlock = ({code, lang}) =>{
         </pre>
   )
 }
-
+// <ShowMoreText
+//     /* Default options */
+//     lines={3}
+//     more="Show more"
+//     less="Show less"
+//     className="content-css"
+//     anchorClass="my-anchor-css-class"
+//     expanded={false}
+//     truncatedEndingComponent={"... "}
+// >
+// </ShowMoreText>
 export const Serializer = {
   types: {
     mainImage: props => (
@@ -42,7 +52,32 @@ export const Serializer = {
         </figure>
     ),
     code: props => {
-      return(<CodeBlock lang={props.node.language} code={props.node.code}></CodeBlock>)}
+      return(<CodeBlock lang={props.node.language} code={props.node.code}></CodeBlock>)},
+      list: (props) =>{
+          alert('hihi')
+         return (
+             (props.type === "bullet" ? (
+                 <ul>{props.children}</ul>
+             ) : (
+                 <ol>{props.children}</ol>
+             ))
+         )
+
+      },
+
+      listItem: (props) =>
+          console.log("list", props) ||
+          (props.type === "bullet" ? (
+              <li>{props.children}</li>
+          ) : (
+              <li>{props.children}</li>
+          )),
+      marks: {
+          strong: (props) =>
+              console.log("strong", props) || <strong>{props.children}</strong>,
+          em: (props) => console.log("em", props) || <em>{props.children}</em>,
+          code: (props) => console.log("code", props) || <code>{props.children}</code>
+      }
   }
 };
 

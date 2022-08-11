@@ -47,56 +47,60 @@ const responsive = {
 const CarrierCard = ({id, date, end, role, tags, company, skills}) =>{
     let dispatch = useDispatch()
     let router = useRouter()
-    return (
-    <Box
-        sx={{display: "flex", flexDirection: 'column',  backgroundColor: "", my: 5, py: 5, pl: 5, mx: 5, cursor: "pointer",   boxShadow: '0px 0px 10px rgba(38, 78, 118, 0.35)',
+
+    const sx = {
+        Container: {
+            display: "flex", flexDirection: 'column',  backgroundColor: "", my: 5, py: 5, pl: 5, mx: 5, cursor: "pointer",   boxShadow: '0px 0px 10px rgba(38, 78, 118, 0.35)',
             transition: 'all 0.3s',
             '&:hover': {
                 boxShadow: '0px 6px 30px rgba(38, 78, 118, 0.1)',
-            }}
-    }
-        onClick={()=>{
-            dispatch({type: MountBackDrop, Component: <CarrierDetails id={id}/> , props:{} ,test: "hi"})
-            router.push("/?carrierId=" + id, undefined, {shallow: true}).then(r => {})
-
-        }}
-    >
-        <StyledText variant="timeLineTitle">{date}</StyledText>
-        <StyledText  sx={{marginLeft: "20px", fontSize: "26px"}}>{role}</StyledText>
-        <StyledText variant='muted' sx={{marginLeft: "20px", fontSize: "24px"}}>{"@ " + company}</StyledText>
-        <br></br>
-        <Box sx={{
-                marginLeft: "20px",
-                display: "flex", flexDirection: ['row', 'row', 'row', 'row', 'row', 'row', 'row'],
-                alignItems: 'center', flexWrap: "wrap",
-                '&::-webkit-scrollbar': { width: 0, }
-                }}>
-                       {
-                tags.map((tag, i) =>{
-                    return (<SkillTag name={tag} style={{color: "white", borderColor: "white"}}      key={i}></SkillTag>)
-                })
-        }
-        </Box>
-        <Box sx={{flexDirection: 'row', backgroundColor: "", display: "flex", width: "100%", marginLeft: "20px"}}>
-            <Box sx={{display: "flex", flexDirection: 'row', alignItems: "center", width: "100%", flexWrap: "wrap"}}>
-            {
-                skills.map((skill, index) =>{
-                    if(index < 3){
-                        return (<SkillTag name={skill} key={index}></SkillTag>)
-                    }
-
-                })
             }
+            },
+        role : {
+            marginLeft: "20px", fontSize: ['18px', '18px', '18px', '18px', '18px', '20px', '20px']
+        },
+        tagsCon: {
+            marginLeft: "20px",
+            display: "flex", flexDirection: ['row', 'row', 'row', 'row', 'row', 'row', 'row'],
+            alignItems: 'center', flexWrap: "wrap",
+            '&::-webkit-scrollbar': { width: 0, }
+        }
+    }
+
+    const clickHandler  = ()=>{
+        dispatch({type: MountBackDrop, Component: <CarrierDetails id={id}/> , props:{} ,test: "hi"})
+        router.push("/?carrierId=" + id, undefined, {shallow: true}).then(r => {})
+    }
+
+    return (
+        <Box sx={sx.Container} onClick={clickHandler}>
+            <StyledText variant="timeLineTitle">{date}</StyledText>
+            <StyledText  sx={sx.role}>{role}</StyledText>
+            <StyledText variant='muted' sx={{marginLeft: "20px", fontSize: "24px"}}>{"@ " + company}</StyledText>
+            <br></br>
+            <Box sx={sx.tagsCon}>
+                {
+                    tags.map((tag, i) =>{
+                        return (<SkillTag name={tag} style={{color: "white", borderColor: "white"}} key={i}/>)
+                    })
+                }
+            </Box>
+            <Box sx={sx.tagsCon}>
+                {
+                    skills.map((skill, index) =>{
+                        if(index < 3){
+                            return (<SkillTag name={skill} key={index}></SkillTag>)
+                        }
+
+                    })
+                }
             </Box>
         </Box>
-
-    </Box>
     )
 }
 
 
 function Carrier(){
-    const primaryLimit = 2
     let [data, setData ] = useState([])
     let [state, setState ] = useState(0)
 
@@ -138,7 +142,6 @@ function Carrier(){
                             additionalTransfrom={0}
                             arrows={false}
                             autoPlaySpeed={30000000}
-                            centerMode={false}
                             customButtonGroup={<ButtonGroup />}
                             draggable
                             focusOnSelect={false}

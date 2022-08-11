@@ -21,7 +21,7 @@ export default function CarrierDetails({id}) {
                 setState(-1)
             })
     }
-    
+
     useEffect(() => {
         loadData()
     }, [id]);

@@ -10,7 +10,6 @@ import 'rc-drawer/assets/index.css';
 import ReactGA from 'react-ga';
 import Router, {useRouter} from 'next/router';
 import {MountBackDrop} from "../src/Apis/Redux/Actions/Types";
-import SingleCarrierDetails from "../components/CarrierDetails/SingleCarrierDetails/SingleCarrierDetails";
 import {useDispatch} from "react-redux";
 
 import html2canvas from "html2canvas";
@@ -21,6 +20,7 @@ import {CV} from "../components/CV/CV";
 import MobileSingleCarrierDetails from "../components/CarrierDetails/MobileSingleCarrierDetails/MobileSingleCarrierDetails";
 import BasicDocument from "../components/Pdf/Pdf";
 import CarrierDetails from "../components/CarrierDetails/CarrierDetails";
+import {useBreakpointIndex} from "@theme-ui/match-media";
 
 export const initGA = () => {
     ReactGA.initialize('G-8L31KNNS3F');
@@ -45,15 +45,17 @@ export default function Home(props) {
     let dispatch =  useDispatch()
     const sx = {
         Home: {
+            '.mobileOnly' : {
+                display: [null, null, null, null, 'none', "none", "none"]
+            },
 
             '.Section':{
                 pt: '80px',
             }
         }
     }
-
+    const index = useBreakpointIndex()
     useEffect(() => {
-
         if(router.query.carrierId !== undefined){
             dispatch({
                 type: MountBackDrop,
@@ -68,7 +70,6 @@ export default function Home(props) {
         }
             // dispatch({type: MountBackDrop, Component: <CV /> , props:{} ,test: "hi"})
         initGA();
-
         Router.events.on('routeChangeComplete', logPageView);
     }, [router.query]);
 
