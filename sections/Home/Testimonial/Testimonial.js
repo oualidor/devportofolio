@@ -101,13 +101,23 @@ export default function Testimonial() {
             <Box sx={styles.carouselWrapper}>
               <motion.div
                   style={{position: "absolute", top: '45%'}}
-                  initial={{left: '30%', opacity: 1}}
-                  whileInView={{left: '0%', opacity: 0}}
+                  initial={{left: '20%', opacity: 1}}
+                  whileInView={{left: '-20%', opacity: 0}}
                   transition={{duration: 1.5, type: "tween"}}
               >
-                <div style={{color: 'white'}}>
+                <Box sx={{color: 'white', display: ['block', 'block', 'block', 'none', 'none', 'none', 'none']}}>
                   <AiFillCaretLeft size={40} color={'white'}></AiFillCaretLeft>
-                </div>
+                </Box>
+              </motion.div>
+              <motion.div
+                  style={{position: "absolute", top: '45%'}}
+                  initial={{left: '25%', opacity: 1}}
+                  whileInView={{left: '-15%', opacity: 0}}
+                  transition={{duration: 1.5, type: "tween"}}
+              >
+                <Box sx={{color: 'white', display: ['block', 'block', 'block', 'none', 'none', 'none', 'none']}}>
+                  <AiFillCaretLeft size={40} color={'white'}></AiFillCaretLeft>
+                </Box>
               </motion.div>
             <Carousel
                 additionalTransfrom={0}
@@ -148,13 +158,23 @@ export default function Testimonial() {
             </Carousel>
               <motion.div
                   style={{position: "absolute", top: '45%'}}
-                  initial={{right: '30%', opacity: 1}}
-                  whileInView={{right: '0%', opacity: 0}}
+                  initial={{right: '20%', opacity: 1}}
+                  whileInView={{right: '-20%', opacity: 0}}
                   transition={{duration: 1.5, type: "tween"}}
               >
-                <div style={{color: 'white'}}>
+                <Box sx={{color: 'white', display: ['block', 'block', 'block', 'none', 'none', 'none', 'none']}}>
                   <AiFillCaretRight size={40} color={'white'}></AiFillCaretRight>
-                </div>
+                </Box>
+              </motion.div>
+              <motion.div
+                  style={{position: "absolute", top: '45%'}}
+                  initial={{right: '25%', opacity: 1}}
+                  whileInView={{right: '-15%', opacity: 0}}
+                  transition={{duration: 1.5, type: "tween"}}
+              >
+                <Box sx={{color: 'white', display: ['block', 'block', 'block', 'none', 'none', 'none', 'none']}}>
+                  <AiFillCaretRight size={40} color={'white'}></AiFillCaretRight>
+                </Box>
               </motion.div>
           </Box>
           </MultiStatesView>
@@ -166,7 +186,7 @@ export default function Testimonial() {
 
 const styles = {
   carouselWrapper: {
-    position: 'relative',
+    position: 'relative',  overflowX: "hidden", overflowY: "hidden"
   },
   reviewCard: {
     display: "flex", flexDirection: "column", justifyItems: "space-between",

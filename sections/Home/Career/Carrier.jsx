@@ -131,7 +131,7 @@ function Carrier(){
                     <ShowMoreText
                         /* Default options */
                         lines={3}
-                        more="More"
+                        more="See More"
                         less="Show less"
                         className="content-css"
                         anchorClass="my-anchor-css-class"
@@ -146,7 +146,7 @@ function Carrier(){
                 <Box sx={{
                     position: 'relative', width: "100%",
                     justifyContent: 'center', alignItems: 'center', flexWrap: "wrap",
-                    backgroundColor: '', overflowX: "hidden"
+                    backgroundColor: '', overflowX: "hidden", overflowY: "hidden"
                 }}>
 
                     <MultiStatesView state={state} dataLoader={loadData}>
@@ -156,9 +156,9 @@ function Carrier(){
                             whileInView={{left: '-20%', opacity: 0}}
                             transition={{duration: 1.5, type: "tween"}}
                         >
-                            <div style={{color: 'white'}}>
+                            <Box sx={{color: 'white', display: ['block', 'block', 'block', 'none', 'none', 'none', 'none']}}>
                                 <AiFillCaretLeft size={40} color={'white'}></AiFillCaretLeft>
-                            </div>
+                            </Box>
                         </motion.div>
                         <motion.div
                             style={{position: "absolute", top: '45%'}}
@@ -166,9 +166,9 @@ function Carrier(){
                             whileInView={{left: '-15%', opacity: 0}}
                             transition={{duration: 1.5, type: "tween"}}
                         >
-                            <div style={{color: 'white'}}>
+                            <Box sx={{color: 'white', display: ['block', 'block', 'block', 'none', 'none', 'none', 'none']}}>
                                 <AiFillCaretLeft size={40} color={'white'}></AiFillCaretLeft>
-                            </div>
+                            </Box>
                         </motion.div>
                             <Carousel
                                 additionalTransfrom={0}
@@ -209,9 +209,9 @@ function Carrier(){
                             whileInView={{right: '-20%', opacity: 0}}
                             transition={{duration: 1.5, type: "tween"}}
                         >
-                            <div style={{color: 'white'}}>
+                            <Box sx={{color: 'white', display: ['block', 'block', 'block', 'none', 'none', 'none', 'none']}}>
                                 <AiFillCaretRight size={40} color={'white'}></AiFillCaretRight>
-                            </div>
+                            </Box>
                         </motion.div>
                         <motion.div
                             style={{position: "absolute", top: '45%'}}
@@ -219,9 +219,9 @@ function Carrier(){
                             whileInView={{right: '-15%', opacity: 0}}
                             transition={{duration: 1.5, type: "tween"}}
                         >
-                            <div style={{color: 'white'}}>
+                            <Box sx={{color: 'white', display: ['block', 'block', 'block', 'none', 'none', 'none', 'none']}}>
                                 <AiFillCaretRight size={40} color={'white'}></AiFillCaretRight>
-                            </div>
+                            </Box>
                         </motion.div>
 
                     </MultiStatesView>

@@ -8,7 +8,7 @@ const LanguageEntry = ({name, level}) =>{
 
     return (
         <Box sx={{display: "flex", flexDirection: 'row', width: "100%", backgroundColor: "tran", marginBottom: 5, alignItems: "center"}}>
-            <StyledText  sx={{marginLeft: "40px", fontSize: "26px"}}>{name}</StyledText>
+            <StyledText  sx={{marginLeft: "40px", fontSize: ['18px', '18px', '18px', '18px', '18px', '20px', '26px'],}}>{name}</StyledText>
             <Text variant='muted' sx={{marginLeft: "20px", fontSize: "18px"}}>{level}</Text>
         </Box>
     )
@@ -67,7 +67,7 @@ function AboutMe(){
                     '&::-webkit-scrollbar': { width: 0, }
                 }}>
                     <Box sx={{display: "flex", flexDirection: 'column', width: "100%", backgroundColor: "", marginBottom: 0}}>
-                        <StyledText  sx={{marginLeft: "5px", fontSize: "24px"}}>{"Technical Overview"}</StyledText>
+                        <StyledText  sx={{marginLeft: "5px",             fontSize: ['20px', '20px', '18px', '18px', '18px', '20px', '26px'],    }}>{"Technical Overview"}</StyledText>
                         <Box sx={{display: "flex", flexDirection: 'row', width: "100%", maxWidth: 300, backgroundColor: "tran", ml:5, flexWrap: "wrap"}}>
                             <SkillTag name={'Web Development'} style={Style.SkillTag}  />
                             <SkillTag name={'NodeJS'} style={Style.SkillTag}/>
@@ -81,7 +81,7 @@ function AboutMe(){
                         </Box>
                     </Box>
                     <Box sx={{display: "flex", flexDirection: 'column', width: "100%", backgroundColor: "tran", marginBottom: 0}}>
-                        <StyledText  sx={{marginLeft: "5px", fontSize: "24px"}}>{"Languages"}</StyledText>
+                        <StyledText  sx={{marginLeft: "5px",             fontSize: ['20px', '20px', '18px', '18px', '18px', '20px', '26px'],}}>{"Languages"}</StyledText>
                         <LanguageEntry name={"Arabic"} level={"Native"}></LanguageEntry>
                         <LanguageEntry name={"English"} level={"Adnaced (A1)"}></LanguageEntry>
                         <LanguageEntry name={"French"} level={"Very good (B2)"}></LanguageEntry>
