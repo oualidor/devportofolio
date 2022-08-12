@@ -2,6 +2,7 @@ import {Box, Container, Text} from "theme-ui";
 import StyledText from '../../../components/StyledComponents/StyledText';
 import SkillTag from "../../../components/SkillTag/SkillTag";
 import SectionTitle from "../../../components/StyledComponents/SectionTitle";
+import ShowMoreText from "react-show-more-text";
 
 const LanguageEntry = ({name, level}) =>{
 
@@ -42,15 +43,27 @@ function AboutMe(){
                 '&::-webkit-scrollbar': { width: 0, }
                 }}>
                 <Text variant='muted' sx={{marginLeft: "20px", fontSize: "16px", textJustify: 'inter-word', textAlign: "justify"}}>
-                    I have been talking to computers since I was 12 years old and I still enjoy It.
-                     I am a social element with a good ability to work alone or in a team, I can supervise people or get supervised.
-                    I can be integrated silently in any tech community. I would really appreciate having time for study and swimming
+                    <ShowMoreText
+                        /* Default options */
+                        lines={3}
+                        more="More"
+                        less="Show less"
+                        className="content-css"
+                        anchorClass="my-anchor-css-class"
+                        expanded={false}
+                        truncatedEndingComponent={" .... "}
+                    >
+                        I have been talking to computers since I was 12 years old and I still enjoy It.
+                        I am a social element with a good ability to work alone or in a team, I can supervise people or get supervised.
+                        I can be integrated silently in any tech community. I would really appreciate having time for study and swimming
+                    </ShowMoreText>
+
                 </Text>
                 <Box sx={{
                     flexDirection: ["column", "column", "column", "column", "row", "row", "row"],
                     width: "100%",
                     display: "flex",
-                    justifyContent: 'space-around',  flexWrap: "", ml: 5,
+                    justifyContent: 'space-around',  flexWrap: "", ml: '15px',
                     '&::-webkit-scrollbar': { width: 0, }
                 }}>
                     <Box sx={{display: "flex", flexDirection: 'column', width: "100%", backgroundColor: "", marginBottom: 0}}>
@@ -73,7 +86,6 @@ function AboutMe(){
                         <LanguageEntry name={"English"} level={"Adnaced (A1)"}></LanguageEntry>
                         <LanguageEntry name={"French"} level={"Very good (B2)"}></LanguageEntry>
                     </Box>
-
                 </Box>
 
 

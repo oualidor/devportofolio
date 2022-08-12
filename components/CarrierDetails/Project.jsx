@@ -92,66 +92,53 @@ const Project = ({name, from, to, title, skills, content, outcome, images, links
             display: "flex", flexDirection: 'column',
             width: "100%",  mb: '20px', p: 1,
             backgroundColor: "",
-            '.date': {
-                lineWidth: 0, ml: '20px',
-                fontSize: ['18px', '18px', '18px', '18px', '18px', '20px', '20px']
-            },
+
             '.mobileOnly' : {
                 display: [null, null, null, null, 'none', "none", "none"]
             }
         },
         title: {
             lineWidth: 0,
+
             fontSize: ['18px', '18px', '18px', '18px', '18px', '20px', '26px'],
             lineHeight: '0px'
+        },
+        date: {
+            lineWidth: 0,
+            fontSize: ['14px', '16px', '18px', '18px', '18px', '20px', '20px']
         },
 
     }
     if(links == undefined) links = []
 
-    let [preparedImages, setImages] = useState([])
     useEffect(()=>{
 
-        if(images !== undefined && images !== null){
-            setImages( images.map((im =>{
-                return    {
-                    original: urlFor(im),
-                    thumbnail: urlFor(im),
-                }
-            })))
-        }
 
 
-    }, [images])
+    }, [])
     return (
         <Box sx={sx.Container} id={"project"} ref={container}>
             <Box className={'mobileOnly'}>
-                <StyledText sx={sx.title}>
-                    {title}
-                    <StyledText variant="timeLineTitle" sx={sx.date}>
-                        {DataParser.toString(from) + " - " + dateParser.toString(to)}
-                    </StyledText>
-                </StyledText>
+                <StyledText sx={sx.title}>{title}</StyledText><br/>
+                <StyledText sx={sx.date}>{'[ '+DataParser.toMid(from) + " - " + dateParser.toMid(to) + ']'}</StyledText>
             </Box>
-            <StyledText sx={{marginLeft: "20px", fontSize: "26px"}}>Description</StyledText>
-            <Box sx={{ textIndent: "2vw"}} variant={"muted"}>
+            <StyledText sx={{marginLeft: "20px",  fontSize: ['20px', '20px', '20px', '22px', '22px', '20px', '26px'],}}>Description</StyledText>
+            <ShowMoreText
+                /* Default options */
+                lines={3}
+                more="Show more"
+                less="Show less"
+                className="content-css"
+                anchorClass="my-anchor-css-class"
+                expanded={false}
+                truncatedEndingComponent={"... "}
+            >
+                <Box sx={{ textIndent: "2vw"}} variant={"muted"}>
                     <PortableText blocks={content} serializers={Serializer}/>
-            </Box>
-            <Box sx={{ textIndent: "2vw"}} variant={"muted"}>
-                <ShowMoreText
-                    /* Default options */
-                    lines={3}
-                    more="Show more"
-                    less="Show less"
-                    className="content-css"
-                    anchorClass="my-anchor-css-class"
-                    expanded={false}
-                    truncatedEndingComponent={"... "}
-                >
-                    <PortableText blocks={content} serializers={Serializer}/>
-                </ShowMoreText>
+                </Box>
+            </ShowMoreText>
 
-            </Box>
+
             <br/>
             <Box sx={{
                 overflowX: ["auto", "auto", "auto", "none", "none", "none", "none"],
@@ -168,7 +155,7 @@ const Project = ({name, from, to, title, skills, content, outcome, images, links
                 }
             </Box>
             <br/>
-            <StyledText sx={{marginLeft: "20px", fontSize: "26px"}}>Project out come</StyledText>
+            <StyledText sx={{marginLeft: "20px", fontSize: ['20px', '20px', '20px', '22px', '22px', '20px', '26px']}}>Project out come</StyledText>
             <PortableText blocks={outcome} serializers={Serializer}/>
             <br/>
             <ProjectLinks links={links}/>

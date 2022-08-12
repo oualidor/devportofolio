@@ -1,6 +1,6 @@
 
 import  { useState, useEffect } from 'react';
-
+import ShowMoreText from "react-show-more-text";
 import {Alert, Box, Button, Container, Spinner, Text} from "theme-ui";
 import StyledText from '../../../components/StyledComponents/StyledText';
 import SkillTag from '../../../components/SkillTag/SkillTag';
@@ -128,8 +128,20 @@ function Carrier(){
                 <SectionTitle variant="sectionTitle">Skills & Professional Carrier</SectionTitle>
                 <br></br>
                 <Text variant='muted' sx={{marginLeft: "20px", fontSize: "18px"}}>
-                    Basically, I am good with all teh technologies labeled i used in the projects bellow, But, I do believe that I do have a good understanding of the philosophy behind giving orders
-                    to the computer and problem solving, I can adapt
+                    <ShowMoreText
+                        /* Default options */
+                        lines={3}
+                        more="More"
+                        less="Show less"
+                        className="content-css"
+                        anchorClass="my-anchor-css-class"
+                        expanded={false}
+                        truncatedEndingComponent={" .... "}
+                    >
+                        Basically, I am good with all teh technologies labeled i used in the projects bellow, But, I do believe that I do have a good understanding of the philosophy behind giving orders
+                        to the computer and problem solving, I can adapt
+                    </ShowMoreText>
+
                 </Text>
                 <Box sx={{
                     width: "100%",
