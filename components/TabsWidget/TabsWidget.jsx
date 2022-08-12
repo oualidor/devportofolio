@@ -25,6 +25,7 @@ const TabsWidget = ({tabs, categories}) => {
             mt: '-150px',
         },
         tabButtonTopWrapper: {
+            backgroundColor: '',
             py: ['20px', '20px', '20px', '0px', '0px', '0px']
 
         },
@@ -36,7 +37,7 @@ const TabsWidget = ({tabs, categories}) => {
             border: 5,
             alignItems: 'center',
             borderBottom: '1px solid rgba(1,7,13,.1)',
-            mb: '35px',
+            mb: '5px',
             button: {
                 display: 'flex',
                 alignItems: 'center',

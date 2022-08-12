@@ -92,7 +92,6 @@ const Project = ({name, from, to, title, skills, content, outcome, images, links
             display: "flex", flexDirection: 'column',
             width: "100%",  mb: '20px', p: 1,
             backgroundColor: "",
-
             '.mobileOnly' : {
                 display: [null, null, null, null, 'none', "none", "none"]
             }
@@ -156,7 +155,18 @@ const Project = ({name, from, to, title, skills, content, outcome, images, links
             </Box>
             <br/>
             <StyledText sx={{marginLeft: "20px", fontSize: ['20px', '20px', '20px', '22px', '22px', '20px', '26px']}}>Project out come</StyledText>
-            <PortableText blocks={outcome} serializers={Serializer}/>
+            <ShowMoreText
+                /* Default options */
+                lines={3}
+                more="Show more"
+                less="Show less"
+                className="content-css"
+                anchorClass="my-anchor-css-class"
+                expanded={false}
+                truncatedEndingComponent={"... "}
+            >
+                <PortableText blocks={outcome} serializers={Serializer}/>
+            </ShowMoreText>
             <br/>
             <ProjectLinks links={links}/>
     </Box>
