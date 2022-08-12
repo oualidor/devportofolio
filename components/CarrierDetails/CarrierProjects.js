@@ -8,6 +8,8 @@ import dateParser from "../../Apis/DateParser";
 import {useEffect, useState} from "react";
 import {IoIosArrowRoundBack} from "react-icons/io";
 import {useBreakpointIndex} from "@theme-ui/match-media";
+import {motion} from "framer-motion";
+import {AiFillCaretLeft, AiFillCaretRight} from "react-icons/ai";
 
 
 const responsive = {
@@ -95,27 +97,70 @@ const CarrierProjects = ({projects})=>{
                     }
                     {
                         index < 4 &&
-                        <Carousel
-                            additionalTransfrom={0}
-                            arrows={false}
-                            autoPlaySpeed={30000000}
-                            draggable
-                            focusOnSelect={false}
-                            infinite={false}
-                            itemClass=""
-                            keyBoardControl
-                            minimumTouchDrag={80}
-                            renderButtonGroupOutside
-                            responsive={responsive}
-                            showDots={true}
-                            slidesToSlide={1}
-                        >
-                            {
-                                projects.map((project, index) =>{
-                                    return <Project {...project} key={"project"}/>
-                                })
-                            }
-                        </Carousel>
+                        <>
+                            <motion.div
+                                style={{position: "absolute", top: '45%'}}
+                                initial={{left: '20%', opacity: 1}}
+                                whileInView={{left: '-20%', opacity: 0}}
+                                transition={{duration: 1.5, type: "tween"}}
+                            >
+                                <div style={{color: 'white'}}>
+                                    <AiFillCaretLeft size={40} color={'white'}></AiFillCaretLeft>
+                                </div>
+                            </motion.div>
+                            <motion.div
+                                style={{position: "absolute", top: '45%'}}
+                                initial={{left: '25%', opacity: 1}}
+                                whileInView={{left: '-15%', opacity: 0}}
+                                transition={{duration: 1.5, type: "tween"}}
+                            >
+                                <div style={{color: 'white'}}>
+                                    <AiFillCaretLeft size={40} color={'white'}></AiFillCaretLeft>
+                                </div>
+                            </motion.div>
+                            <Carousel
+                                additionalTransfrom={0}
+                                arrows={false}
+                                autoPlaySpeed={30000000}
+                                draggable
+                                focusOnSelect={false}
+                                infinite={false}
+                                itemClass=""
+                                keyBoardControl
+                                minimumTouchDrag={80}
+                                renderDotsOutside={true}
+                                responsive={responsive}
+                                showDots={true}
+                                slidesToSlide={1}
+                            >
+                                {
+                                    projects.map((project, index) =>{
+                                        return <Project {...project} key={"project"}/>
+                                    })
+                                }
+                            </Carousel>
+                            <motion.div
+                                style={{position: "absolute", top: '45%'}}
+                                initial={{right: '20%', opacity: 1}}
+                                whileInView={{right: '-20%', opacity: 0}}
+                                transition={{duration: 1.5, type: "tween"}}
+                            >
+                                <div style={{color: 'white'}}>
+                                    <AiFillCaretRight size={40} color={'white'}></AiFillCaretRight>
+                                </div>
+                            </motion.div>
+                            <motion.div
+                                style={{position: "absolute", top: '45%'}}
+                                initial={{right: '25%', opacity: 1}}
+                                whileInView={{right: '-15%', opacity: 0}}
+                                transition={{duration: 1.5, type: "tween"}}
+                            >
+                                <div style={{color: 'white'}}>
+                                    <AiFillCaretRight size={40} color={'white'}></AiFillCaretRight>
+                                </div>
+                            </motion.div>
+                        </>
+
                     }
 
                 </>

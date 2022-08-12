@@ -169,6 +169,7 @@ const Project = ({name, from, to, title, skills, content, outcome, images, links
             </ShowMoreText>
             <br/>
             <ProjectLinks links={links}/>
+            <br/>
     </Box>
     )
 }
