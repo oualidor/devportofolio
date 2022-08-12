@@ -146,14 +146,24 @@ function Carrier(){
                 <Box sx={{
                     position: 'relative', width: "100%",
                     justifyContent: 'center', alignItems: 'center', flexWrap: "wrap",
-                    backgroundColor: ''
+                    backgroundColor: '', overflowX: "hidden"
                 }}>
 
                     <MultiStatesView state={state} dataLoader={loadData}>
                         <motion.div
                             style={{position: "absolute", top: '45%'}}
-                            initial={{left: '30%', opacity: 1}}
-                            whileInView={{left: '0%', opacity: 0}}
+                            initial={{left: '20%', opacity: 1}}
+                            whileInView={{left: '-20%', opacity: 0}}
+                            transition={{duration: 1.5, type: "tween"}}
+                        >
+                            <div style={{color: 'white'}}>
+                                <AiFillCaretLeft size={40} color={'white'}></AiFillCaretLeft>
+                            </div>
+                        </motion.div>
+                        <motion.div
+                            style={{position: "absolute", top: '45%'}}
+                            initial={{left: '25%', opacity: 1}}
+                            whileInView={{left: '-15%', opacity: 0}}
                             transition={{duration: 1.5, type: "tween"}}
                         >
                             <div style={{color: 'white'}}>
@@ -195,8 +205,18 @@ function Carrier(){
                             </Carousel>
                         <motion.div
                             style={{position: "absolute", top: '45%'}}
-                            initial={{right: '30%', opacity: 1}}
-                            whileInView={{right: '0%', opacity: 0}}
+                            initial={{right: '20%', opacity: 1}}
+                            whileInView={{right: '-20%', opacity: 0}}
+                            transition={{duration: 1.5, type: "tween"}}
+                        >
+                            <div style={{color: 'white'}}>
+                                <AiFillCaretRight size={40} color={'white'}></AiFillCaretRight>
+                            </div>
+                        </motion.div>
+                        <motion.div
+                            style={{position: "absolute", top: '45%'}}
+                            initial={{right: '25%', opacity: 1}}
+                            whileInView={{right: '-15%', opacity: 0}}
                             transition={{duration: 1.5, type: "tween"}}
                         >
                             <div style={{color: 'white'}}>
