@@ -12,13 +12,8 @@ import Router, {useRouter} from 'next/router';
 import {MountBackDrop} from "../src/Apis/Redux/Actions/Types";
 import {useDispatch} from "react-redux";
 
-import html2canvas from "html2canvas";
-import jsPDF from "jspdf";
 import {Box} from "theme-ui";
-import ReactToPrint,  { PrintContextConsumer }from "react-to-print";
-import {CV} from "../components/CV/CV";
-import MobileSingleCarrierDetails from "../components/CarrierDetails/MobileSingleCarrierDetails/MobileSingleCarrierDetails";
-import BasicDocument from "../components/Pdf/Pdf";
+
 import CarrierDetails from "../components/CarrierDetails/CarrierDetails";
 import {useBreakpointIndex} from "@theme-ui/match-media";
 
@@ -81,6 +76,7 @@ export default function Home(props) {
           <Timeline Title={"Educational Background"} Data={EducationalBackgroundData}/>
           <Carrier></Carrier>
           <Testimonial></Testimonial>
+          <br/>
       </Box>
   )
 }

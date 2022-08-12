@@ -4,19 +4,18 @@ import ShowMoreText from "react-show-more-text";
 import {Alert, Box, Button, Container, Spinner, Text} from "theme-ui";
 import StyledText from '../../../components/StyledComponents/StyledText';
 import SkillTag from '../../../components/SkillTag/SkillTag';
-import { getCarrier, getCategories } from '../../../services';
-import PortableText from "@sanity/block-content-to-react";
-import { GoLinkExternal } from "react-icons/go";
-import NextLink from "next/link";
+import { getCarrier } from '../../../services';
+import { motion } from "framer-motion"
 import {useDispatch} from "react-redux";
 import {MountBackDrop} from "../../../src/Apis/Redux/Actions/Types";
-import SingleCarrierDetails from "../../../components/CarrierDetails/SingleCarrierDetails/SingleCarrierDetails";
 import {useRouter} from "next/router";
 import ButtonGroup from "../../../components/button-group";
 import Carousel from "react-multi-carousel";
 import MultiStatesView from "../../../components/MultiStatesView/MultiStatesView";
 import CarrierDetails from "../../../components/CarrierDetails/CarrierDetails";
 import SectionTitle from "../../../components/StyledComponents/SectionTitle";
+import {useBreakpointIndex} from "@theme-ui/match-media";
+import {AiFillCaretLeft, AiFillCaretRight} from "react-icons/ai";
 
 
 
@@ -103,6 +102,7 @@ const CarrierCard = ({id, date, end, role, tags, company, skills}) =>{
 function Carrier(){
     let [data, setData ] = useState([])
     let [state, setState ] = useState(0)
+    const index = useBreakpointIndex()
 
     const loadData = ()=>{
         setState(0)
@@ -144,48 +144,68 @@ function Carrier(){
 
                 </Text>
                 <Box sx={{
-                    width: "100%",
-                    justifyContent: 'space-around', alignItems: 'center', flexWrap: "wrap",
-                    '&::-webkit-scrollbar': { width: 0, }
+                    position: 'relative', width: "100%",
+                    justifyContent: 'center', alignItems: 'center', flexWrap: "wrap",
+                    backgroundColor: ''
                 }}>
 
                     <MultiStatesView state={state} dataLoader={loadData}>
-                        <Carousel
-                            additionalTransfrom={0}
-                            arrows={false}
-                            autoPlaySpeed={30000000}
-                            customButtonGroup={<ButtonGroup />}
-                            draggable
-                            focusOnSelect={false}
-                            infinite={false}
-                            itemClass=""
-                            keyBoardControl
-                            minimumTouchDrag={80}
-                            renderButtonGroupOutside
-                            responsive={responsive}
-                            showDots={false}
-                            slidesToSlide={1}
+                        <motion.div
+                            style={{position: "absolute", top: '45%'}}
+                            initial={{left: '30%', opacity: 1}}
+                            whileInView={{left: '0%', opacity: 0}}
+                            transition={{duration: 1.5, type: "tween"}}
                         >
-                            {
-                                data.map((entry, index) => (<CarrierCard
-                                        key={entry._id}
-                                        id={entry._id}
-                                        skills={entry.skills}
-                                        date={entry.date}
-                                        role={entry.title}
-                                        company={entry.company.name}
-                                        tags={entry.tags}
-                                        desc={entry.content}
-                                    ></CarrierCard>)
+                            <div style={{color: 'white'}}>
+                                <AiFillCaretLeft size={40} color={'white'}></AiFillCaretLeft>
+                            </div>
+                        </motion.div>
+                            <Carousel
+                                additionalTransfrom={0}
+                                // arrows={index <= 4 ? true:false}
+                                arrows={false}
+                                autoPlaySpeed={30000000}
+                                customButtonGroup={index > 4 ? <ButtonGroup />:null}
+                                draggable
+                                focusOnSelect={false}
+                                infinite={false}
+                                itemClass=""
+                                keyBoardControl
+                                minimumTouchDrag={80}
+                                renderButtonGroupOutside
+                                responsive={responsive}
+                                showDots={false}
+                                slidesToSlide={1}
+                            >
+                                {
+                                    data.map((entry, index) => (<CarrierCard
+                                            key={entry._id}
+                                            id={entry._id}
+                                            skills={entry.skills}
+                                            date={entry.date}
+                                            role={entry.title}
+                                            company={entry.company.name}
+                                            tags={entry.tags}
+                                            desc={entry.content}
+                                        ></CarrierCard>)
 
 
-                                )
-                            }
-                        </Carousel>
+                                    )
+                                }
+                            </Carousel>
+                        <motion.div
+                            style={{position: "absolute", top: '45%'}}
+                            initial={{right: '30%', opacity: 1}}
+                            whileInView={{right: '0%', opacity: 0}}
+                            transition={{duration: 1.5, type: "tween"}}
+                        >
+                            <div style={{color: 'white'}}>
+                                <AiFillCaretRight size={40} color={'white'}></AiFillCaretRight>
+                            </div>
+                        </motion.div>
+
                     </MultiStatesView>
-
                 </Box>
-
             </Box>
 
 

@@ -1,5 +1,4 @@
 import { Container, Heading, Text, Box, Image, Button } from 'theme-ui';
-import { GoLinkExternal } from "react-icons/go";
 import ButtonGroup from "../../../components/button-group";
 import Carousel from 'react-multi-carousel';
 import StyledText from '../../../components/StyledComponents/StyledText';
@@ -8,6 +7,8 @@ import {useEffect, useState} from "react";
 import {getCarrier, getTestimonials} from "../../../services";
 import MultiStatesView from "../../../components/MultiStatesView/MultiStatesView";
 import SectionTitle from "../../../components/StyledComponents/SectionTitle";
+import {motion} from "framer-motion";
+import {AiFillCaretLeft, AiFillCaretRight} from "react-icons/ai";
 
 const responsive = {
   desktop: {
@@ -98,6 +99,16 @@ export default function Testimonial() {
             <SectionTitle variant="sectionTitle">Testimonials I am proud of</SectionTitle>
           <MultiStatesView state={state} dataLoader={loadData}>
             <Box sx={styles.carouselWrapper}>
+              <motion.div
+                  style={{position: "absolute", top: '45%'}}
+                  initial={{left: '30%', opacity: 1}}
+                  whileInView={{left: '0%', opacity: 0}}
+                  transition={{duration: 1.5, type: "tween"}}
+              >
+                <div style={{color: 'white'}}>
+                  <AiFillCaretLeft size={40} color={'white'}></AiFillCaretLeft>
+                </div>
+              </motion.div>
             <Carousel
                 additionalTransfrom={0}
                 arrows={false}
@@ -135,6 +146,16 @@ export default function Testimonial() {
                   </Box>
               ))}
             </Carousel>
+              <motion.div
+                  style={{position: "absolute", top: '45%'}}
+                  initial={{right: '30%', opacity: 1}}
+                  whileInView={{right: '0%', opacity: 0}}
+                  transition={{duration: 1.5, type: "tween"}}
+              >
+                <div style={{color: 'white'}}>
+                  <AiFillCaretRight size={40} color={'white'}></AiFillCaretRight>
+                </div>
+              </motion.div>
           </Box>
           </MultiStatesView>
         </Box>
@@ -145,7 +166,7 @@ export default function Testimonial() {
 
 const styles = {
   carouselWrapper: {
-
+    position: 'relative',
   },
   reviewCard: {
     display: "flex", flexDirection: "column", justifyItems: "space-between",
