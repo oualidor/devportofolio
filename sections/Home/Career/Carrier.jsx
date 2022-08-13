@@ -175,7 +175,7 @@ function Carrier(){
                                 // arrows={index <= 4 ? true:false}
                                 arrows={false}
                                 autoPlaySpeed={30000000}
-                                customButtonGroup={index > 4 ? <ButtonGroup />:null}
+                                customButtonGroup={index >= 3 ? <ButtonGroup />:null}
                                 draggable
                                 focusOnSelect={false}
                                 infinite={false}

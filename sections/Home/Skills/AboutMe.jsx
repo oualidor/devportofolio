@@ -3,7 +3,7 @@ import StyledText from '../../../components/StyledComponents/StyledText';
 import SkillTag from "../../../components/SkillTag/SkillTag";
 import SectionTitle from "../../../components/StyledComponents/SectionTitle";
 import ShowMoreText from "react-show-more-text";
-
+import { motion } from "framer-motion"
 const LanguageEntry = ({name, level}) =>{
 
     return (
@@ -25,23 +25,38 @@ const SkillEntry = ({name, level}) =>{
 }
 
 function AboutMe(){
-
+    const sx = {
+        content: {
+            flexDirection: "column",
+            width: "100%",
+            display: "flex",
+            justifyContent: 'space-around',   ml: 0,
+            '&::-webkit-scrollbar': { width: 0, }
+        },
+        blocks: {
+            position: "relative", flexDirection: ["column", "column", "column", "column", "row", "row", "row"], width: "100%", display: "flex",
+            justifyContent: 'space-around',  flexWrap: "", ml: '15px',
+            '&::-webkit-scrollbar': { width: 0, }
+        },
+        skillsCon: {
+            display: "flex", flexDirection: 'column', width: "100%", backgroundColor: "", marginBottom: 0
+        },
+        languagesCon: {display: "flex", flexDirection: 'column', width: "100%", backgroundColor: "tran", marginBottom: 0},
+        h2:{
+            marginLeft: "5px", fontSize: ['20px', '20px', '18px', '18px', '18px', '20px', '26px']
+        }
+    }
     const Style = {
         SkillTag: {
             color: "white", borderColor: "white", marginBottom: 10,
-        }
+        },
+
     }
     return(
         <Box sx={{overflow: "hidden"}} id={"AboutMe"}  as={"section"} variant={'section.PageSection'}>
             <SectionTitle variant="sectionTitle">About Me</SectionTitle>
             <br/>
-            <Box sx={{
-                flexDirection: "column",
-                width: "100%",
-                display: "flex",
-                justifyContent: 'space-around',   ml: 0,
-                '&::-webkit-scrollbar': { width: 0, }
-                }}>
+            <Box sx={sx.content}>
                 <Text variant='muted' sx={{marginLeft: "20px", fontSize: "16px", textJustify: 'inter-word', textAlign: "justify"}}>
                     <ShowMoreText
                         /* Default options */
@@ -59,15 +74,9 @@ function AboutMe(){
                     </ShowMoreText>
 
                 </Text>
-                <Box sx={{
-                    flexDirection: ["column", "column", "column", "column", "row", "row", "row"],
-                    width: "100%",
-                    display: "flex",
-                    justifyContent: 'space-around',  flexWrap: "", ml: '15px',
-                    '&::-webkit-scrollbar': { width: 0, }
-                }}>
-                    <Box sx={{display: "flex", flexDirection: 'column', width: "100%", backgroundColor: "", marginBottom: 0}}>
-                        <StyledText  sx={{marginLeft: "5px",             fontSize: ['20px', '20px', '18px', '18px', '18px', '20px', '26px'],    }}>{"Technical Overview"}</StyledText>
+                <Box sx={sx.blocks}>
+                    <Box sx={sx.skillsCon}>
+                        <StyledText  sx={sx.h2}>{"Technical Overview"}</StyledText>
                         <Box sx={{display: "flex", flexDirection: 'row', width: "100%", maxWidth: 300, backgroundColor: "tran", ml:5, flexWrap: "wrap"}}>
                             <SkillTag name={'Web Development'} style={Style.SkillTag}  />
                             <SkillTag name={'NodeJS'} style={Style.SkillTag}/>
@@ -80,15 +89,13 @@ function AboutMe(){
                             <SkillTag name={'Neural Network'} style={Style.SkillTag}/>
                         </Box>
                     </Box>
-                    <Box sx={{display: "flex", flexDirection: 'column', width: "100%", backgroundColor: "tran", marginBottom: 0}}>
-                        <StyledText  sx={{marginLeft: "5px",             fontSize: ['20px', '20px', '18px', '18px', '18px', '20px', '26px'],}}>{"Languages"}</StyledText>
+                    <Box sx={sx.languagesCon}>
+                        <StyledText  sx={sx.h2}>{"Languages"}</StyledText>
                         <LanguageEntry name={"Arabic"} level={"Native"}></LanguageEntry>
                         <LanguageEntry name={"English"} level={"Adnaced (A1)"}></LanguageEntry>
                         <LanguageEntry name={"French"} level={"Very good (B2)"}></LanguageEntry>
                     </Box>
                 </Box>
-
-
             </Box>
         </Box>
     )

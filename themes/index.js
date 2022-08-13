@@ -212,12 +212,11 @@ export default function createTheme(language) {
             timeLineTitle: {
                 fontWeight: "0",
                 fontSize: [
-                    '5vw',
-                    '5vw',
-                    '4.5vw',
-                    '4vw',
-                    '2.5vw',
-                    '2vw',
+                    '22px',
+                    '24px',
+                    '24px',
+                    '20px',
+                    '20px',
                     '1.4vw',
                     '1.5vw',
                 ],

@@ -41,7 +41,7 @@ const CarrierCard = ({date, end, title, tags, company, skills}) =>{
     return (
         <Box sx={{display: "flex", flexDirection: 'column',  backgroundColor: "", marginBottom: 5,}}>
             <StyledText variant="timeLineTitle">{date}</StyledText>
-            <StyledText  sx={{marginLeft: "20px", fontSize: "26px"}}>{title}</StyledText>
+            <StyledText  sx={{marginLeft: "20px", mb: '20px', fontSize: "26px"}}>{title}</StyledText>
             <StyledText variant='muted' sx={{marginLeft: "20px", fontSize: "24px"}}>{"@ " + company.name}</StyledText>
             <CompanyInfo contactInfo={company.contactInfo}></CompanyInfo>
             <br></br>

@@ -40,6 +40,7 @@ const CarrierProjects = ({projects})=>{
     const index = useBreakpointIndex()
     const sx ={
         tabsCon: {
+            mt: '20px',
             display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-around", borderTop: '1px solid white', borderBottom: '1px solid white', boxShadow: '0px 0px 20px rgba(38, 78, 118, 0.35)'
         },
         inactive : {color: 'whitesmoke', cursor: 'pointer'},
@@ -84,7 +85,7 @@ const CarrierProjects = ({projects})=>{
                                 <Box sx={{textAlign: "center"}}>
                                     <StyledText variant="timeLineTitle" sx={sx.active}>{project.title}</StyledText>
                                     <br/>
-                                    <Text sx={{color: "white"}}>{DataParser.toString(project.from) + " - " + dateParser.toString(project.to)}</Text>
+                                    <Text sx={{color: "white",}}>{DataParser.toString(project.from) + " - " + dateParser.toString(project.to)}</Text>
                                 </Box>
                                 <Box onClick={Next}  sx={{maxWidth: '30%', width: '30%', backgroundColor: "", textAlign: "right"}}>
                                     {selectedProjectIndex < projects.length-1 ? <Text sx={sx.inactive}>{projects[selectedProjectIndex+1].title}</Text>: <Box sx={sx.inactive}></Box>}
