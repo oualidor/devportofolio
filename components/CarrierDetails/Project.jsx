@@ -122,6 +122,7 @@ const Project = ({name, from, to, title, skills, content, outcome, images, links
                 <StyledText sx={sx.date}>{'[ '+DataParser.toMid(from) + " - " + dateParser.toMid(to) + ']'}</StyledText>
             </Box>
             <StyledText sx={{marginLeft: "20px",  fontSize: ['20px', '20px', '20px', '22px', '22px', '20px', '26px'],}}>Description</StyledText>
+            <Text sx={{ textIndent: "2vw"}} variant={"muted"} >
             <ShowMoreText
                 /* Default options */
                 lines={3}
@@ -132,10 +133,13 @@ const Project = ({name, from, to, title, skills, content, outcome, images, links
                 expanded={false}
                 truncatedEndingComponent={"... "}
             >
-                <Box sx={{ textIndent: "2vw"}} variant={"muted"}>
+
                     <PortableText blocks={content} serializers={Serializer}/>
-                </Box>
+
+
+
             </ShowMoreText>
+            </Text>
 
 
             <br/>
