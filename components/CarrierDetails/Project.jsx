@@ -103,7 +103,7 @@ const Project = ({name, from, to, title, skills, content, outcome, images, links
             lineHeight: '0px'
         },
         date: {
-            lineWidth: 0,
+            lineWidth: 0, ml: '5px',
             fontSize: ['14px', '16px', '18px', '18px', '18px', '20px', '20px']
         },
 
@@ -118,7 +118,7 @@ const Project = ({name, from, to, title, skills, content, outcome, images, links
     return (
         <Box sx={sx.Container} id={"project"} ref={container}>
             <Box className={'mobileOnly'}>
-                <StyledText sx={sx.title}>{title}</StyledText><br/>
+                <StyledText sx={sx.title}>{title}</StyledText>
                 <StyledText sx={sx.date}>{'[ '+DataParser.toMid(from) + " - " + dateParser.toMid(to) + ']'}</StyledText>
             </Box>
             <StyledText sx={{marginLeft: "20px",  fontSize: ['20px', '20px', '20px', '22px', '22px', '20px', '26px'],}}>Description</StyledText>
@@ -148,6 +148,7 @@ const Project = ({name, from, to, title, skills, content, outcome, images, links
                 '&::-webkit-scrollbar': {width: 0,}
             }}>
                 {
+                    skills !== undefined &&
                     skills.map(skill => {
                         return (<SkillTag name={skill.title}></SkillTag>)
                     })

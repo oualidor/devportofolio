@@ -125,7 +125,7 @@ function Carrier(){
 
             <Box sx={{backgroundColor: "", }} id={"Carrier"}>
 
-                <SectionTitle variant="sectionTitle">Skills & Professional Carrier</SectionTitle>
+                <SectionTitle variant="sectionTitle">Professional Carrier</SectionTitle>
                 <br></br>
                 <Text variant='muted' sx={{marginLeft: "20px", fontSize: "18px"}}>
                     <ShowMoreText

@@ -46,15 +46,20 @@ const CarrierProjects = ({projects})=>{
         inactive : {color: 'whitesmoke', cursor: 'pointer'},
         active : {textDecoration: 'underline', color: 'whitesmoke', lineHeight: '50px'}
     }
+    let project = projects[selectedProjectIndex]
 
     useEffect(() => {
+        if(projects !== undefined && projects !== null){
+
+        }
+
         return () => {
 
         };
-    }, []);
+    }, [projects]);
 
 
-    const project = projects[selectedProjectIndex]
+
     const Next = () => {
         if(selectedProjectIndex < projects.length -1){
             setSelectedProjectIndex(selectedProjectIndex + 1)
