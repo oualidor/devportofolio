@@ -1,12 +1,18 @@
 import {Container, Flex, Button, Box, Text, useThemeUI} from 'theme-ui';
 import NextLink from 'next/link';
 import { keyframes } from '@emotion/react';
-import { DrawerProvider } from '../../contexts/drawer/drawer.provider';
-import { AiFillGithub, AiFillInstagram, AiFillLinkedin, AiTwotoneFileText, AiTwotoneContainer } from 'react-icons/ai';
+import {
+  AiFillGithub,
+  AiFillInstagram,
+  AiFillLinkedin,
+  AiTwotoneFileText,
+  AiTwotoneContainer,
+  AiOutlineMedium
+} from 'react-icons/ai';
 
 
 
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import { useRouter } from 'next/router'
 import LanguageIcon from '@mui/icons-material/Language';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
@@ -17,6 +23,12 @@ import {MountBackDrop} from "../../src/Apis/Redux/Actions/Types";
 import MeetScheduler from "../MeetScheduler";
 import {useDispatch} from "react-redux";
 import Divider from "../../src/assets/Images/divider.svg";
+import dividerBack from "../../src/assets/Images/dividerBack.svg";
+import {IoMdClose, IoMdMenu} from "react-icons/io";
+import {MobileOnly} from "../MobileOnly";
+import {LargeOnly} from "../LargeOnly";
+import SideBar from "../SideBar/SideBar";
+import StyledText from "../StyledComponents/StyledText";
 
 const positionAnim = keyframes`
   from {
@@ -42,51 +54,78 @@ const langBoxAnim = keyframes`
   }
 `;
 
-const LanTag = ({label, lang, country, style}) => {
-  return (
 
-        <NextLink href={"/"} locale={lang}>
-
-          <Flex sx={style} className={"langTag"}>
-            <Text sx={{color: "primary"}}>{label}</Text>
-            <ReactCountryFlag
-                className="emojiFlag"
-                countryCode={country}
-                style={{
-                  fontSize: '1em',
-                  lineHeight: '2em',
-                }}
-                aria-label="United States"
-            />
-          </Flex>
-
-        </NextLink>
-
-  );
-};
-
-
-const NavIcon = ({Icon, link}) => {
+const LargeNavEntry = ({Icon, link, label}) => {
+  const entryRef = useRef(null)
+  const labelRef = useRef(null)
   const style = {
-    width: ["8vw", "35px", "36px", "38px", "38px", "40px", "40px"],
-    marginRight: "5px", cursor: "pointer",
-    transition: "0.3s ease",
+
+    marginRight: "10px", cursor: "pointer",
+    transition: "1s ease",
     display: 'flex',
-    alignItems: "center", justifyContent: "center",
+    alignItems: "center", justifyContent: "center", px: '60px',
     padding: "5px",
     '&:hover': {
       backgroundColor: "#212d45",
       transform: "scale(1.2)",
       cursor: "pointer",
-      borderRadius: "50%",
+      borderRadius: "20px",
+    },
+    label:{
+      transition: "5s ease",
+
+    }
+  }
+  useEffect(() => {
+    try{
+      // entryRef.current.addEventListener("mouseenter", ()=>{
+      //   labelRef.current.style.display = 'block'
+      // })
+      // entryRef.current.addEventListener('mouseleave', ()=>{
+      //   labelRef.current.style.display = 'none'
+      // })
+    }catch (e){
+
+    }
+    return () => {
+
+    };
+  }, [entryRef]);
+
+  return (
+    <a href={link} target="blank" ref={entryRef}>
+      <Box sx={style} >
+      <Icon  size="30px" style={{marginRight: '5px'}}/>
+        <Text sx={style.label} ref={labelRef}>{label}</Text>
+    </Box>
+    </a>
+
+  );
+};
+
+const MobileNavEntry = ({text, Icon, link}) => {
+  const style = {
+    width: 'auto',
+    marginRight: "5px", cursor: "pointer", background: '',
+    transition: "0.3s ease",
+    display: 'flex',
+    alignItems: "center", justifyContent: "left",
+    padding: "5px",
+    '&:hover': {
+      color: 'white',
+      backgroundColor: "#212d45",
+      transform: "scale(1.2)",
+      cursor: "pointer",
+      borderRadius: "20px",
     }
   }
   return (
-    <a href={link} target="blank">
-      <Box sx={style} >
-      <Icon  size="100%" />
-    </Box>
-    </a>
+      <a href={link} target="blank">
+        <Box sx={style} >
+          <Icon  size="26px" style={{marginRight: '20px'}}/>
+          {text}
+        </Box>
+      </a>
 
   );
 };
@@ -113,8 +152,6 @@ const SectionTitle = (props) => {
 
 
 export default function Header({ className }) {
-  const [openMenu, setOpenMenu] = useState(false)
-
   const dispatch = useDispatch()
   const styles = {
 
@@ -168,65 +205,122 @@ export default function Header({ className }) {
       alignItems: "center",
       justifyContent: 'center',
     },
-    lanBox: {
-      display: openMenu? "flex": "none", flexDirection: "column",
-      p: 20, mt: 20,
-      position: "absolute", left: 0,
-      backgroundColor: "rgba(255, 255, 255, 0.9)", animation: `${langBoxAnim} 0.8s ease`, },
     langTag: {
       cursor: "pointer",
       width: 80, mb:1,
       justifyContent: "space-between",
 
-    }
+    },
+    handler: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      flexShrink: '0',
+      width: '26px',
+      cursor: 'pointer',
+      '@media screen and (min-width: 1220px)': {
+        display: 'none',
+      },
+    },
+
+
 
   };
+  const [isOpen, setIsOpen] = useState(true)
+
   useEffect(()=>{
 
   }, [])
 
 
   return (
-    <DrawerProvider>
       <Box sx={styles.header} className={className} id="header">
         <Container>
-        <Box sx={styles.container}>
-          <SectionTitle>Oualid KHIAL</SectionTitle>
-          <Box sx={styles.nav} id={"navContent"}>
-
+        <MobileOnly>
+          <SideBar isOpen={isOpen}>
             <Button
-                 sx={{
-                   flexShrink: 0,
-                   ml: ['auto', null, null, null, 0],
-                   backgroundImage: `url(${Divider})`,
-                   backgroundRepeat: 'no-repeat',
-                   backgroundPosition: 'center bottom',
-                   width: 'fit-content',
-                   backgroundSize: 'contain',
-                     fontWeight: 'bold',
-                   py: ['12px', null, null, null, 2],
-                   px: [3, null, null, null, 5],
-                   ':hover': {
-                     backgroundColor: ['primary', null, null, null, 'transparent'],
-                     color: ['white', null, null, null, 'white'],
-                   },
-                   mr: 3
-            }}
+                variant={'whiteButton'}
+                sx={{
+
+                  flexShrink: 0,
+                  backgroundImage: `url(${dividerBack})`,
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'center bottom',
+                  backgroundSize: 'contain',
+                  fontWeight: 'bold',
+                  py: ['12px', null, null, null, 3],
+                  px: [3, null, null, null, 5], mb: '15px',
+
+                }}
                 onClick={()=> {
                   dispatch({type: MountBackDrop, Component: <MeetScheduler/> , props:{} ,test: "hi"})
                 }}
             >
               Schedule a meet
             </Button>
-            <NavIcon Icon={AiFillGithub} link={"https://github.com/oualidor"}></NavIcon>
-            <NavIcon Icon={AiFillLinkedin} link={"https://www.linkedin.com/in/oualidkhial/"}></NavIcon>
-            {/*<NavIcon Icon={AiTwotoneContainer}></NavIcon>*/}
+            <MobileNavEntry text={'Github'} Icon={AiFillGithub} link={"https://www.github.com/in/oualidkhial/"}></MobileNavEntry>
+            <MobileNavEntry text={'LinkedIn'} Icon={AiFillLinkedin} link={"https://www.linkedin.com/in/oualidkhial/"}></MobileNavEntry>
+            <MobileNavEntry text={'The Academy'} Icon={AiOutlineMedium} link={"https://www.linkedin.com/in/oualidkhial/"}></MobileNavEntry>
+
+            {/*<Text sx={{position: 'absolute', top: '85%', left: '20%'}}>Oualid KHIAL</Text>*/}
+            {/*<Text sx={{position: 'absolute', top: '90%', left: '20%'}}>0550750576</Text>*/}
+          </SideBar>
+        </MobileOnly>
+        <Box sx={styles.container}>
+          <StyledText variant={'timeLineTitle'} sx={{fontWeight: 'bold',}}>Oualid KHIAL</StyledText>
+          <Box sx={styles.nav} id={"navContent"}>
+
+
+            <LargeOnly>
+              <LargeNavEntry Icon={AiFillLinkedin} link={"https://www.linkedin.com/in/oualidkhial/"} label={'LinkedIn'}></LargeNavEntry>
+            </LargeOnly>
+            <LargeOnly>
+              <LargeNavEntry Icon={AiFillGithub} link={"https://github.com/oualidor"} label={'GitHub'}></LargeNavEntry>
+            </LargeOnly>
+            <LargeOnly>
+              <LargeNavEntry Icon={AiOutlineMedium} link={"https://github.com/oualidor"} label={'The Academy'}></LargeNavEntry>
+            </LargeOnly>
+            <LargeOnly>
+              <Button
+                  sx={{
+                    borderTop: '0.05px dotted white',
+                    borderRight: '1px solid white',
+                    flexShrink: 0,
+                    ml: ['auto', null, null, null, 0],
+                    backgroundImage: `url(${Divider})`,
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: 'center bottom',
+                    backgroundSize: 'contain',
+                    fontWeight: 'bold',
+                    py: ['12px', null, null, null, '12px'],
+                    px: [3, null, null, null, 5],
+                    ':hover': {
+                      backgroundColor: ['primary', null, null, null, 'transparent'],
+                      color: ['white', null, null, null, 'white'],
+                    },
+                    mr: 3
+                  }}
+                  onClick={()=> {
+                    dispatch({type: MountBackDrop, Component: <MeetScheduler/> , props:{} ,test: "hi"})
+                  }}
+              >
+                Schedule a meet
+              </Button>
+            </LargeOnly>
+            <MobileOnly>
+              {
+                isOpen
+                    ? <IoMdMenu size="24px" onClick={()=>{setIsOpen(!isOpen)}}/>
+                    : <IoMdClose size="24px" onClick={()=>{setIsOpen(!isOpen)}}/>
+              }
+            </MobileOnly>
+
+
           </Box>
 
         </Box>
         </Container>
 
       </Box>
-    </DrawerProvider>
   );
 }

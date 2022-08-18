@@ -3,7 +3,6 @@ import {AiFillDollarCircle, AiFillLinkedin, AiFillPhone, AiFillPieChart, AiOutli
 import { FaBriefcase, FaCog } from 'react-icons/fa';
 import { AiFillCloseCircle } from "react-icons/ai";
 import 'react-multi-carousel/lib/styles.css';
-import 'rc-drawer/assets/index.css';
 import {Box, Button, Container, Flex, Spinner, Text} from "theme-ui";
 import PortableText from "@sanity/block-content-to-react";
 import StyledText from "../../StyledComponents/StyledText";

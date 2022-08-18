@@ -34,7 +34,7 @@ function AboutMe(){
             '&::-webkit-scrollbar': { width: 0, }
         },
         blocks: {
-            position: "relative", flexDirection: ["column", "column", "column", "column", "row", "row", "row"], width: "100%", display: "flex",
+            position: "relative", flexDirection: ["column", "column", "row", "row", "row", "row", "row"], width: "100%", display: "flex",
             justifyContent: 'space-around',  flexWrap: "", ml: '15px',
             '&::-webkit-scrollbar': { width: 0, }
         },

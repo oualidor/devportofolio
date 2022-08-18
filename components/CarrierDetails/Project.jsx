@@ -94,6 +94,9 @@ const Project = ({name, from, to, title, skills, content, outcome, images, links
             backgroundColor: "",
             '.mobileOnly' : {
                 display: [null, null, null, null, 'none', "none", "none"]
+            },
+            '.largeOnly' : {
+                display: ['none', 'none', 'none', 'none', 'block', 'block', 'block']
             }
         },
         title: {
@@ -122,24 +125,32 @@ const Project = ({name, from, to, title, skills, content, outcome, images, links
                 <StyledText sx={sx.date}>{'[ '+DataParser.toMid(from) + " - " + dateParser.toMid(to) + ']'}</StyledText>
             </Box>
             <StyledText sx={{marginLeft: "20px",  fontSize: ['20px', '20px', '20px', '22px', '22px', '20px', '26px'],}}>Description</StyledText>
-            <Text sx={{ textIndent: "2vw"}} variant={"muted"} >
-            <ShowMoreText
-                /* Default options */
-                lines={3}
-                more="Show more"
-                less="Show less"
-                className="content-css"
-                anchorClass="my-anchor-css-class"
-                expanded={false}
-                truncatedEndingComponent={"... "}
-            >
-
+            <Box  className={'largeOnly'}>
+                <Text sx={{ textIndent: "2vw"}} variant={"muted"} >
                     <PortableText blocks={content} serializers={Serializer}/>
+                </Text>
+            </Box>
+            <Box className={'mobileOnly'}>
+                <Text sx={{ textIndent: "2vw"}} variant={"muted"} >
+                    <ShowMoreText
+                        /* Default options */
+                        lines={3}
+                        more="Show more"
+                        less="Show less"
+                        className="content-css"
+                        anchorClass="my-anchor-css-class"
+                        expanded={false}
+                        truncatedEndingComponent={"... "}
+                    >
+
+                        <PortableText blocks={content} serializers={Serializer}/>
 
 
 
-            </ShowMoreText>
-            </Text>
+                    </ShowMoreText>
+                </Text>
+            </Box>
+
 
 
             <br/>
@@ -160,18 +171,28 @@ const Project = ({name, from, to, title, skills, content, outcome, images, links
             </Box>
             <br/>
             <StyledText sx={{marginLeft: "20px", fontSize: ['20px', '20px', '20px', '22px', '22px', '20px', '26px']}}>Project out come</StyledText>
-            <ShowMoreText
-                /* Default options */
-                lines={3}
-                more="Show more"
-                less="Show less"
-                className="content-css"
-                anchorClass="my-anchor-css-class"
-                expanded={false}
-                truncatedEndingComponent={"... "}
-            >
-                <PortableText blocks={outcome} serializers={Serializer}/>
-            </ShowMoreText>
+            <Box  className={'largeOnly'}>
+                <Text sx={{ textIndent: "2vw"}} variant={"muted"} >
+                    <PortableText blocks={outcome} serializers={Serializer}/>
+                </Text>
+            </Box>
+            <Box className={'mobileOnly'}>
+                <Text sx={{ textIndent: "2vw"}} variant={"muted"} >
+                    <ShowMoreText
+                        /* Default options */
+                        lines={3}
+                        more="Show more"
+                        less="Show less"
+                        className="content-css"
+                        anchorClass="my-anchor-css-class"
+                        expanded={false}
+                        truncatedEndingComponent={"... "}
+                    >
+                        <PortableText blocks={outcome} serializers={Serializer}/>
+                    </ShowMoreText>
+                </Text>
+            </Box>
+
             <br/>
             <ProjectLinks links={links}/>
             <br/>

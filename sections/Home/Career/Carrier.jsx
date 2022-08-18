@@ -103,7 +103,15 @@ function Carrier(){
     let [data, setData ] = useState([])
     let [state, setState ] = useState(0)
     const index = useBreakpointIndex()
+    const sx = {
+        container: {
 
+            '.entriesContainer':{
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                backgroundColor: '',
+            }
+        }
+    }
     const loadData = ()=>{
         setState(0)
         getCarrier().then(careerData =>{
@@ -123,7 +131,7 @@ function Carrier(){
 
     return(
 
-            <Box sx={{backgroundColor: "", }} id={"Carrier"}>
+            <Box sx={sx.container} id={"Carrier"}>
 
                 <SectionTitle variant="sectionTitle">Professional Carrier</SectionTitle>
                 <br></br>
@@ -171,20 +179,13 @@ function Carrier(){
                             </Box>
                         </motion.div>
                             <Carousel
-                                additionalTransfrom={0}
-                                // arrows={index <= 4 ? true:false}
-                                arrows={false}
-                                autoPlaySpeed={30000000}
-                                customButtonGroup={index >= 3 ? <ButtonGroup />:null}
-                                draggable
-                                focusOnSelect={false}
-                                infinite={false}
-                                itemClass=""
-                                keyBoardControl
-                                minimumTouchDrag={80}
-                                renderButtonGroupOutside
-                                responsive={responsive}
-                                showDots={false}
+                                autoPlay={false} infinite={false} responsive={responsive}
+                                arrows={false} renderButtonGroupOutside customButtonGroup={index >= 3 ? <ButtonGroup />:null}
+                                sliderClass="entriesContainer" draggable
+                                focusOnSelect={false} keyBoardControl
+
+
+
                                 slidesToSlide={1}
                             >
                                 {

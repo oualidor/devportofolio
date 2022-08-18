@@ -58,6 +58,15 @@ export default function createTheme(language) {
         },
         space: [0, 5, 10, 15, 20, 25, 30, 50, 80, 100, 120, 150],
         layout: {
+            mobileOnly: {
+                backgroundColor: 'red',
+
+            },
+            test: {
+
+                backgroundColor: 'red',
+            },
+
             container: {
                 maxWidth: [
                     '100%',
@@ -86,7 +95,8 @@ export default function createTheme(language) {
             main: {},
             box: {
                 backgroundColor: "red"
-            }
+            },
+
         },
         section: {
             default: {
@@ -544,5 +554,8 @@ export default function createTheme(language) {
                 backgroundColor: "#fa493c"
             }
         },
+        '&.borderTest': {
+            border: '2px solid white',
+        }
     }
 };

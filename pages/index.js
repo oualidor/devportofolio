@@ -6,7 +6,6 @@ import Landing from "../sections/Home/Landing/Landing"
 import AboutMe from "../sections/Home/Skills/AboutMe"
 import Testimonial from "../sections/Home/Testimonial/Testimonial"
 import 'react-multi-carousel/lib/styles.css';
-import 'rc-drawer/assets/index.css';
 import ReactGA from 'react-ga';
 import Router, {useRouter} from 'next/router';
 import {MountBackDrop} from "../src/Apis/Redux/Actions/Types";
