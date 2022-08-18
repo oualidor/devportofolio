@@ -267,7 +267,7 @@ export default function Header({ className }) {
           </SideBar>
         </MobileOnly>
         <Box sx={styles.container}>
-          <StyledText variant={'timeLineTitle'} sx={{fontWeight: 'bold',}}>Oualid KHIAL</StyledText>
+          <StyledText variant={'timeLineTitle'} sx={{fontWeight: 'bold', lineHeight: '20px',}}>Oualid KHIAL</StyledText>
           <Box sx={styles.nav} id={"navContent"}>
 
 
