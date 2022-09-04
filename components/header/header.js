@@ -61,7 +61,7 @@ const LargeNavEntry = ({Icon, link, label}) => {
   const style = {
 
     marginRight: "10px", cursor: "pointer",
-    transition: "1s ease",
+    transition: "0.4s ease",
     display: 'flex',
     alignItems: "center", justifyContent: "center", px: '60px',
     padding: "5px",
@@ -70,11 +70,9 @@ const LargeNavEntry = ({Icon, link, label}) => {
       transform: "scale(1.2)",
       cursor: "pointer",
       borderRadius: "20px",
+      animationDuration: '0.5s'
     },
-    label:{
-      transition: "5s ease",
 
-    }
   }
   useEffect(() => {
     try{
@@ -87,9 +85,7 @@ const LargeNavEntry = ({Icon, link, label}) => {
     }catch (e){
 
     }
-    return () => {
-
-    };
+    return () => {};
   }, [entryRef]);
 
   return (
@@ -283,8 +279,8 @@ export default function Header({ className }) {
             <LargeOnly>
               <Button
                   sx={{
-                    borderTop: '0.05px dotted white',
-                    borderRight: '1px solid white',
+                    borderLeft: '2px solid white',
+                    borderRight: '0px solid white',
                     flexShrink: 0,
                     ml: ['auto', null, null, null, 0],
                     backgroundImage: `url(${Divider})`,
@@ -295,8 +291,9 @@ export default function Header({ className }) {
                     py: ['12px', null, null, null, '12px'],
                     px: [3, null, null, null, 5],
                     ':hover': {
-                      backgroundColor: ['primary', null, null, null, 'transparent'],
-                      color: ['white', null, null, null, 'white'],
+                      backgroundImage: `url(${dividerBack})`,
+                      backgroundColor: ['primary', null, null, null, 'white'],
+                      color: ['white', null, null, null, 'primary'],
                     },
                     mr: 3
                   }}
