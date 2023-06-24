@@ -109,9 +109,7 @@ export const CV = forwardRef((props, ref) => {
             </Box>
             <Box sx={sx.right}>
                 <SectionHeader title={"About Me"}/>
-                <Text sx={{fontSize: "11px", lineHeight: 1}}>I am a Full stack developer, An artificial intelligence and machine learning PhD researcher and a computer science teacher,
-                    I have been talking to computers since I was 12 years old and I still enjoy It. Basically I am good with NodeJS based technologies (React, Next Nest, ..)
-                    But, I do believe i have a good understanding of the philosophy behind giving instruction to computers, I can adapt</Text>
+                <Text sx={{fontSize: "11px", lineHeight: 1}}></Text>
                 <br/>         <br/>
                 <SectionHeader title={"Professional Carrier"} qrValue={"https://oualidkhial.me/?carrier"}/>
                 <CvCarrier></CvCarrier>

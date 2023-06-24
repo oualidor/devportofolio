@@ -18,18 +18,17 @@ import {useRouter} from "next/router";
 const NotificationsContent = ({notificationsList})=>{
     const dispatch = useDispatch()
     return (
-
-            notificationsList.map(notification =>{
-                setTimeout(()=>{
-                    dispatch({type: RemoveNotification, id: notification.id})
-                }, notification.duration)
-                return (
-                    <Alert sx={{width: "100%", variant: "alerts."+notification.variant, mb: 2}}>
-                        {notification.text}
-                        <Close ml="auto" mr={-2} />
-                    </Alert>
-                )
-            })
+        notificationsList.map(notification =>{
+            setTimeout(()=>{
+                dispatch({type: RemoveNotification, id: notification.id})
+            }, notification.duration)
+            return (
+                <Alert sx={{width: "100%", variant: "alerts."+notification.variant, mb: 2}}>
+                    {notification.text}
+                    <Close ml="auto" mr={-2} />
+                </Alert>
+            )
+        })
     )
 }
 
@@ -78,49 +77,49 @@ function Layout({ children }) {
     useEffect(()=>{
 
     }, [router])
-  const handleStateChange = (status) => {
-    if (status.status === Sticky.STATUS_FIXED) {
-      setIsSticky(true);
-    } else if (status.status === Sticky.STATUS_ORIGINAL) {
-      setIsSticky(false);
-    }
-  };
+    const handleStateChange = (status) => {
+        if (status.status === Sticky.STATUS_FIXED) {
+            setIsSticky(true);
+        } else if (status.status === Sticky.STATUS_ORIGINAL) {
+            setIsSticky(false);
+        }
+    };
 
-  return (
-    <Box id={"Layout"}>
-        <SEO author={"Oualid KHIAL"} title={"Oualid KHIAL, Full stack developer and tech teacher"}></SEO>
-        <Sticky innerZ={1002} top={0} >
-            <Box
-                id={'BackDrop'}
-                sx={style.Backdrop}
-                onClick={(e)=>{
-                    if(e.target.id == "BackDrop"){
-                        dispatch({type: HideBackDrop, props:{} ,test: "hi"})
-                        router.push("/", undefined, { shallow: true })
+    return (
+        <Box id={"Layout"}>
+            <SEO author={"Oualid KHIAL"} title={"Oualid KHIAL, Full stack developer and tech teacher"}></SEO>
+            <Sticky innerZ={1002} top={0} >
+                <Box
+                    id={'BackDrop'}
+                    sx={style.Backdrop}
+                    onClick={(e)=>{
+                        if(e.target.id == "BackDrop"){
+                            dispatch({type: HideBackDrop, props:{} ,test: "hi"})
+                            router.push("/", undefined, { shallow: true })
+                        }
                     }
                     }
-                }
+                >
+                    <BackDropContent Component={ BackDrop.Component} props={ BackDrop.props}></BackDropContent>
+                </Box>
+            </Sticky>
+            <Sticky innerZ={1002} top={1} >
+                <Container id={"NotificationsContainer"} sx={style.NotificationsContainer}>
+                    <NotificationsContent notificationsList={notifications.list}></NotificationsContent>
+                </Container>
+            </Sticky>
+            <Sticky innerZ={1001} top={0} onStateChange={handleStateChange}>
+                <Header className={`${isSticky ? 'sticky' : 'unSticky'}`}  />
+            </Sticky>
+            <Container
+                id={"LayoutBody"}
+                sx={{pt: '0px'}}
             >
-                <BackDropContent Component={ BackDrop.Component} props={ BackDrop.props}></BackDropContent>
-            </Box>
-        </Sticky>
-        <Sticky innerZ={1002} top={1} >
-            <Container id={"NotificationsContainer"} sx={style.NotificationsContainer}>
-                <NotificationsContent notificationsList={notifications.list}></NotificationsContent>
+                {children}
             </Container>
-        </Sticky>
-        <Sticky innerZ={1001} top={0} onStateChange={handleStateChange}>
-            <Header className={`${isSticky ? 'sticky' : 'unSticky'}`}  />
-        </Sticky>
-        <Container
-            id={"LayoutBody"}
-            sx={{pt: '0px'}}
-        >
-            {children}
-        </Container>
-       <Footer></Footer>
-    </Box>
-  );
+            <Footer></Footer>
+        </Box>
+    );
 }
 
 

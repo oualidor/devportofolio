@@ -279,7 +279,7 @@ export default function Header({ className }) {
             <LargeOnly>
               <Button
                   sx={{
-                    borderLeft: '2px solid white',
+                    borderLeft: '1px solid white',
                     borderRight: '0px solid white',
                     flexShrink: 0,
                     ml: ['auto', null, null, null, 0],

@@ -15,6 +15,7 @@ import {Box} from "theme-ui";
 
 import CarrierDetails from "../components/CarrierDetails/CarrierDetails";
 import {useBreakpointIndex} from "@theme-ui/match-media";
+import {CV} from "../components/CV/CV";
 
 export const initGA = () => {
     ReactGA.initialize('G-8L31KNNS3F');

@@ -13,6 +13,8 @@ import ReactToPrint, {PrintContextConsumer} from "react-to-print";
 import {CV} from "../../../components/CV/CV";
 import BackgroundAnimation from "../../../components/BackgroundAnimation";
 import NextLink from "next/link";
+import {TemplateHandler} from "easy-template-x";
+import {getCarrier} from "../../../services";
 
 
 
@@ -57,16 +59,83 @@ function Landing(){
         }
 
     }
-
+    let [carrierData, setCarrierData ] = useState([])
     useEffect(()=>{
 
 
     }, [index])
+    useEffect( ()=>{
+        getCarrier().then(careerData =>{
+            console.log(careerData)
+            careerData.forEach(entry=>{
+                entry['company'] = entry['company']['name']
+            })
+            setCarrierData(careerData)
+
+        }).catch(e =>{
+            console.log(e)
+        })
+
+    }, [])
     useState(()=>{
 
     }, [])
 
 
+    async function downloadCV() {
+        const response = await fetch('CVTemplate.docx');
+        const templateFile = await response.blob();
+
+        const data = {
+            fullName: 'Oualid KHIAL',
+            desc: 'Full stack developer, PhD researcher and a computer scince teacher',
+            lang: [
+                {name: 'Arabic', level: 'Native'},
+                {name: 'English', level: 'Advanced'},
+                {name: 'French', level: 'Advanced'},
+            ],
+            skills: [
+                {name: 'Javascript'},
+                {name: 'React / NextJS'},
+                {name: 'Problem solving'},
+                {name: 'Linux'},
+                {name: 'Teaching'},
+                {name: 'Scientific research'},
+            ],
+            AboutMe: 'I am a Full stack developer, An artificial intelligence and machine learning PhD researcher and a computer science teacher, ' +
+                'I have been talking to computers since I was 12 years old and I still enjoy It. Basically I am good with NodeJS based technologies (React, Next Nest, ..)' +
+                'But, I do believe i have a good understanding of the philosophy behind giving instruction to computers, I can adapt',
+            educationalBackground : [
+                { year: "Sep 2012 - Jun 2015", degree: 'Bachaloreas degree, ', spec:  "Computer Scince", school:  "Mouley TAHAR University, Saida"},
+                { year: "2015 - 2017", degree: 'Master Degree, ', spec:  "Artificial Intelligence",school: "Mouley TAHAR University, Saida"},
+                { year: "2019 - Now", degree: 'Phd Degree, ', spec:  "Modeling and optimization of computer systems", school: "Mustapha STAMBOULI Univeristy, Mascara"},
+            ],
+            carrierDataL: carrierData.slice(0, 4),
+            carrierDataR: carrierData.slice(4, 9),
+            date: new Date().getDate() + ' ' + new Date().getMonth() + ' ' + new Date().getFullYear()
+        };
+
+        const handler = new TemplateHandler();
+        const doc = await handler.process(templateFile, data);
+
+        const blobUrl = URL.createObjectURL(doc);
+
+        // create temp link element
+        let link = document.createElement("a");
+        link.download = 'CV.docx';
+        link.href = blobUrl;
+
+        // use the link to invoke a download
+        document.body.appendChild(link);
+        link.click();
+
+        // remove the link
+        setTimeout(() => {
+            link.remove();
+            window.URL.revokeObjectURL(blobUrl);
+            link = null;
+        }, 0);
+    }
     return(
         <>
 
@@ -112,13 +181,22 @@ function Landing(){
                         {/*/>*/}
                         <Button
                             variant='secondary'
-                            // onClick={()=> {
-                            //     printDocument()
-                            // }}
+                            onClick={()=> {
+                                downloadCV().then(r => {})
+                            }}
                         >
-                            <a href={'Oualid KHIAL, Full stack developer and tech teacher.pdf'} target={'_blank'}>Download CV</a>
+                          Download CV
 
                         </Button>
+                        {/*<Button*/}
+                        {/*    variant='secondary'*/}
+                        {/*    // onClick={()=> {*/}
+                        {/*    //     printDocument()*/}
+                        {/*    // }}*/}
+                        {/*>*/}
+                        {/*    <a href={'Oualid KHIAL, Full stack developer and tech teacher.pdf'} target={'_blank'}>Download CV</a>*/}
+
+                        {/*</Button>*/}
                     </Box>
                 </Box>
                 <Box sx={style.right} ref={imageHolderRef}>
