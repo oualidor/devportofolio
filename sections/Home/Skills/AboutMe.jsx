@@ -84,7 +84,7 @@ function AboutMe(){
                             <SkillTag name={'Problem Solving'} style={Style.SkillTag}/>
                             <SkillTag name={'ReactJS / NextJS'} style={Style.SkillTag}/>
                             <SkillTag name={'C / C++'} style={Style.SkillTag}/>
-                            <SkillTag name={'TenserFlow'} style={Style.SkillTag}/>
+                            <SkillTag name={'Pytorch / TenserFlow'} style={Style.SkillTag}/>
                             <SkillTag name={'HTML / CSS'} style={Style.SkillTag}/>
                             <SkillTag name={'Neural Network'} style={Style.SkillTag}/>
                         </Box>
@@ -92,7 +92,7 @@ function AboutMe(){
                     <Box sx={sx.languagesCon}>
                         <StyledText  sx={sx.h2}>{"Languages"}</StyledText>
                         <LanguageEntry name={"Arabic"} level={"Native"}></LanguageEntry>
-                        <LanguageEntry name={"English"} level={"Adnaced (A1)"}></LanguageEntry>
+                        <LanguageEntry name={"English"} level={"Adnaced (A2)"}></LanguageEntry>
                         <LanguageEntry name={"French"} level={"Very good (B2)"}></LanguageEntry>
                     </Box>
                 </Box>
