@@ -92,7 +92,7 @@ function AboutMe(){
                     <Box sx={sx.languagesCon}>
                         <StyledText  sx={sx.h2}>{"Languages"}</StyledText>
                         <LanguageEntry name={"Arabic"} level={"Native"}></LanguageEntry>
-                        <LanguageEntry name={"English"} level={"Adnaced (A2)"}></LanguageEntry>
+                        <LanguageEntry name={"English"} level={"Advanced (A2)"}></LanguageEntry>
                         <LanguageEntry name={"French"} level={"Very good (B2)"}></LanguageEntry>
                     </Box>
                 </Box>
