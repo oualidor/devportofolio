@@ -68,7 +68,9 @@ function Landing(){
         getCarrier().then(careerData =>{
             console.log(careerData)
             careerData.forEach(entry=>{
+
                 entry['company'] = entry['company']['name']
+                entry['role'] = contentToText(entry['content'])
             })
             setCarrierData(careerData)
 
@@ -81,14 +83,26 @@ function Landing(){
 
     }, [])
 
+    function contentToText(content){
+        let result = ''
+        content.forEach(entry=>{
+            entry.children.forEach(child=>{
+                result  =result + child.text
+            })
+        })
+
+        return result
+
+    }
+
 
     async function downloadCV() {
-        const response = await fetch('CVTemplate.docx');
+        const response = await fetch('CVTemplateFull.docx');
         const templateFile = await response.blob();
 
         const data = {
             fullName: 'Oualid KHIAL',
-            desc: 'Full stack developer, PhD researcher and a computer scince teacher',
+            desc: 'Full stack developer, PhD researcher and a computer science teacher',
             lang: [
                 {name: 'Arabic', level: 'Native'},
                 {name: 'English', level: 'Advanced'},
@@ -110,6 +124,8 @@ function Landing(){
                 { year: "2015 - 2017", degree: 'Master Degree, ', spec:  "Artificial Intelligence",school: "Mouley TAHAR University, Saida"},
                 { year: "2019 - Now", degree: 'Phd Degree, ', spec:  "Modeling and optimization of computer systems", school: "Mustapha STAMBOULI Univeristy, Mascara"},
             ],
+            carrierData,
+
             carrierDataL: carrierData.slice(0, 4),
             carrierDataR: carrierData.slice(4, 9),
             date: new Date().getDate() + ' ' + new Date().getMonth() + ' ' + new Date().getFullYear()

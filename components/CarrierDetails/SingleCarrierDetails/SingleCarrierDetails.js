@@ -58,11 +58,15 @@ export default function SingleCarrierDetails({carrier}) {
             flexDirection: ["column", "column", "column", "column", "column", "column", "column"], alignItems: "center", justifyContent: "space-around"
         }
     }
-
+    useEffect(()=>{
+        console.log('1111111111111111111111111111')
+        console.log(carrier)
+    }, [])
 
   return (
       <Box>
           <Box sx={style.CarrierHolder} id={"CarrierHolder"}>
+
               <Box sx={{backgroundColor: "primary", p:5, mb:5, width: ["100%", "25%", "25%", "25%", "25%", "25%", "25%"]}}>
                   {true && <CarrierCard {...carrier } ></CarrierCard>}
               </Box>

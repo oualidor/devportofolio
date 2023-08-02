@@ -46,11 +46,10 @@ const CarrierProjects = ({projects})=>{
         inactive : {color: 'whitesmoke', cursor: 'pointer'},
         active : {textDecoration: 'underline', color: 'whitesmoke', lineHeight: '50px'}
     }
-    let project = projects[selectedProjectIndex]
 
     useEffect(() => {
         if(projects !== undefined && projects !== null){
-
+            let project = projects[selectedProjectIndex]
         }
 
         return () => {
@@ -72,7 +71,7 @@ const CarrierProjects = ({projects})=>{
     }
     try {
         if(projects.length === 0 ){
-            return (<Box></Box>)
+            return (<Box>No projects found</Box>)
         }else {
             return(
                 <>
@@ -88,16 +87,16 @@ const CarrierProjects = ({projects})=>{
                                     }
                                 </Box>
                                 <Box sx={{textAlign: "center"}}>
-                                    <StyledText variant="timeLineTitle" sx={sx.active}>{project.title}</StyledText>
+                                    <StyledText variant="timeLineTitle" sx={sx.active}>{projects[selectedProjectIndex].title}</StyledText>
                                     <br/>
-                                    <Text sx={{color: "white",}}>{DataParser.toString(project.from) + " - " + dateParser.toString(project.to)}</Text>
+                                    <Text sx={{color: "white",}}>{DataParser.toString(projects[selectedProjectIndex].from) + " - " + dateParser.toString(projects[selectedProjectIndex].to)}</Text>
                                 </Box>
                                 <Box onClick={Next}  sx={{maxWidth: '30%', width: '30%', backgroundColor: "", textAlign: "right"}}>
                                     {selectedProjectIndex < projects.length-1 ? <Text sx={sx.inactive}>{projects[selectedProjectIndex+1].title}</Text>: <Box sx={sx.inactive}></Box>}
                                 </Box>
                             </Box>
                             <br/>
-                            <Project {...project} key={"project"}/>
+                            <Project {...projects[selectedProjectIndex]} key={"project"}/>
                         </Box>
 
                     }
