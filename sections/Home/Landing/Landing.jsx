@@ -124,6 +124,8 @@ function Landing(){
                 { year: "2015 - 2017", degree: 'Master Degree, ', spec:  "Artificial Intelligence",school: "Mouley TAHAR University, Saida"},
                 { year: "2019 - Now", degree: 'Phd Degree, ', spec:  "Modeling and optimization of computer systems", school: "Mustapha STAMBOULI Univeristy, Mascara"},
             ],
+
+
             carrierData,
 
             carrierDataL: carrierData.slice(0, 4),
