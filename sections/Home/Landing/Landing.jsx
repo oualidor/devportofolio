@@ -120,7 +120,7 @@ function Landing(){
                 'I have been talking to computers since I was 12 years old and I still enjoy It. Basically I am good with NodeJS based technologies (React, Next Nest, ..)' +
                 'But, I do believe i have a good understanding of the philosophy behind giving instruction to computers, I can adapt',
             educationalBackground : [
-                { year: "Sep 2012 - Jun 2015", degree: 'Bachaloreas degree, ', spec:  "Computer Scince", school:  "Mouley TAHAR University, Saida"},
+                { year: "Sep 2012 - Jun 2015", degree: 'Bachelors Degree , ', spec:  "Computer Science", school:  "Mouley TAHAR University, Saida"},
                 { year: "2015 - 2017", degree: 'Master Degree, ', spec:  "Artificial Intelligence",school: "Mouley TAHAR University, Saida"},
                 { year: "2019 - Now", degree: 'Phd Degree, ', spec:  "Modeling and optimization of computer systems", school: "Mustapha STAMBOULI Univeristy, Mascara"},
             ],
@@ -158,7 +158,6 @@ function Landing(){
         <>
 
             <Box sx={style.con} id={"Landing"} variant={'section.PageSection'} as={"section"}>
-
                 <Box sx={style.left}>
                     <StyledText variant="fullAndHalf">There is a lot that I dont know <br></br> </StyledText>
                     <StyledText sx={{}} variant={"fullAndHalf"}>But I am always learning</StyledText>
