@@ -122,7 +122,7 @@ function Landing(){
             educationalBackground : [
                 { year: "Sep 2012 - Jun 2015", degree: 'Bachelors Degree , ', spec:  "Computer Science", school:  "Mouley TAHAR University, Saida"},
                 { year: "2015 - 2017", degree: 'Master Degree, ', spec:  "Artificial Intelligence",school: "Mouley TAHAR University, Saida"},
-                { year: "2019 - Now", degree: 'Phd Degree, ', spec:  "Modeling and optimization of computer systems", school: "Mustapha STAMBOULI Univeristy, Mascara"},
+                { year: "2019 - Now", degree: 'Phd Degree, ', spec:  "Modeling and optimization of computer systems", school: "Mustapha STAMBOULI University, Mascara"},
             ],
 
 
