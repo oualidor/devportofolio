@@ -99,7 +99,7 @@ const LargeNavEntry = ({Icon, link, label}) => {
   );
 };
 
-const MobileNavEntry = ({text, Icon, link}) => {
+const MobileNavEntry = ({text, Icon, link, setIsOpen}) => {
   const style = {
     width: 'auto',
     marginRight: "5px", cursor: "pointer", background: '',
@@ -117,7 +117,7 @@ const MobileNavEntry = ({text, Icon, link}) => {
   }
   return (
       <a href={link} target="blank">
-        <Box sx={style} >
+        <Box sx={style} onClick={()=>{setIsOpen(true)}}>
           <Icon  size="26px" style={{marginRight: '20px'}}/>
           {text}
         </Box>
@@ -248,15 +248,16 @@ export default function Header({ className }) {
                   px: [3, null, null, null, 5], mb: '15px',
 
                 }}
-                onClick={()=> {
-                  dispatch({type: MountBackDrop, Component: <MeetScheduler/> , props:{} ,test: "hi"})
+                onClick={(e)=> {
+                  setIsOpen(true)
+                  dispatch({type: MountBackDrop, Component: <MeetScheduler meetId={'first-contact'}/> , props:{} ,test: "hi"})
                 }}
             >
               Schedule a meet
             </Button>
-            <MobileNavEntry text={'Github'} Icon={AiFillGithub} link={"https://www.github.com/in/oualidkhial/"}></MobileNavEntry>
-            <MobileNavEntry text={'LinkedIn'} Icon={AiFillLinkedin} link={"https://www.linkedin.com/in/oualidkhial/"}></MobileNavEntry>
-            <MobileNavEntry text={'The Academy'} Icon={AiOutlineMedium} link={"https://www.linkedin.com/in/oualidkhial/"}></MobileNavEntry>
+            <MobileNavEntry text={'Github'} Icon={AiFillGithub} link={"https://github.com/oualidor"} setIsOpen={setIsOpen}></MobileNavEntry>
+            <MobileNavEntry text={'LinkedIn'} Icon={AiFillLinkedin} link={"https://www.linkedin.com/in/oualidkhial/"} setIsOpen={setIsOpen}></MobileNavEntry>
+            <MobileNavEntry text={'The Academy'} Icon={AiOutlineMedium} link={"https://www.linkedin.com/in/oualidkhial/"} setIsOpen={setIsOpen}></MobileNavEntry>
 
             {/*<Text sx={{position: 'absolute', top: '85%', left: '20%'}}>Oualid KHIAL</Text>*/}
             {/*<Text sx={{position: 'absolute', top: '90%', left: '20%'}}>0550750576</Text>*/}
