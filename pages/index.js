@@ -16,6 +16,7 @@ import {Box} from "theme-ui";
 import CarrierDetails from "../components/CarrierDetails/CarrierDetails";
 import {useBreakpointIndex} from "@theme-ui/match-media";
 import {CV} from "../components/CV/CV";
+import MeetScheduler from "../components/MeetScheduler";
 
 export const initGA = () => {
     ReactGA.initialize('G-8L31KNNS3F');
@@ -63,6 +64,22 @@ export default function Home(props) {
                 ,test: "hi"
             })
         }
+
+        if(router.query.meetId !== undefined){
+            dispatch({
+                type: MountBackDrop,
+                Component:
+                    <>
+                        <MeetScheduler meetId={router.query.meetId}/>
+
+                    </>
+                ,props:{}
+                ,test: "hi"
+            })
+        }
+
+
+
             // dispatch({type: MountBackDrop, Component: <CV /> , props:{} ,test: "hi"})
         initGA();
         Router.events.on('routeChangeComplete', logPageView);
