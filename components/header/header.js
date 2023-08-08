@@ -298,7 +298,7 @@ export default function Header({ className }) {
                     mr: 3
                   }}
                   onClick={()=> {
-                    dispatch({type: MountBackDrop, Component: <MeetScheduler/> , props:{} ,test: "hi"})
+                    dispatch({type: MountBackDrop, Component: <MeetScheduler meetId={'first-contact'}/> , props:{} ,test: "hi"})
                   }}
               >
                 Schedule a meet
