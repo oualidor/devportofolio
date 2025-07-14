@@ -99,7 +99,7 @@ const CarrierCard = ({id, date, end, role, tags, company, skills}) =>{
 }
 
 
-function Carrier(){
+function Carrier({title, text}){
     let [data, setData ] = useState([])
     let [state, setState ] = useState(0)
     const index = useBreakpointIndex()
@@ -133,7 +133,7 @@ function Carrier(){
 
             <Box sx={sx.container} id={"Carrier"}>
 
-                <SectionTitle variant="sectionTitle">Professional Carrier</SectionTitle>
+                <SectionTitle variant="sectionTitle">{title}</SectionTitle>
                 <br></br>
                 <Text variant='muted' sx={{marginLeft: "20px", fontSize: "18px"}}>
                     <ShowMoreText
@@ -146,8 +146,7 @@ function Carrier(){
                         expanded={false}
                         truncatedEndingComponent={" .... "}
                     >
-                        Basically, I am good with all teh technologies labeled i used in the projects bellow, But, I do believe that I do have a good understanding of the philosophy behind giving orders
-                        to the computer and problem solving, I can adapt
+                        {text}
                     </ShowMoreText>
 
                 </Text>

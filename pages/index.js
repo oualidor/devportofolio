@@ -91,8 +91,11 @@ export default function Home(props) {
           <Landing></Landing>
           <AboutMe></AboutMe>
           <Timeline Title={"Educational Background"} Data={EducationalBackgroundData}/>
-          <Carrier></Carrier>
+          <Carrier title={'Professional Carrier'} text={'Basically, I am good with all teh technologies labeled i used in the projects bellow, But, I do believe that I do have a good understanding of the philosophy behind giving orders\n' +
+              'to the computer and problem solving, I can adapt'}></Carrier>
+
           <Testimonial></Testimonial>
+          <Carrier title={'Formation and Consultations'} text={'Beside my primary focus, Time to time I receive consultations request or formation requests  '}></Carrier>
           <br/>
       </Box>
   )
