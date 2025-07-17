@@ -187,7 +187,7 @@ function Landing(){
         const formData = new FormData();
         formData.append('file', doc, 'CV.docx');
 
-        const pdfResponse = await fetch('http://84.46.247.72:2001/upload', {
+        const pdfResponse = await fetch('https://doctpdf.youritdepartment.tech/upload', {
             method: 'POST',
             body: formData,
         });
