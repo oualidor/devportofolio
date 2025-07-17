@@ -24,36 +24,9 @@ const CarrierAbout = ({carrier})=>{
 
 
                 <Box sx={sx.Container}>
-                    {
-                        
-                        <>
-                            <StyledText  sx={{fontSize: "25px"}}>The company</StyledText>
-                            <Box  className={'largeOnly'}>
-                                <Text sx={{ textIndent: "2vw"}} variant={"muted"} >
-                                    <PortableText blocks={carrier.company.description} serializers={Serializer}/>
-                                </Text>
-                            </Box>
-                            <Box className={'mobileOnly'}>
-                                <Text sx={{ textIndent: "2vw"}} variant={"muted"} >
-                                    <ShowMoreText
-                                        /* Default options */
-                                        lines={3}
-                                        more="Show more"
-                                        less="Show less"
-                                        className="content-css"
-                                        anchorClass="my-anchor-css-class"
-                                        expanded={false}
-                                        truncatedEndingComponent={"... "}
-                                    >
-                                        <PortableText blocks={carrier.company.description} serializers={Serializer}/>
-                                    </ShowMoreText>
-                                </Text>
-                            </Box>
-                            <br/>
-                        </>
-                    }
 
-                    <StyledText  sx={{fontSize: "25px"}}>The role</StyledText>
+                    {/*The role*/}
+                    <StyledText  sx={{fontSize: "25px", mt: 5}}>The role</StyledText>
                     <Box  className={'largeOnly'}>
                         <Text sx={{ textIndent: "2vw"}} variant={"muted"} >
                             <PortableText blocks={carrier.content} serializers={Serializer}/>
@@ -85,6 +58,36 @@ const CarrierAbout = ({carrier})=>{
                             }
                         </Box>
                     </Box>
+
+                    {/*Company*/}
+                    {
+
+                        <>
+                            <StyledText  sx={{fontSize: "25px"}}>The company</StyledText>
+                            <Box  className={'largeOnly'}>
+                                <Text sx={{ textIndent: "2vw"}} variant={"muted"} >
+                                    <PortableText blocks={carrier.company.description} serializers={Serializer}/>
+                                </Text>
+                            </Box>
+                            <Box className={'mobileOnly'}>
+                                <Text sx={{ textIndent: "2vw"}} variant={"muted"} >
+                                    <ShowMoreText
+                                        /* Default options */
+                                        lines={3}
+                                        more="Show more"
+                                        less="Show less"
+                                        className="content-css"
+                                        anchorClass="my-anchor-css-class"
+                                        expanded={false}
+                                        truncatedEndingComponent={"... "}
+                                    >
+                                        <PortableText blocks={carrier.company.description} serializers={Serializer}/>
+                                    </ShowMoreText>
+                                </Text>
+                            </Box>
+                            <br/>
+                        </>
+                    }
                 </Box>
 
             </Box>

@@ -3,9 +3,14 @@ import { _SanityClient } from './_SanityClient';
 
 
 export const getCarrier = async () => {
-  const query = '*[_type == "career"][0..10]{...,  company->{..., contactInfo[]{..., type->}}, projects[]->{..., skills[]->}} | order(from asc)';
-  let careerData  = await _SanityClient.fetch(query)
-  return careerData
+  const query = `*[_type == "career"] | order(from desc)[0..10]{
+    ...,
+    company->{..., contactInfo[]{..., type->}},
+    projects[]->{..., skills[]->}
+  }`;
+
+  let careerData = await _SanityClient.fetch(query);
+  return careerData;
 };
 
 export const getOneCarrier = async (id) => {

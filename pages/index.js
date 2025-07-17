@@ -95,7 +95,7 @@ export default function Home(props) {
               'to the computer and problem solving, I can adapt'}></Carrier>
 
           <Testimonial></Testimonial>
-          <Carrier title={'Formation and Consultations'} text={'Beside my primary focus, Time to time I receive consultations request or formation requests  '}></Carrier>
+          {/*<Carrier title={'Formation and Consultations'} text={'Beside my primary focus, Time to time I receive consultations request or formation requests  '}></Carrier>*/}
           <br/>
       </Box>
   )
