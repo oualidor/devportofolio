@@ -1,6 +1,9 @@
 import {useState} from "react";
 import {Box, Button} from "theme-ui";
 import {keyframes} from "@emotion/react";
+import {createTheme, IconButton, ThemeProvider, Typography} from "@mui/material";
+import {HideBackDrop} from "../../src/Apis/Redux/Actions/Types";
+import {HighlightOff} from "@mui/icons-material";
 
 const TabsWidget = ({tabs, categories}) => {
     const [tabIndex, setTabIndex] = useState(0);
@@ -30,6 +33,7 @@ const TabsWidget = ({tabs, categories}) => {
 
         },
         tabButtonWrapper: {
+            backgroundColor: '',
             width: ['700px', null, null, null, null, '100%'],
             mx: ['auto', null, null, null, null, '0'],
             display: 'flex',
@@ -129,6 +133,7 @@ const TabsWidget = ({tabs, categories}) => {
         <Box sx={{ }} id="Gallery">
             <Box sx={styles.tabButtonTopWrapper}>
                 <Box sx={styles.tabButtonWrapper}>
+                    <></>
                     {categories.map((category, index) =>(
                         <Button
                             variant="tabsButton"
@@ -141,7 +146,10 @@ const TabsWidget = ({tabs, categories}) => {
                         </Button>
                     ))
                     }
+
+
                 </Box>
+
             </Box>
             <Box sx={styles.tabContent}>
                 {drawTabContent(tabIndex)}

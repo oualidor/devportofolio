@@ -15,24 +15,13 @@ import BackgroundAnimation from "../../../components/BackgroundAnimation";
 import NextLink from "next/link";
 import {TemplateHandler} from "easy-template-x";
 import {getCarrier} from "../../../services";
+import {ClipLoader} from "react-spinners";
 
 
 
 
 function Landing(){
-    function printDocument() {
-        const input = document.getElementById('cvContainer');
-        html2canvas(input)
-            .then((canvas) => {
-                const imgData = canvas.toDataURL('image/png');
-                const pdf = new jsPDF( {orientation: "p", unit: "cm",});
-                pdf.addImage(imgData, 'JPEG', 0, 0);
-                // pdf.output('dataurlnewwindow');
-                pdf.save(document.title+".pdf");
-            })
-        ;
-
-    }
+    const [isLoading, setIsLoading] = useState(false);
     const imageHolderRef = useRef(null)
     const context = useThemeUI()
     const dispatch = useDispatch()
@@ -40,7 +29,7 @@ function Landing(){
     const ref = useRef();
     const style = {
         con :{
-
+            backgroundColor: '',
             display: "flex",
             flexDirection: ["column-reverse", "column-reverse", "column-reverse", "column-reverse", "row", "row", "row"],
             height: ["100vh", "100vh", "100vh", "100vh", "auto", "auto", "auto"],
@@ -51,7 +40,7 @@ function Landing(){
             alignItems:  ["center", "center", "center", "flex-start",  "flex-start", "flex-start", "flex-start"],
         },
         right : {
-
+            pt: '80px',
             width: "50%",
             transition: "1s ease",
             display:  index <= 3 ? "none": "block",
@@ -96,7 +85,68 @@ function Landing(){
     }
 
 
+    // async function downloadCV() {
+    //     const response = await fetch('CVTemplateFull.docx');
+    //     const templateFile = await response.blob();
+    //
+    //     const data = {
+    //         fullName: 'Oualid KHIAL',
+    //         desc: 'Full stack developer, PhD researcher and a computer science teacher',
+    //         lang: [
+    //             {name: 'Arabic', level: 'Native'},
+    //             {name: 'English', level: 'Advanced'},
+    //             {name: 'French', level: 'Advanced'},
+    //         ],
+    //         skills: [
+    //             {name: 'Javascript'},
+    //             {name: 'React / NextJS'},
+    //             {name: 'Problem solving'},
+    //             {name: 'Linux'},
+    //             {name: 'Teaching'},
+    //             {name: 'Scientific research'},
+    //         ],
+    //         AboutMe: 'I am a Full stack developer, An artificial intelligence and machine learning PhD researcher and a computer science teacher, ' +
+    //             'I have been talking to computers since I was 12 years old and I still enjoy It. Basically I am good with NodeJS based technologies (React, Next Nest, ..)' +
+    //             'But, I do believe i have a good understanding of the philosophy behind giving instruction to computers, I can adapt',
+    //         educationalBackground : [
+    //             { year: "Sep 2012 - Jun 2015", degree: 'Bachelors Degree , ', spec:  "Computer Science", school:  "Mouley TAHAR University, Saida"},
+    //             { year: "2015 - 2017", degree: 'Master Degree, ', spec:  "Artificial Intelligence",school: "Mouley TAHAR University, Saida"},
+    //             { year: "2019 - Now", degree: 'Phd Degree, ', spec:  "Modeling and optimization of computer systems", school: "Mustapha STAMBOULI University, Mascara"},
+    //         ],
+    //
+    //
+    //         carrierData,
+    //
+    //         carrierDataL: carrierData.slice(0, 4),
+    //         carrierDataR: carrierData.slice(4, 9),
+    //         date: new Date().getDate() + ' ' + new Date().getMonth() + ' ' + new Date().getFullYear()
+    //     };
+    //
+    //     const handler = new TemplateHandler();
+    //     const doc = await handler.process(templateFile, data);
+    //
+    //     const blobUrl = URL.createObjectURL(doc);
+    //
+    //     // create temp link element
+    //     let link = document.createElement("a");
+    //     link.download = 'CV.docx';
+    //     link.href = blobUrl;
+    //
+    //     // use the link to invoke a download
+    //     document.body.appendChild(link);
+    //     link.click();
+    //
+    //     // remove the link
+    //     setTimeout(() => {
+    //         link.remove();
+    //         window.URL.revokeObjectURL(blobUrl);
+    //         link = null;
+    //     }, 0);
+    // }
+
+
     async function downloadCV() {
+        setIsLoading(true)
         const response = await fetch('CVTemplateFull.docx');
         const templateFile = await response.blob();
 
@@ -124,10 +174,7 @@ function Landing(){
                 { year: "2015 - 2017", degree: 'Master Degree, ', spec:  "Artificial Intelligence",school: "Mouley TAHAR University, Saida"},
                 { year: "2019 - Now", degree: 'Phd Degree, ', spec:  "Modeling and optimization of computer systems", school: "Mustapha STAMBOULI University, Mascara"},
             ],
-
-
             carrierData,
-
             carrierDataL: carrierData.slice(0, 4),
             carrierDataR: carrierData.slice(4, 9),
             date: new Date().getDate() + ' ' + new Date().getMonth() + ' ' + new Date().getFullYear()
@@ -136,34 +183,49 @@ function Landing(){
         const handler = new TemplateHandler();
         const doc = await handler.process(templateFile, data);
 
-        const blobUrl = URL.createObjectURL(doc);
+        // Send .docx to backend server for PDF conversion
+        const formData = new FormData();
+        formData.append('file', doc, 'CV.docx');
 
-        // create temp link element
-        let link = document.createElement("a");
-        link.download = 'CV.docx';
-        link.href = blobUrl;
+        const pdfResponse = await fetch('http://84.46.247.72:2001/upload', {
+            method: 'POST',
+            body: formData,
+        });
 
-        // use the link to invoke a download
+        if (!pdfResponse.ok) {
+            alert('Failed to convert to PDF');
+            setIsLoading(false)
+            return;
+        }
+
+        const pdfBlob = await pdfResponse.blob();
+        const pdfUrl = URL.createObjectURL(pdfBlob);
+
+        // Trigger PDF download
+        const link = document.createElement("a");
+        link.download = 'CV.pdf';
+        link.href = pdfUrl;
         document.body.appendChild(link);
         link.click();
 
-        // remove the link
         setTimeout(() => {
             link.remove();
-            window.URL.revokeObjectURL(blobUrl);
-            link = null;
+            window.URL.revokeObjectURL(pdfUrl);
+            setIsLoading(false)
+
         }, 0);
     }
+
     return(
         <>
 
-            <Box sx={style.con} id={"Landing"} variant={'section.PageSection'} as={"section"}>
+            <Box  id={"Landing"} variant={'section.PageSection'} as={"section"} sx={style.con}>
                 <Box sx={style.left}>
                     <StyledText variant="fullAndHalf">There is a lot that I dont know <br></br> </StyledText>
                     <StyledText sx={{}} variant={"fullAndHalf"}>But I am always learning</StyledText>
                     <br></br>
 
-                    <Text sx={{fontSize: ["5vw", "4vw", "4vw", "4vw", "2vw", "2vw", "2vw"],     backgroundColor: "",    textAlign: [
+                    <Text sx={{fontSize: ["5vw", "4vw", "4vw", "4vw", "2vw", "2vw", "1.5vw"],     backgroundColor: "",    textAlign: [
                             'center',
                             'center',
                             'center',
@@ -173,7 +235,7 @@ function Landing(){
                             'left',
 
                         ],}}>
-                        I am a Full stack developer, A PhD researcher and a computer science teacher</Text>
+                        I am a Full stack developer, An artificial intelligence and machine learning PhD researcher and a computer science teacher</Text>
                     <br></br>
                     <Box sx={{display: "flex", backgroundColor: ""}}>
                         <Button
@@ -197,11 +259,26 @@ function Landing(){
                         {/*    content={() => ref.current}*/}
                         {/*/>*/}
                         <Button
+                            sx={{display: 'flex'}}
+                            disabled={isLoading}
                             variant='secondary'
                             onClick={()=> {
                                 downloadCV().then(r => {})
                             }}
                         >
+                            {
+                                isLoading &&
+                                <Box sx={{mr: 2}}>
+                                    <ClipLoader
+                                        color={'white'}
+                                        size={20}
+                                        aria-label="Loading Spinner"
+                                        data-testid="loader"
+                                    />
+                                </Box>
+                            }
+
+
                           Download CV
 
                         </Button>

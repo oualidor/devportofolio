@@ -89,7 +89,7 @@ export default function Home(props) {
       <Box sx={sx.Home} id={"Home"}>
           {/*<CV></CV>*/}
           <Landing></Landing>
-          <AboutMe></AboutMe>
+          {/*<AboutMe></AboutMe>*/}
           <Timeline Title={"Educational Background"} Data={EducationalBackgroundData}/>
           <Carrier title={'Professional Carrier'} text={'Basically, I am good with all teh technologies labeled i used in the projects bellow, But, I do believe that I do have a good understanding of the philosophy behind giving orders\n' +
               'to the computer and problem solving, I can adapt'}></Carrier>

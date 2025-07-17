@@ -25,12 +25,14 @@ export default function SingleCarrierDetails({carrier}) {
     const tabs = [
         {
             id: 0,
-            component: <CarrierAbout carrier={carrier}></CarrierAbout>
+            component: <CarrierProjects projects={carrier.projects}></CarrierProjects>
+
 
         },
         {
             id: 1,
-            component: <CarrierProjects projects={carrier.projects}></CarrierProjects>
+            component: <CarrierAbout carrier={carrier}></CarrierAbout>
+
 
 
         }
@@ -38,14 +40,15 @@ export default function SingleCarrierDetails({carrier}) {
     const categories = [
         {
             id: 0,
-            title : "About",
-            icon: AiFillDollarCircle
+            title : (carrier.projects !== null && carrier.projects !== undefined) ? "Projects [ " + carrier.projects.length+ " ]"  : "Projects [0]" ,
+            icon: FaBriefcase
         },
         {
             id: 1,
-            title : (carrier.projects !== null && carrier.projects !== undefined) ? "Projects [ " + carrier.projects.length+ " ]"  : "Projects [0]" ,
-            icon: FaBriefcase
-        }
+            title : "About",
+            icon: AiFillDollarCircle
+        },
+
     ]
     const style = {
         CarrierHolder: {

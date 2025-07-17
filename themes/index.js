@@ -101,10 +101,10 @@ export default function createTheme(language) {
         section: {
             default: {
                 pt: [8, null, 9, null, null, 120],
-                pb: [8, null, 9, null, null, 180],
+                pb: [8, null, 9, null, null, 0],
             },
             PageSection:{
-                pt: ['80px', '80px', '80px', '80px', '80px', '80px', '80px'],
+                pt: ['80px', '80px', '80px', '80px', '80px', '80px', '20px'],
                 backgroundColor: '',
             },
             white: {

@@ -17,15 +17,20 @@ import CarrierCard from "./CarrierCard";
 import ButtonGroup from "../../button-group";
 import CarrierAbout from "../CarrierAbout";
 import CarrierProjects from "../CarrierProjects";
+import {CancelPresentation, ClosedCaptionOutlined, CloseSharp, HighlightOff} from "@mui/icons-material";
+import {HideBackDrop} from "../../../src/Apis/Redux/Actions/Types";
+import {useDispatch} from "react-redux";
+import {createTheme, IconButton, ThemeProvider, Typography} from "@mui/material";
 
 
 export default function MobileSingleCarrierDetails({carrier}) {
+    const dispatch = useDispatch()
 
     const tabs = [
         {
             id: 0,
             component:        <Box sx={{backgroundColor: "primary", p:5, mb:5, width: ["100%", "100%", "100%", "100%", "100%", "100%", "100%"]}}>
-                {true && <CarrierCard {...carrier } ></CarrierCard>}
+                <CarrierCard {...carrier } ></CarrierCard>
             </Box>
 
         },
@@ -59,14 +64,35 @@ export default function MobileSingleCarrierDetails({carrier}) {
     const style = {
         CarrierHolder: {
             display: ["flex", "flex", "flex", "flex", "none", "none", "none"],
-            backgroundColor: "primary", width: "90vw", height: "85vh", p:1, overflow: "auto", overflowX: "hidden",
+            backgroundColor: "primary", width: "100vw", height: "100vh", p:0, overflow: "auto", overflowX: "hidden",
             flexDirection: ["column", "column", "column", "column", "column", "column", "row"],
         },
+        topBar: {
+
+            display: "flex", alignItems: 'center', justifyContent: 'space-between', px: 2, pt: 2, backgroundColor: ''
+        }
     }
 
   return (
           <Box sx={style.CarrierHolder} id={"CarrierHolder"}>
-              {true && <TabsWidget tabs={tabs} categories={categories}></TabsWidget>}
+              <Box sx={style.topBar}>
+                  <Text sx={{color:"#FFF"}}></Text>
+
+                      <ThemeProvider theme={createTheme({})}>
+
+                              <Typography sx={{fontSize: 25}} onClick={()=>{
+                                  dispatch({type: HideBackDrop, props:{} ,test: "hi"})
+
+                              }}>
+                                  <HighlightOff sx={{color: '#FFF'}} fontSize={"inherit"}></HighlightOff>
+                              </Typography>
+
+
+                      </ThemeProvider>
+
+
+              </Box>
+               <TabsWidget tabs={tabs} categories={categories}></TabsWidget>
           </Box>
 
   )
