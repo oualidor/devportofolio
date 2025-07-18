@@ -259,6 +259,7 @@ function Landing(){
                         {/*    content={() => ref.current}*/}
                         {/*/>*/}
                         <Button
+
                             sx={{display: 'flex'}}
                             disabled={isLoading}
                             variant='secondary'
@@ -268,18 +269,29 @@ function Landing(){
                         >
                             {
                                 isLoading &&
-                                <Box sx={{mr: 2}}>
-                                    <ClipLoader
-                                        color={'white'}
-                                        size={20}
-                                        aria-label="Loading Spinner"
-                                        data-testid="loader"
-                                    />
-                                </Box>
+                                <>
+                                    <Box sx={{mr: 2}}>
+                                        <ClipLoader
+                                            color={'inherit'}
+                                            size={16}
+                                            aria-label="Loading Spinner"
+                                            data-testid="loader"
+                                        />
+                                    </Box>
+                                    Loading ...
+                                </>
+
+
+                            }
+                            {
+                                !isLoading &&
+                                <>
+                                    Download CV
+                                </>
                             }
 
 
-                          Download CV
+
 
                         </Button>
                         {/*<Button*/}

@@ -397,10 +397,12 @@ export default function createTheme(language) {
                     color: 'heading_secondary',
                     boxShadow: 'rgba(0, 0, 0, 1) 0px 12px 24px -10px',
                 },
+                '&:active': {
+                    backgroundColor: 'transparent',
+                },
             },
             textButton: {
                 padding: 0,
-
                 variant: 'buttons.defaultBtn',
                 backgroundColor: 'transparent',
                 color: 'white',
