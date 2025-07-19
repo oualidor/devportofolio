@@ -27,7 +27,6 @@ function CustomApp({ Component, pageProps }) {
           <ReduxProvider store={reduxStore}>
               <ThemeProvider theme={theme("en")}>
                   <Layout>
-
                       <Component {...pageProps} />
                   </Layout>
               </ThemeProvider>

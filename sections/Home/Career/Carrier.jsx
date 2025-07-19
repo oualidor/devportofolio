@@ -155,7 +155,7 @@ function Carrier({title, text}){
                     justifyContent: 'center', alignItems: 'center', flexWrap: "wrap",
                     backgroundColor: '', overflowX: "hidden", overflowY: "hidden"
                 }}>
-
+                    <br></br>
                     <MultiStatesView state={state} dataLoader={loadData}>
                         <motion.div
                             style={{position: "absolute", top: '45%'}}
@@ -163,7 +163,10 @@ function Carrier({title, text}){
                             whileInView={{left: '-20%', opacity: 0}}
                             transition={{duration: 1.5, type: "tween"}}
                         >
-                            <Box sx={{color: 'white', display: ['block', 'block', 'block', 'none', 'none', 'none', 'none']}}>
+                            <Box sx={{
+                                color: 'white',
+                                display: ['block', 'block', 'block', 'none', 'none', 'none', 'none']
+                            }}>
                                 <AiFillCaretLeft size={40} color={'white'}></AiFillCaretLeft>
                             </Box>
                         </motion.div>
@@ -173,43 +176,47 @@ function Carrier({title, text}){
                             whileInView={{left: '-15%', opacity: 0}}
                             transition={{duration: 1.5, type: "tween"}}
                         >
-                            <Box sx={{color: 'white', display: ['block', 'block', 'block', 'none', 'none', 'none', 'none']}}>
+                            <Box sx={{
+                                color: 'white',
+                                display: ['block', 'block', 'block', 'none', 'none', 'none', 'none']
+                            }}>
                                 <AiFillCaretLeft size={40} color={'white'}></AiFillCaretLeft>
                             </Box>
                         </motion.div>
-                            <Carousel
-                                autoPlay={false} infinite={false} responsive={responsive}
-                                arrows={false} renderButtonGroupOutside customButtonGroup={index >= 3 ? <ButtonGroup />:null}
-                                sliderClass="entriesContainer" draggable
-                                focusOnSelect={false} keyBoardControl
+                        <Carousel
+                            autoPlay={false} infinite={false} responsive={responsive}
+                            arrows={false} renderButtonGroupOutside
+                            customButtonGroup={index >= 3 ? <ButtonGroup/> : null}
+                            sliderClass="entriesContainer" draggable
+                            focusOnSelect={false} keyBoardControl
 
 
-
-                                slidesToSlide={1}
-                            >
-                                {
-                                    data.map((entry, index) => (<CarrierCard
-                                            key={entry._id}
-                                            id={entry._id}
-                                            skills={entry.skills}
-                                            date={entry.date}
-                                            role={entry.title}
-                                            company={entry.company.name}
-                                            tags={entry.tags}
-                                            desc={entry.content}
-                                        ></CarrierCard>)
-
-
-                                    )
-                                }
-                            </Carousel>
+                            slidesToSlide={1}
+                        >
+                            {
+                                data.map((entry, index) => (<CarrierCard
+                                        key={entry._id}
+                                        id={entry._id}
+                                        skills={entry.skills}
+                                        date={entry.date}
+                                        role={entry.title}
+                                        company={entry.company.name}
+                                        tags={entry.tags}
+                                        desc={entry.content}
+                                    ></CarrierCard>)
+                                )
+                            }
+                        </Carousel>
                         <motion.div
                             style={{position: "absolute", top: '45%'}}
                             initial={{right: '20%', opacity: 1}}
                             whileInView={{right: '-20%', opacity: 0}}
                             transition={{duration: 1.5, type: "tween"}}
                         >
-                            <Box sx={{color: 'white', display: ['block', 'block', 'block', 'none', 'none', 'none', 'none']}}>
+                            <Box sx={{
+                                color: 'white',
+                                display: ['block', 'block', 'block', 'none', 'none', 'none', 'none']
+                            }}>
                                 <AiFillCaretRight size={40} color={'white'}></AiFillCaretRight>
                             </Box>
                         </motion.div>
@@ -219,7 +226,10 @@ function Carrier({title, text}){
                             whileInView={{right: '-15%', opacity: 0}}
                             transition={{duration: 1.5, type: "tween"}}
                         >
-                            <Box sx={{color: 'white', display: ['block', 'block', 'block', 'none', 'none', 'none', 'none']}}>
+                            <Box sx={{
+                                color: 'white',
+                                display: ['block', 'block', 'block', 'none', 'none', 'none', 'none']
+                            }}>
                                 <AiFillCaretRight size={40} color={'white'}></AiFillCaretRight>
                             </Box>
                         </motion.div>

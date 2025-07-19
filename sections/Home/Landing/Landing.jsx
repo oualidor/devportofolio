@@ -36,6 +36,7 @@ function Landing(){
             alignItems: 'center', justifyContent: 'center'
         },
         left: {
+            minHeight: '90vh',
             width: ["100%", "100%", "100%", "100%",  "50%", "50%", "50%"],  display: "flex",  flexDirection: "column", justifyContent: "center",
             alignItems:  ["center", "center", "center", "flex-start",  "flex-start", "flex-start", "flex-start"],
         },
@@ -49,17 +50,14 @@ function Landing(){
 
     }
     let [carrierData, setCarrierData ] = useState([])
-    useEffect(()=>{
 
-
-    }, [index])
     useEffect( ()=>{
         getCarrier().then(careerData =>{
             console.log(careerData)
             careerData.forEach(entry=>{
-
                 entry['company'] = entry['company']['name']
                 entry['role'] = contentToText(entry['content'])
+                entry['skills'] = entry.skills.map(s => ({ skill: s }))
             })
             setCarrierData(careerData)
 
@@ -146,6 +144,8 @@ function Landing(){
 
 
     async function downloadCV() {
+        console.log('///////////////////////////////////dsdfsdfsdfdsfdsf')
+        console.log(carrierData)
         setIsLoading(true)
         const response = await fetch('CVTemplateFull.docx');
         const templateFile = await response.blob();
@@ -306,7 +306,7 @@ function Landing(){
                     </Box>
                 </Box>
                 <Box sx={style.right} ref={imageHolderRef}>
-                    <BackgroundAnimation />
+                    {/*<BackgroundAnimation />*/}
                 </Box>
             </Box>
         </>
