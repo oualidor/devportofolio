@@ -96,7 +96,7 @@ const CarrierProjects = ({projects})=>{
                                 </Box>
                             </Box>
                             <br/>
-                            <Project {...projects[selectedProjectIndex]} key={"project"}/>
+                            <Project project={projects[selectedProjectIndex]} key={"project"}/>
                         </Box>
 
                     }
@@ -140,7 +140,8 @@ const CarrierProjects = ({projects})=>{
                             >
                                 {
                                     projects.map((project, index) =>{
-                                        return <Project {...project} key={"project"}/>
+
+                                        return <Project project={project} key={"project"}/>
                                     })
                                 }
                             </Carousel>

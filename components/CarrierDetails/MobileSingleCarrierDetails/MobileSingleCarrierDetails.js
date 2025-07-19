@@ -44,6 +44,7 @@ export default function MobileSingleCarrierDetails({carrier}) {
             component: <CarrierProjects projects={carrier.projects}></CarrierProjects>
         }
     ]
+
     const categories = [
         {
             id: 0,
@@ -61,6 +62,7 @@ export default function MobileSingleCarrierDetails({carrier}) {
             icon: FaBriefcase
         }
     ]
+
     const style = {
         CarrierHolder: {
             display: ["flex", "flex", "flex", "flex", "none", "none", "none"],
@@ -73,27 +75,21 @@ export default function MobileSingleCarrierDetails({carrier}) {
         }
     }
 
-  return (
+    return (
           <Box sx={style.CarrierHolder} id={"CarrierHolder"}>
               <Box sx={style.topBar}>
                   <Text sx={{color:"#FFF"}}></Text>
-
-                      <ThemeProvider theme={createTheme({})}>
-
+                          <ThemeProvider theme={createTheme({})}>
                               <Typography sx={{fontSize: 25}} onClick={()=>{
                                   dispatch({type: HideBackDrop, props:{} ,test: "hi"})
 
                               }}>
                                   <HighlightOff sx={{color: '#FFF'}} fontSize={"inherit"}></HighlightOff>
                               </Typography>
-
-
                       </ThemeProvider>
-
-
-              </Box>
+                  </Box>
                <TabsWidget tabs={tabs} categories={categories}></TabsWidget>
           </Box>
 
-  )
+    )
 }

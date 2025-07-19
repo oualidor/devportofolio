@@ -15,7 +15,7 @@ export const getCarrier = async () => {
 
 export const getOneCarrier = async (id) => {
   try{
-    const query = '*[_type == "career" && _id == "'+id+'"][0..1]{...,  company->{..., contactInfo[]{..., type->}}, projects[]->{..., skills[]->, links[]{..., type->}}}';
+    const query = '*[_type == "career" && _id == "'+id+'"][0..1]{...,  company->{..., contactInfo[]{..., type->}}, projects[]->{..., skills[]->,   images[]{asset->{_id, url}},  links[]{..., type->}}}';
     let careerData  = await _SanityClient.fetch(query)
     return careerData[0]
   }catch (e){

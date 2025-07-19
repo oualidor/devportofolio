@@ -13,6 +13,7 @@ export default function CarrierDetails({id}) {
         setState(0)
         getOneCarrier(id)
             .then(carrier =>{
+                console.log('===============================================')
                 console.log(carrier)
                 setCarrier(carrier)
                 setState(1)

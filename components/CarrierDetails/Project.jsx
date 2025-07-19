@@ -37,7 +37,8 @@ const responsive = {
     },
 };
 
-function ProjectLinks({links}) {
+function ProjectLinks({links, images}) {
+
     return <Box sx={{display: "flex", backgroundColor: "", alignItems: "flex-end", justifyContent: "right", mr: "1%", zIndex: 99999999999999999999}}>
         {
             links.map((entry, i) => {
@@ -60,16 +61,21 @@ function ProjectLinks({links}) {
                 }
             })
         }
+        {
+            (images !== undefined && images !== null && images.length > 0) &&
+            <Button variant="secondary">Gallery</Button>
+        }
 
-        <Button variant="secondary">Gallery</Button>
     </Box>;
 }
 ProjectLinks.propTypes = {links: PropTypes.arrayOf(PropTypes.any)};
 
 
-const Project = ({name, from, to, title, skills, content, outcome, images, links =  []}) =>{
+const Project = ({project}) =>{
+    let {name, from, to, title, skills, content, outcome, images, links =  []} = project
     const [isVisible, setIsVisible] = useState(false);
     const container = useRef(null);
+
     useEffect(() => {
         setTimeout(()=>{
             setIsVisible(true)
@@ -113,11 +119,7 @@ const Project = ({name, from, to, title, skills, content, outcome, images, links
     }
     if(links == undefined) links = []
 
-    useEffect(()=>{
 
-
-
-    }, [])
     return (
         <Box sx={sx.Container} id={"project"} ref={container}>
             <Box className={'mobileOnly'}>
@@ -142,16 +144,10 @@ const Project = ({name, from, to, title, skills, content, outcome, images, links
                         expanded={false}
                         truncatedEndingComponent={"... "}
                     >
-
                         <PortableText blocks={content} serializers={Serializer}/>
-
-
-
                     </ShowMoreText>
                 </Text>
             </Box>
-
-
 
             <br/>
             <Box sx={{
@@ -170,12 +166,18 @@ const Project = ({name, from, to, title, skills, content, outcome, images, links
                 }
             </Box>
             <br/>
-            <StyledText sx={{marginLeft: "20px", fontSize: ['20px', '20px', '20px', '22px', '22px', '20px', '26px']}}>Project out come</StyledText>
-            <Box  className={'largeOnly'}>
-                <Text sx={{ textIndent: "2vw"}} variant={"muted"} >
-                    <PortableText blocks={outcome} serializers={Serializer}/>
-                </Text>
-            </Box>
+            {
+                outcome !== undefined &&
+                <>
+                    <StyledText sx={{marginLeft: "20px", fontSize: ['20px', '20px', '20px', '22px', '22px', '20px', '26px']}}>Project out come</StyledText>
+                    <Box  className={'largeOnly'}>
+                        <Text sx={{ textIndent: "2vw"}} variant={"muted"} >
+                            <PortableText blocks={outcome} serializers={Serializer}/>
+                        </Text>
+                    </Box>
+                </>
+            }
+
             <Box className={'mobileOnly'}>
                 <Text sx={{ textIndent: "2vw"}} variant={"muted"} >
                     <ShowMoreText
@@ -194,7 +196,7 @@ const Project = ({name, from, to, title, skills, content, outcome, images, links
             </Box>
 
             <br/>
-            <ProjectLinks links={links}/>
+            <ProjectLinks links={links} images={images}/>
             <br/>
     </Box>
     )

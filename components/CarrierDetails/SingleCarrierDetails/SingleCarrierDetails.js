@@ -32,9 +32,6 @@ export default function SingleCarrierDetails({carrier}) {
         {
             id: 1,
             component: <CarrierAbout carrier={carrier}></CarrierAbout>
-
-
-
         }
     ]
     const categories = [
@@ -62,8 +59,7 @@ export default function SingleCarrierDetails({carrier}) {
         }
     }
     useEffect(()=>{
-        console.log('1111111111111111111111111111')
-        console.log(carrier)
+
     }, [])
 
   return (
