@@ -259,7 +259,7 @@ export default function Header({ className }) {
             </Button>
             <MobileNavEntry text={'Github'} Icon={AiFillGithub} link={"https://github.com/oualidor"} setIsOpen={setIsOpen}></MobileNavEntry>
             <MobileNavEntry text={'LinkedIn'} Icon={AiFillLinkedin} link={"https://www.linkedin.com/in/oualidkhial/"} setIsOpen={setIsOpen}></MobileNavEntry>
-            <MobileNavEntry text={'The Academy'} Icon={AiOutlineMedium} link={"https://www.linkedin.com/in/oualidkhial/"} setIsOpen={setIsOpen}></MobileNavEntry>
+            {/* <MobileNavEntry text={'The Academy'} Icon={AiOutlineMedium} link={"https://www.linkedin.com/in/oualidkhial/"} setIsOpen={setIsOpen}></MobileNavEntry> */}
 
             {/*<Text sx={{position: 'absolute', top: '85%', left: '20%'}}>Oualid KHIAL</Text>*/}
             {/*<Text sx={{position: 'absolute', top: '90%', left: '20%'}}>0550750576</Text>*/}
@@ -276,9 +276,9 @@ export default function Header({ className }) {
             <LargeOnly>
               <LargeNavEntry Icon={AiFillGithub} link={"https://github.com/oualidor"} label={'GitHub'}></LargeNavEntry>
             </LargeOnly>
-            <LargeOnly>
+            {/* <LargeOnly>
               <LargeNavEntry Icon={AiOutlineMedium} link={"https://github.com/oualidor"} label={'The Academy'}></LargeNavEntry>
-            </LargeOnly>
+            </LargeOnly> */}
             <LargeOnly>
               <Button
                 sx={{

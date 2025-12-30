@@ -18,10 +18,12 @@ const EducationalBackgroundData = [
     { year: "2009 - 2012", degree: 'High School degree, ', spec: "Experimengal Scince", school: "Youcfi Bouchrit High School" },
     { year: "2012 - 2015", degree: 'Bachaloreas degree, ', spec: "Computer Scince", school: "Mouley TAHAR University" },
     { year: "2015 - 2017", degree: 'Master Degree, ', spec: "Artificial intelligence", school: "Mouley TAHAR University" },
-    { year: "2019 - Now", degree: 'Phd Degree, ', spec: "Modeling and optimization of computer systems", school: "Mustapha STAMBOULI Univeristy" },
+    { year: "2020 - 2025", degree: 'Phd Degree, ', spec: "Modeling and optimization of computer systems", school: "Mustapha STAMBOULI Univeristy" },
 ];
 
-function HomeContent() {
+
+export default function Home() {
+
     const searchParams = useSearchParams();
     const dispatch = useDispatch();
 
@@ -62,23 +64,16 @@ function HomeContent() {
             }
         }
     };
-
-    return (
-        <Box sx={sx.Home} id={"Home"}>
-            <Landing />
-            <Timeline Title={"Educational Background"} Data={EducationalBackgroundData} />
-            <Carrier title={'Professional Carrier'} text={'Basically, I am good with all teh technologies labeled i used in the projects bellow, But, I do believe that I do have a good understanding of the philosophy behind giving orders\n' +
-                'to the computer and problem solving, I can adapt'} />
-            <Testimonial />
-            <br />
-        </Box>
-    );
-}
-
-export default function Home() {
     return (
         <Suspense fallback={<div>Loading...</div>}>
-            <HomeContent />
+            <Box sx={sx.Home} id={"Home"}>
+                <Landing />
+                <Timeline Title={"Educational Background"} Data={EducationalBackgroundData} />
+                <Carrier title={'Professional Carrier'} text={'Basically, I am good with all teh technologies labeled i used in the projects bellow, But, I do believe that I do have a good understanding of the philosophy behind giving orders\n' +
+                    'to the computer and problem solving, I can adapt'} />
+                <Testimonial />
+                <br />
+            </Box>
         </Suspense>
     );
 }
