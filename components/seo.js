@@ -1,13 +1,13 @@
 import React from 'react';
 import Head from 'next/head';
-import {NextScript} from "next/document";
+import Script from 'next/script';
 
 export default function SEO({
   description = 'I am a Full stack developer, A PhD researcher and a computer science teacher\n' +
   '            I have been talking to computers since I was 12 years old and I still enjoy it' +
   '            contact me if you need IT consulting, or new member in your IT team',
   author = 'Oualid KHIAL',
-  meta,
+  meta = [],
   title = 'YouIT Department DZ',
 }) {
 
@@ -17,8 +17,8 @@ export default function SEO({
       content: description,
     },
     {
-      name : "keywords",
-      content:  "IT Consulting, IT Services, Algeria, Startup, Software development, Full stack developer",
+      name: "keywords",
+      content: "IT Consulting, IT Services, Algeria, Startup, Software development, Full stack developer",
     },
     {
       property: `og:title`,
@@ -32,21 +32,26 @@ export default function SEO({
       name: `creator`,
       content: author,
     }
-  ].concat(meta);
+  ].concat(meta || []);
+
   return (
-    <Head>
-      <title>{title}</title>
-      {metaData.map(({ name, content }, i) => (
-        <meta key={i} name={name} content={content} />
-      ))}
-      <meta http-equiv='content-language' content='en-gb'/>
-      <NextScript
-          async
-          src={`https://www.googletagmanager.com/gtag/js?id=G-8L31KNNS3F`}
+    <>
+      <Head>
+        <title>{title}</title>
+        {metaData.filter(Boolean).map((m, i) => (
+          <meta key={i} name={m.name || m.property} content={m.content} />
+        ))}
+        <meta httpEquiv='content-language' content='en-gb' />
+      </Head>
+      <Script
+        strategy="afterInteractive"
+        src={`https://www.googletagmanager.com/gtag/js?id=G-8L31KNNS3F`}
       />
-      <NextScript
-          dangerouslySetInnerHTML={{
-            __html: `
+      <Script
+        id="gtag-init"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
@@ -54,9 +59,9 @@ export default function SEO({
               page_path: window.location.pathname,
             });
           `,
-          }}
+        }}
       />
-    </Head>
+    </>
   );
 }
 

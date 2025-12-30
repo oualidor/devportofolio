@@ -1,11 +1,17 @@
-const withPlugins = require('next-compose-plugins');
-const optimizedImages = require('next-optimized-images');
-const nextConfiguration = {
- react: { useSuspense: false },//this line
- images: {
-    disableStaticImages: true
-  }
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  images: {
+    disableStaticImages: false,
+  },
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ["@svgr/webpack"]
+    });
 
+    return config;
+  },
 };
 
-module.exports = withPlugins([optimizedImages], nextConfiguration);
+module.exports = nextConfig;

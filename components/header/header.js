@@ -1,4 +1,6 @@
-import {Container, Flex, Button, Box, Text, useThemeUI} from 'theme-ui';
+'use client';
+
+import { Container, Flex, Button, Box, Text, useThemeUI } from 'theme-ui';
 import NextLink from 'next/link';
 import { keyframes } from '@emotion/react';
 import {
@@ -12,21 +14,21 @@ import {
 
 
 
-import {useEffect, useRef, useState} from "react";
-import { useRouter } from 'next/router'
+import { useEffect, useRef, useState } from "react";
+import { useRouter } from 'next/navigation'
 import LanguageIcon from '@mui/icons-material/Language';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ReactCountryFlag from "react-country-flag";
 import styled from 'styled-components';
 import React from 'react';
-import {MountBackDrop} from "../../src/Apis/Redux/Actions/Types";
+import { MountBackDrop } from "../../src/Apis/Redux/Actions/Types";
 import MeetScheduler from "../MeetScheduler";
-import {useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import Divider from "../../src/assets/Images/divider.svg";
 import dividerBack from "../../src/assets/Images/dividerBack.svg";
-import {IoMdClose, IoMdMenu} from "react-icons/io";
-import {MobileOnly} from "../MobileOnly";
-import {LargeOnly} from "../LargeOnly";
+import { IoMdClose, IoMdMenu } from "react-icons/io";
+import { MobileOnly } from "../MobileOnly";
+import { LargeOnly } from "../LargeOnly";
 import SideBar from "../SideBar/SideBar";
 import StyledText from "../StyledComponents/StyledText";
 
@@ -55,7 +57,7 @@ const langBoxAnim = keyframes`
 `;
 
 
-const LargeNavEntry = ({Icon, link, label}) => {
+const LargeNavEntry = ({ Icon, link, label }) => {
   const entryRef = useRef(null)
   const labelRef = useRef(null)
   const style = {
@@ -75,31 +77,31 @@ const LargeNavEntry = ({Icon, link, label}) => {
 
   }
   useEffect(() => {
-    try{
+    try {
       // entryRef.current.addEventListener("mouseenter", ()=>{
       //   labelRef.current.style.display = 'block'
       // })
       // entryRef.current.addEventListener('mouseleave', ()=>{
       //   labelRef.current.style.display = 'none'
       // })
-    }catch (e){
+    } catch (e) {
 
     }
-    return () => {};
+    return () => { };
   }, [entryRef]);
 
   return (
     <a href={link} target="blank" ref={entryRef}>
       <Box sx={style} >
-      <Icon  size="30px" style={{marginRight: '5px'}}/>
+        <Icon size="30px" style={{ marginRight: '5px' }} />
         <Text sx={style.label} ref={labelRef}>{label}</Text>
-    </Box>
+      </Box>
     </a>
 
   );
 };
 
-const MobileNavEntry = ({text, Icon, link, setIsOpen}) => {
+const MobileNavEntry = ({ text, Icon, link, setIsOpen }) => {
   const style = {
     width: 'auto',
     marginRight: "5px", cursor: "pointer", background: '',
@@ -116,12 +118,12 @@ const MobileNavEntry = ({text, Icon, link, setIsOpen}) => {
     }
   }
   return (
-      <a href={link} target="blank">
-        <Box sx={style} onClick={()=>{setIsOpen(true)}}>
-          <Icon  size="26px" style={{marginRight: '20px'}}/>
-          {text}
-        </Box>
-      </a>
+    <a href={link} target="blank">
+      <Box sx={style} onClick={() => { setIsOpen(true) }}>
+        <Icon size="26px" style={{ marginRight: '20px' }} />
+        {text}
+      </Box>
+    </a>
 
   );
 };
@@ -137,11 +139,11 @@ const SectionTitle = (props) => {
   }
   return (
     <Text
-        sx={{
-          fontSize: ["15px", "15px", "15px", "15px", "15px", "20px", "22px", ],
-          fontWeight: "800"
-    }}
-           style={style}>{props.children}</Text>
+      sx={{
+        fontSize: ["15px", "15px", "15px", "15px", "15px", "20px", "22px",],
+        fontWeight: "800"
+      }}
+      style={style}>{props.children}</Text>
   )
 }
 
@@ -186,7 +188,7 @@ export default function Header({ className }) {
       '&.visited': {
         color: 'yellow',
       },
-      fontFamily: "en" == "en" ? "'DM Sans', sans-serif;": "'Amiri', serif;"
+      fontFamily: "en" == "en" ? "'DM Sans', sans-serif;" : "'Amiri', serif;"
     },
     container: {
       width: '100%',
@@ -203,7 +205,7 @@ export default function Header({ className }) {
     },
     langTag: {
       cursor: "pointer",
-      width: 80, mb:1,
+      width: 80, mb: 1,
       justifyContent: "space-between",
 
     },
@@ -224,34 +226,34 @@ export default function Header({ className }) {
   };
   const [isOpen, setIsOpen] = useState(true)
 
-  useEffect(()=>{
+  useEffect(() => {
 
   }, [])
 
 
   return (
-      <Box sx={styles.header} className={className} id="header">
-        <Container>
+    <Box sx={styles.header} className={className} id="header">
+      <Container>
         <MobileOnly>
           <SideBar isOpen={isOpen}>
             <Button
-                variant={'whiteButton'}
-                sx={{
+              variant={'whiteButton'}
+              sx={{
 
-                  flexShrink: 0,
-                  backgroundImage: `url(${dividerBack})`,
-                  backgroundRepeat: 'no-repeat',
-                  backgroundPosition: 'center bottom',
-                  backgroundSize: 'contain',
-                  fontWeight: 'bold',
-                  py: ['12px', null, null, null, 3],
-                  px: [3, null, null, null, 5], mb: '15px',
+                flexShrink: 0,
+                backgroundImage: `url(${dividerBack})`,
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'center bottom',
+                backgroundSize: 'contain',
+                fontWeight: 'bold',
+                py: ['12px', null, null, null, 3],
+                px: [3, null, null, null, 5], mb: '15px',
 
-                }}
-                onClick={(e)=> {
-                  setIsOpen(true)
-                  dispatch({type: MountBackDrop, Component: <MeetScheduler meetId={'first-contact'}/> , props:{} ,test: "hi"})
-                }}
+              }}
+              onClick={(e) => {
+                setIsOpen(true)
+                dispatch({ type: MountBackDrop, Component: <MeetScheduler meetId={'first-contact'} />, props: {}, test: "hi" })
+              }}
             >
               Schedule a meet
             </Button>
@@ -264,7 +266,7 @@ export default function Header({ className }) {
           </SideBar>
         </MobileOnly>
         <Box sx={styles.container}>
-          <StyledText variant={'timeLineTitle'} sx={{fontWeight: 'bold', lineHeight: '20px',}}>Oualid KHIAL</StyledText>
+          <StyledText variant={'timeLineTitle'} sx={{ fontWeight: 'bold', lineHeight: '20px', }}>Oualid KHIAL</StyledText>
           <Box sx={styles.nav} id={"navContent"}>
 
 
@@ -279,28 +281,28 @@ export default function Header({ className }) {
             </LargeOnly>
             <LargeOnly>
               <Button
-                  sx={{
-                    borderLeft: '1px solid white',
-                    borderRight: '0px solid white',
-                    flexShrink: 0,
-                    ml: ['auto', null, null, null, 0],
-                    backgroundImage: `url(${Divider})`,
-                    backgroundRepeat: 'no-repeat',
-                    backgroundPosition: 'center bottom',
-                    backgroundSize: 'contain',
-                    fontWeight: 'bold',
-                    py: ['12px', null, null, null, '12px'],
-                    px: [3, null, null, null, 5],
-                    ':hover': {
-                      backgroundImage: `url(${dividerBack})`,
-                      backgroundColor: ['primary', null, null, null, 'white'],
-                      color: ['white', null, null, null, 'primary'],
-                    },
-                    mr: 3
-                  }}
-                  onClick={()=> {
-                    dispatch({type: MountBackDrop, Component: <MeetScheduler meetId={'first-contact'}/> , props:{} ,test: "hi"})
-                  }}
+                sx={{
+                  borderLeft: '1px solid white',
+                  borderRight: '0px solid white',
+                  flexShrink: 0,
+                  ml: ['auto', null, null, null, 0],
+                  backgroundImage: `url(${Divider})`,
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'center bottom',
+                  backgroundSize: 'contain',
+                  fontWeight: 'bold',
+                  py: ['12px', null, null, null, '12px'],
+                  px: [3, null, null, null, 5],
+                  ':hover': {
+                    backgroundImage: `url(${dividerBack})`,
+                    backgroundColor: ['primary', null, null, null, 'white'],
+                    color: ['white', null, null, null, 'primary'],
+                  },
+                  mr: 3
+                }}
+                onClick={() => {
+                  dispatch({ type: MountBackDrop, Component: <MeetScheduler meetId={'first-contact'} />, props: {}, test: "hi" })
+                }}
               >
                 Schedule a meet
               </Button>
@@ -308,8 +310,8 @@ export default function Header({ className }) {
             <MobileOnly>
               {
                 isOpen
-                    ? <IoMdMenu size="24px" onClick={()=>{setIsOpen(!isOpen)}}/>
-                    : <IoMdClose size="24px" onClick={()=>{setIsOpen(!isOpen)}}/>
+                  ? <IoMdMenu size="24px" onClick={() => { setIsOpen(!isOpen) }} />
+                  : <IoMdClose size="24px" onClick={() => { setIsOpen(!isOpen) }} />
               }
             </MobileOnly>
 
@@ -317,8 +319,8 @@ export default function Header({ className }) {
           </Box>
 
         </Box>
-        </Container>
+      </Container>
 
-      </Box>
+    </Box>
   );
 }

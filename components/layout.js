@@ -1,29 +1,30 @@
+'use client';
 
-import {Alert, Close, Box, Container } from 'theme-ui';
-import React, {useEffect, useState} from 'react';
+import { Alert, Close, Box, Container } from 'theme-ui';
+import React, { useEffect, useState } from 'react';
 import Sticky from 'react-stickynode';
 import Header from './header/header';
 import Footer from './footer/footer';
 
-import {useDispatch, useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import SEO from "../components/seo"
-import {HideBackDrop, MountBackDrop, RemoveNotification} from "../src/Apis/Redux/Actions/Types";
+import { HideBackDrop, MountBackDrop, RemoveNotification } from "../src/Apis/Redux/Actions/Types";
 
-import {rgba} from "polished";
-import {useRouter} from "next/router";
-
-
+import { rgba } from "polished";
+import { useRouter } from "next/navigation";
 
 
-const NotificationsContent = ({notificationsList})=>{
+
+
+const NotificationsContent = ({ notificationsList }) => {
     const dispatch = useDispatch()
     return (
-        notificationsList.map(notification =>{
-            setTimeout(()=>{
-                dispatch({type: RemoveNotification, id: notification.id})
+        notificationsList.map(notification => {
+            setTimeout(() => {
+                dispatch({ type: RemoveNotification, id: notification.id })
             }, notification.duration)
             return (
-                <Alert sx={{width: "100%", variant: "alerts."+notification.variant, mb: 2}}>
+                <Alert sx={{ width: "100%", variant: "alerts." + notification.variant, mb: 2 }}>
                     {notification.text}
                     <Close ml="auto" mr={-2} />
                 </Alert>
@@ -32,11 +33,11 @@ const NotificationsContent = ({notificationsList})=>{
     )
 }
 
-const BackDropContent = ({Component, props})=>{
-    try{
+const BackDropContent = ({ Component, props }) => {
+    try {
         return (React.cloneElement(Component, props))
 
-    }catch (e){
+    } catch (e) {
         return (<div></div>)
     }
 
@@ -52,11 +53,11 @@ function Layout({ children }) {
     //     return router.locale === lang ? <CheckSquareOutlined /> : <BorderOutlined />
     // }
     const router = useRouter();
-    const style={
-        Backdrop : {
+    const style = {
+        Backdrop: {
             width: "99vw", height: "100vh", position: "absolute", zIndex: 999999,
             backgroundColor: rgba(0, 0, 0, 0.6),
-            display: BackDrop.mount? "flex":"none",
+            display: BackDrop.mount ? "flex" : "none",
             alignItems: "center",
             justifyContent: "center",
             p: 1
@@ -74,7 +75,7 @@ function Layout({ children }) {
 
 
 
-    useEffect(()=>{
+    useEffect(() => {
 
     }, [router])
     const handleStateChange = (status) => {
@@ -92,15 +93,15 @@ function Layout({ children }) {
                 <Box
                     id={'BackDrop'}
                     sx={style.Backdrop}
-                    onClick={(e)=>{
-                        if(e.target.id == "BackDrop"){
-                            dispatch({type: HideBackDrop, props:{} ,test: "hi"})
+                    onClick={(e) => {
+                        if (e.target.id == "BackDrop") {
+                            dispatch({ type: HideBackDrop, props: {}, test: "hi" })
                             router.push("/", undefined, { shallow: true })
                         }
                     }
                     }
                 >
-                    <BackDropContent Component={ BackDrop.Component} props={ BackDrop.props}></BackDropContent>
+                    <BackDropContent Component={BackDrop.Component} props={BackDrop.props}></BackDropContent>
                 </Box>
             </Sticky>
             <Sticky innerZ={1002} top={1} >
@@ -109,11 +110,11 @@ function Layout({ children }) {
                 </Container>
             </Sticky>
             <Sticky innerZ={1001} top={0} onStateChange={handleStateChange}>
-                <Header className={`${isSticky ? 'sticky' : 'unSticky'}`}  />
+                <Header className={`${isSticky ? 'sticky' : 'unSticky'}`} />
             </Sticky>
             <Container
                 id={"LayoutBody"}
-                sx={{pt: '0px'}}
+                sx={{ pt: '0px' }}
             >
                 {children}
             </Container>
