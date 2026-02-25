@@ -1,7 +1,7 @@
-import {Container, Flex, Button, Box, Text} from 'theme-ui';
+import { Container, Flex, Button, Box, Text } from 'theme-ui';
 import NextLink from 'next/link';
 import { keyframes } from '@emotion/react';
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 
 import ReactCountryFlag from "react-country-flag";
 import styled from 'styled-components';
@@ -110,13 +110,14 @@ export default function Footer({ className }) {
 
     },
     lanBox: {
-      display: openMenu? "flex": "none", flexDirection: "column",
+      display: openMenu ? "flex" : "none", flexDirection: "column",
       p: 20, mt: 20,
       position: "absolute", left: 0,
-      backgroundColor: "rgba(255, 255, 255, 0.9)", animation: `${langBoxAnim} 0.8s ease`, },
+      backgroundColor: "rgba(255, 255, 255, 0.9)", animation: `${langBoxAnim} 0.8s ease`,
+    },
     langTag: {
       cursor: "pointer",
-      width: 80, mb:1,
+      width: 80, mb: 1,
       justifyContent: "space-between",
 
     },
@@ -125,7 +126,7 @@ export default function Footer({ className }) {
     }
 
   };
-  useEffect(()=>{
+  useEffect(() => {
 
   }, [])
 
@@ -134,21 +135,21 @@ export default function Footer({ className }) {
 
     <Container>
       <hr></hr>
-        <Box sx={styles.container}>
-          <Box sx={{display: "flex", flexDirection: "column", backgroundColor: ""}}>
-            <StyledText variant="title" sx={{fontSize: [5, 5, 16, 20, 20, 25, 30]}}>Oualid KHIAL</StyledText>
-          </Box>
-          <Box sx={{display: "flex", flexDirection: "column", backgroundColor: ""}}>
+      <Box sx={styles.container}>
+        <Box sx={{ display: "flex", flexDirection: "column", backgroundColor: "" }}>
+          <StyledText variant="title" sx={{ fontSize: [5, 5, 16, 20, 20, 25, 30] }}>Oualid KHIAL</StyledText>
+        </Box>
+        <Box sx={{ display: "flex", flexDirection: "column", backgroundColor: "" }}>
           <Box>
-              <StyledText variant="title"  sx={styles.footerEntry}>WhatsUp: </StyledText>
-              <StyledText variant="title"  sx={styles.footerEntry}>+213550750576</StyledText>
-            </Box>
-            <Box>
-              <StyledText variant="title" sx={styles.footerEntry}>Mail: </StyledText>
-              <StyledText variant="title" sx={styles.footerEntry}>contact@oualidkhial.me</StyledText>
-            </Box>
+            <StyledText variant="title" sx={styles.footerEntry}>WhatsUp: </StyledText>
+            <StyledText variant="title" sx={styles.footerEntry}>+213550750576</StyledText>
+          </Box>
+          <Box>
+            <StyledText variant="title" sx={styles.footerEntry}>Mail: </StyledText>
+            <StyledText variant="title" sx={styles.footerEntry}>oualid.khial@gmail.com</StyledText>
           </Box>
         </Box>
-      </Container>
-      );
+      </Box>
+    </Container>
+  );
 }

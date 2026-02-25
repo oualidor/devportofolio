@@ -1,26 +1,26 @@
 import { useResponsiveValue, useBreakpointIndex } from '@theme-ui/match-media'
-import React, {useState, useEffect, useRef, forwardRef} from 'react';
+import React, { useState, useEffect, useRef, forwardRef } from 'react';
 
-import {Box, Button, Container, Image, Text} from "theme-ui";
+import { Box, Button, Container, Image, Text } from "theme-ui";
 import StyledText from '../../../components/StyledComponents/StyledText';
-import {useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import { useThemeUI } from 'theme-ui'
-import {MountBackDrop} from "../../../src/Apis/Redux/Actions/Types";
+import { MountBackDrop } from "../../../src/Apis/Redux/Actions/Types";
 import MeetScheduler from "../../../components/MeetScheduler";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
-import ReactToPrint, {PrintContextConsumer} from "react-to-print";
-import {CV} from "../../../components/CV/CV";
+import ReactToPrint, { PrintContextConsumer } from "react-to-print";
+import { CV } from "../../../components/CV/CV";
 import BackgroundAnimation from "../../../components/BackgroundAnimation";
 import NextLink from "next/link";
-import {TemplateHandler} from "easy-template-x";
-import {getCarrier} from "../../../services";
-import {ClipLoader} from "react-spinners";
+import { TemplateHandler } from "easy-template-x";
+import { getCarrier } from "../../../services";
+import { ClipLoader } from "react-spinners";
 
 
 
 
-function Landing(){
+function Landing() {
     const [isLoading, setIsLoading] = useState(false);
     const imageHolderRef = useRef(null)
     const context = useThemeUI()
@@ -28,7 +28,7 @@ function Landing(){
     const index = useBreakpointIndex()
     const ref = useRef();
     const style = {
-        con :{
+        con: {
             backgroundColor: '',
             display: "flex",
             flexDirection: ["column-reverse", "column-reverse", "column-reverse", "column-reverse", "row", "row", "row"],
@@ -37,44 +37,44 @@ function Landing(){
         },
         left: {
             minHeight: '90vh',
-            width: ["100%", "100%", "100%", "100%",  "50%", "50%", "50%"],  display: "flex",  flexDirection: "column", justifyContent: "center",
-            alignItems:  ["center", "center", "center", "flex-start",  "flex-start", "flex-start", "flex-start"],
+            width: ["100%", "100%", "100%", "100%", "50%", "50%", "50%"], display: "flex", flexDirection: "column", justifyContent: "center",
+            alignItems: ["center", "center", "center", "flex-start", "flex-start", "flex-start", "flex-start"],
         },
-        right : {
+        right: {
             pt: '80px',
             width: "50%",
             transition: "1s ease",
-            display:  index <= 3 ? "none": "block",
+            display: index <= 3 ? "none" : "block",
 
         }
 
     }
-    let [carrierData, setCarrierData ] = useState([])
+    let [carrierData, setCarrierData] = useState([])
 
-    useEffect( ()=>{
-        getCarrier().then(careerData =>{
+    useEffect(() => {
+        getCarrier().then(careerData => {
             console.log(careerData)
-            careerData.forEach(entry=>{
+            careerData.forEach(entry => {
                 entry['company'] = entry['company']['name']
                 entry['role'] = contentToText(entry['content'])
                 entry['skills'] = entry.skills.map(s => ({ skill: s }))
             })
             setCarrierData(careerData)
 
-        }).catch(e =>{
+        }).catch(e => {
             console.log(e)
         })
 
     }, [])
-    useState(()=>{
+    useState(() => {
 
     }, [])
 
-    function contentToText(content){
+    function contentToText(content) {
         let result = ''
-        content.forEach(entry=>{
-            entry.children.forEach(child=>{
-                result  =result + child.text
+        content.forEach(entry => {
+            entry.children.forEach(child => {
+                result = result + child.text
             })
         })
 
@@ -154,25 +154,25 @@ function Landing(){
             fullName: 'Oualid KHIAL',
             desc: 'Full stack developer, PhD researcher and a computer science teacher',
             lang: [
-                {name: 'Arabic', level: 'Native'},
-                {name: 'English', level: 'Advanced'},
-                {name: 'French', level: 'Advanced'},
+                { name: 'Arabic', level: 'Native' },
+                { name: 'English', level: 'Advanced' },
+                { name: 'French', level: 'Advanced' },
             ],
             skills: [
-                {name: 'Javascript'},
-                {name: 'React / NextJS'},
-                {name: 'Problem solving'},
-                {name: 'Linux'},
-                {name: 'Teaching'},
-                {name: 'Scientific research'},
+                { name: 'Javascript' },
+                { name: 'React / NextJS' },
+                { name: 'Problem solving' },
+                { name: 'Linux' },
+                { name: 'Teaching' },
+                { name: 'Scientific research' },
             ],
             AboutMe: 'I am a Full stack developer, An artificial intelligence and machine learning PhD researcher and a computer science teacher, ' +
                 'I have been talking to computers since I was 12 years old and I still enjoy It. Basically I am good with NodeJS based technologies (React, Next Nest, ..)' +
                 'But, I do believe i have a good understanding of the philosophy behind giving instruction to computers, I can adapt',
-            educationalBackground : [
-                { year: "Sep 2012 - Jun 2015", degree: 'Bachelors Degree , ', spec:  "Computer Science", school:  "Mouley TAHAR University, Saida"},
-                { year: "2015 - 2017", degree: 'Master Degree, ', spec:  "Artificial Intelligence",school: "Mouley TAHAR University, Saida"},
-                { year: "2019 - Now", degree: 'Phd Degree, ', spec:  "Modeling and optimization of computer systems", school: "Mustapha STAMBOULI University, Mascara"},
+            educationalBackground: [
+                { year: "Sep 2012 - Jun 2015", degree: 'Bachelors Degree , ', spec: "Computer Science", school: "Mouley TAHAR University, Saida" },
+                { year: "2015 - 2017", degree: 'Master Degree, ', spec: "Artificial Intelligence", school: "Mouley TAHAR University, Saida" },
+                { year: "2019 - Now", degree: 'Phd Degree, ', spec: "Modeling and optimization of computer systems", school: "Mustapha STAMBOULI University, Mascara" },
             ],
             carrierData,
             carrierDataL: carrierData.slice(0, 4),
@@ -187,7 +187,7 @@ function Landing(){
         const formData = new FormData();
         formData.append('file', doc, 'CV.docx');
 
-        const pdfResponse = await fetch('https://doctpdf.youritdepartment.tech/upload', {
+        const pdfResponse = await fetch('https://doctopdf.oualidkhial.me/', {
             method: 'POST',
             body: formData,
         });
@@ -216,16 +216,17 @@ function Landing(){
         }, 0);
     }
 
-    return(
+    return (
         <>
 
-            <Box  id={"Landing"} variant={'section.PageSection'} as={"section"} sx={style.con}>
+            <Box id={"Landing"} variant={'section.PageSection'} as={"section"} sx={style.con}>
                 <Box sx={style.left}>
                     <StyledText variant="fullAndHalf">There is a lot that I dont know <br></br> </StyledText>
                     <StyledText sx={{}} variant={"fullAndHalf"}>But I am always learning</StyledText>
                     <br></br>
 
-                    <Text sx={{fontSize: ["5vw", "4vw", "4vw", "4vw", "2vw", "2vw", "1.5vw"],     backgroundColor: "",    textAlign: [
+                    <Text sx={{
+                        fontSize: ["5vw", "4vw", "4vw", "4vw", "2vw", "2vw", "1.5vw"], backgroundColor: "", textAlign: [
                             'center',
                             'center',
                             'center',
@@ -234,12 +235,13 @@ function Landing(){
                             'left',
                             'left',
 
-                        ],}}>
+                        ],
+                    }}>
                         I am a Full stack developer, An artificial intelligence and machine learning PhD researcher and a computer science teacher</Text>
                     <br></br>
-                    <Box sx={{display: "flex", backgroundColor: ""}}>
+                    <Box sx={{ display: "flex", backgroundColor: "" }}>
                         <Button
-                            sx={{mr: 3}} variant='whiteButton'
+                            sx={{ mr: 3 }} variant='whiteButton'
 
                         >
                             <NextLink href={'/#AboutMe'}>
@@ -258,42 +260,14 @@ function Landing(){
                         {/*    </Button>}*/}
                         {/*    content={() => ref.current}*/}
                         {/*/>*/}
-                        <Button
-
-                            sx={{display: 'flex'}}
-                            disabled={isLoading}
-                            variant='secondary'
-                            onClick={()=> {
-                                downloadCV().then(r => {})
-                            }}
-                        >
-                            {
-                                isLoading &&
-                                <>
-                                    <Box sx={{mr: 2}}>
-                                        <ClipLoader
-                                            color={'inherit'}
-                                            size={16}
-                                            aria-label="Loading Spinner"
-                                            data-testid="loader"
-                                        />
-                                    </Box>
-                                    Loading ...
-                                </>
-
-
-                            }
-                            {
-                                !isLoading &&
-                                <>
-                                    Download CV
-                                </>
-                            }
-
-
-
-
-                        </Button>
+                        <NextLink href={'/#Contact'} passHref>
+                            <Button
+                                sx={{ display: 'flex' }}
+                                variant='secondary'
+                            >
+                                Contact me
+                            </Button>
+                        </NextLink>
                         {/*<Button*/}
                         {/*    variant='secondary'*/}
                         {/*    // onClick={()=> {*/}
@@ -314,5 +288,5 @@ function Landing(){
     )
 
 }
- export default Landing
+export default Landing
 
