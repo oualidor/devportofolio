@@ -85,17 +85,15 @@ export default function Home() {
         }
     };
     return (
-        <Suspense fallback={<div>Loading...</div>}>
-            <Box sx={sx.Home} id={"Home"}>
-                <Landing />
-                <Timeline Title={"Educational Background"} Data={EducationalBackgroundData} />
-                <Carrier title={'Professional Carrier'} text={'Basically, I am good with all teh technologies labeled i used in the projects bellow, But, I do believe that I do have a good understanding of the philosophy behind giving orders\n' +
-                    'to the computer and problem solving, I can adapt'} />
-                <Research title={"Research Papers"} data={ResearchPapersData} />
-                <Testimonial />
-                <Contact />
-                <br />
-            </Box>
-        </Suspense>
+        <Box sx={sx.Home} id={"Home"}>
+            <Landing />
+            <Timeline Title={"Educational Background"} Data={EducationalBackgroundData} />
+            <Carrier title={'Professional Carrier'} text={'Basically, I am good with all teh technologies labeled i used in the projects bellow, But, I do believe that I do have a good understanding of the philosophy behind giving orders\n' +
+                'to the computer and problem solving, I can adapt'} />
+            <Research title={"Research Papers"} data={ResearchPapersData} />
+            <Testimonial />
+            <Contact />
+            <br />
+        </Box>
     );
 }
