@@ -2,13 +2,13 @@ import { Container, Heading, Text, Box, Image, Button } from 'theme-ui';
 import ButtonGroup from "../../../components/button-group";
 import Carousel from 'react-multi-carousel';
 import StyledText from '../../../components/StyledComponents/StyledText';
-import {AiFillLinkedin, AiFillMail, AiFillPhone, AiOutlineMail} from "react-icons/ai";
-import {useEffect, useState} from "react";
-import {getCarrier, getTestimonials} from "../../../services";
+import { AiFillLinkedin, AiFillMail, AiFillPhone, AiOutlineMail } from "react-icons/ai";
+import { useEffect, useState } from "react";
+import { getCarrier, getTestimonials } from "../../../services";
 import MultiStatesView from "../../../components/MultiStatesView/MultiStatesView";
 import SectionTitle from "../../../components/StyledComponents/SectionTitle";
-import {motion} from "framer-motion";
-import {AiFillCaretLeft, AiFillCaretRight} from "react-icons/ai";
+import { motion } from "framer-motion";
+import { AiFillCaretLeft, AiFillCaretRight } from "react-icons/ai";
 
 const responsive = {
   desktop: {
@@ -33,152 +33,150 @@ const responsive = {
   },
 };
 
-export default function Testimonial() {
+export default function Testimonial({ testimonialsData = [] }) {
 
   const [testimonials, setTestimonials] = useState([])
-  let [state, setState ] = useState(0)
-  const loadData = ()=>{
+  let [state, setState] = useState(0)
+  const loadData = () => {
     setState(0)
-    getTestimonials().then(testimonials =>{
-      setTestimonials(testimonials)
+    if (testimonialsData && testimonialsData.length > 0) {
+      setTestimonials(testimonialsData)
       setState(1)
-
-    }).catch(e =>{
+    } else {
       setState(-1)
-      console.log(e)
-    })
+    }
   }
-  useEffect( ()=>{
+  useEffect(() => {
 
     loadData()
-  }, [])
+  }, [testimonialsData])
 
 
-  const ContactInfo = ({contactInfo})=>{
+  const ContactInfo = ({ contactInfo }) => {
 
     try {
-      return(
-          <Box sx={
-            {
-              display: "flex", alignItems: "center", alignContent: "center"
-            }
-          }>
+      return (
+        <Box sx={
           {
-           contactInfo.map((link, i)=>{
-              switch (link.type.type){
+            display: "flex", alignItems: "center", alignContent: "center"
+          }
+        }>
+          {
+            contactInfo.map((link, i) => {
+              switch (link.type.type) {
                 case "linkedIn":
-                  return    <Text key={i} sx={styles.designation}><a href={link.link} target={"_blank"}><AiFillLinkedin></AiFillLinkedin></a> </Text>
+                  return <Text key={i} sx={styles.designation}><a href={link.link} target={"_blank"}><AiFillLinkedin></AiFillLinkedin></a> </Text>
                   break;
                 case "mail":
-                  return    <Text key={i} sx={styles.designation}><a href={"mailto://"+link.link} target={"_blank"}><AiOutlineMail></AiOutlineMail></a> </Text>
+                  return <Text key={i} sx={styles.designation}><a href={"mailto://" + link.link} target={"_blank"}><AiOutlineMail></AiOutlineMail></a> </Text>
                   break;
                 case "phone":
-                  return <Text key={i}  sx={styles.designation}><a href={"tel://"+link.link} target={"_blank"}><AiFillPhone/></a></Text>
+                  return <Text key={i} sx={styles.designation}><a href={"tel://" + link.link} target={"_blank"}><AiFillPhone /></a></Text>
                   break;
               }
             })
           }
-          </Box>
+        </Box>
       )
-    }catch (e){
+    } catch (e) {
       return (
-          <Box sx={
-            {
-              display: "flex", alignItems: "center", alignContent: "center"
-            }
-          }>
-          </Box>
-          )
+        <Box sx={
+          {
+            display: "flex", alignItems: "center", alignContent: "center"
+          }
+        }>
+        </Box>
+      )
 
     }
   }
   return (
 
 
-        <Box  sx={{  }} id="Testimonial">
-            <SectionTitle variant="sectionTitle">Testimonials I am proud of</SectionTitle>
-          <MultiStatesView state={state} dataLoader={loadData}>
-            <Box sx={styles.carouselWrapper}>
-              <motion.div
-                  style={{position: "absolute", top: '45%'}}
-                  initial={{left: '20%', opacity: 1}}
-                  whileInView={{left: '-20%', opacity: 0}}
-                  transition={{duration: 1.5, type: "tween"}}
-              >
-                <Box sx={{color: 'white', display: ['block', 'block', 'block', 'none', 'none', 'none', 'none']}}>
-                  <AiFillCaretLeft size={40} color={'white'}></AiFillCaretLeft>
-                </Box>
-              </motion.div>
-              <motion.div
-                  style={{position: "absolute", top: '45%'}}
-                  initial={{left: '25%', opacity: 1}}
-                  whileInView={{left: '-15%', opacity: 0}}
-                  transition={{duration: 1.5, type: "tween"}}
-              >
-                <Box sx={{color: 'white', display: ['block', 'block', 'block', 'none', 'none', 'none', 'none']}}>
-                  <AiFillCaretLeft size={40} color={'white'}></AiFillCaretLeft>
-                </Box>
-              </motion.div>
-            <Carousel
-                additionalTransfrom={0}
-                arrows={false}
-                autoPlaySpeed={3000}
-                centerMode={false}
-                className=""
-                containerClass="carousel-container"
-                customButtonGroup={<ButtonGroup />}
-                dotListClass=""
-                draggable
-                focusOnSelect={false}
-                infinite={true}
-                itemClass=""
-                keyBoardControl
-                minimumTouchDrag={80}
-                renderButtonGroupOutside
-                renderDotsOutside={false}
-                responsive={responsive}
-                showDots={false}
-                sliderClass=""
-                slidesToSlide={1}
-            >
-              {testimonials.map((item, i) => (
-                  <Box sx={styles.reviewCard} key={`testimonial--key${item.id}`}>
-                    <Text sx={styles.description} variant='muted' >{item.excerpt}</Text>
-                    <div className="card-footer">
+    <Box sx={{}} id="Testimonial">
+      <SectionTitle variant="sectionTitle">Testimonials I am proud of</SectionTitle>
+      <MultiStatesView state={state} dataLoader={loadData}>
+        <Box sx={styles.carouselWrapper}>
+          <motion.div
+            style={{ position: "absolute", top: '45%' }}
+            initial={{ left: '20%', opacity: 1 }}
+            whileInView={{ left: '-20%', opacity: 0 }}
+            transition={{ duration: 1.5, type: "tween" }}
+          >
+            <Box sx={{ color: 'white', display: ['block', 'block', 'block', 'none', 'none', 'none', 'none'] }}>
+              <AiFillCaretLeft size={40} color={'white'}></AiFillCaretLeft>
+            </Box>
+          </motion.div>
+          <motion.div
+            style={{ position: "absolute", top: '45%' }}
+            initial={{ left: '25%', opacity: 1 }}
+            whileInView={{ left: '-15%', opacity: 0 }}
+            transition={{ duration: 1.5, type: "tween" }}
+          >
+            <Box sx={{ color: 'white', display: ['block', 'block', 'block', 'none', 'none', 'none', 'none'] }}>
+              <AiFillCaretLeft size={40} color={'white'}></AiFillCaretLeft>
+            </Box>
+          </motion.div>
+          <Carousel
+            additionalTransfrom={0}
+            arrows={false}
+            autoPlaySpeed={3000}
+            centerMode={false}
+            className=""
+            containerClass="carousel-container"
+            customButtonGroup={<ButtonGroup />}
+            dotListClass=""
+            draggable
+            focusOnSelect={false}
+            infinite={true}
+            itemClass=""
+            keyBoardControl
+            minimumTouchDrag={80}
+            renderButtonGroupOutside
+            renderDotsOutside={false}
+            responsive={responsive}
+            showDots={false}
+            sliderClass=""
+            slidesToSlide={1}
+          >
+            {testimonials.map((item, i) => (
+              <Box sx={styles.reviewCard} key={`testimonial--key${item.id}`}>
+                <Text sx={styles.description} variant='muted' >{item.excerpt}</Text>
+                <div className="card-footer">
 
-                      <div className="reviewer-info">
-                        <Heading as="h4" sx={styles.heading}>
-                          {item.name}
-                        </Heading>
-                        <ContactInfo contactInfo={item.contactInfo}></ContactInfo>
-                      </div>
-                    </div>
-                  </Box>
-              ))}
-            </Carousel>
-              <motion.div
-                  style={{position: "absolute", top: '45%'}}
-                  initial={{right: '20%', opacity: 1}}
-                  whileInView={{right: '-20%', opacity: 0}}
-                  transition={{duration: 1.5, type: "tween"}}
-              >
-                <Box sx={{color: 'white', display: ['block', 'block', 'block', 'none', 'none', 'none', 'none']}}>
-                  <AiFillCaretRight size={40} color={'white'}></AiFillCaretRight>
-                </Box>
-              </motion.div>
-              <motion.div
-                  style={{position: "absolute", top: '45%'}}
-                  initial={{right: '25%', opacity: 1}}
-                  whileInView={{right: '-15%', opacity: 0}}
-                  transition={{duration: 1.5, type: "tween"}}
-              >
-                <Box sx={{color: 'white', display: ['block', 'block', 'block', 'none', 'none', 'none', 'none']}}>
-                  <AiFillCaretRight size={40} color={'white'}></AiFillCaretRight>
-                </Box>
-              </motion.div>
-          </Box>
-          </MultiStatesView>
+                  <div className="reviewer-info">
+                    <Heading as="h4" sx={styles.heading}>
+                      {item.name}
+                    </Heading>
+                    <ContactInfo contactInfo={item.contactInfo}></ContactInfo>
+                  </div>
+                </div>
+              </Box>
+            ))}
+          </Carousel>
+          <motion.div
+            style={{ position: "absolute", top: '45%' }}
+            initial={{ right: '20%', opacity: 1 }}
+            whileInView={{ right: '-20%', opacity: 0 }}
+            transition={{ duration: 1.5, type: "tween" }}
+          >
+            <Box sx={{ color: 'white', display: ['block', 'block', 'block', 'none', 'none', 'none', 'none'] }}>
+              <AiFillCaretRight size={40} color={'white'}></AiFillCaretRight>
+            </Box>
+          </motion.div>
+          <motion.div
+            style={{ position: "absolute", top: '45%' }}
+            initial={{ right: '25%', opacity: 1 }}
+            whileInView={{ right: '-15%', opacity: 0 }}
+            transition={{ duration: 1.5, type: "tween" }}
+          >
+            <Box sx={{ color: 'white', display: ['block', 'block', 'block', 'none', 'none', 'none', 'none'] }}>
+              <AiFillCaretRight size={40} color={'white'}></AiFillCaretRight>
+            </Box>
+          </motion.div>
         </Box>
+      </MultiStatesView>
+    </Box>
 
 
   );
@@ -186,7 +184,7 @@ export default function Testimonial() {
 
 const styles = {
   carouselWrapper: {
-    position: 'relative',  overflowX: "hidden", overflowY: "hidden"
+    position: 'relative', overflowX: "hidden", overflowY: "hidden"
   },
   reviewCard: {
     display: "flex", flexDirection: "column", justifyItems: "space-between",

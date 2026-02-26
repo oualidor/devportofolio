@@ -1,3 +1,5 @@
+'use server';
+
 import { _SanityClient } from './_SanityClient';
 
 

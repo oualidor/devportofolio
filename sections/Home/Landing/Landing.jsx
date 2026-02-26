@@ -20,7 +20,7 @@ import { ClipLoader } from "react-spinners";
 
 
 
-function Landing() {
+function Landing({ careerData: initialCarrierData }) {
     const [isLoading, setIsLoading] = useState(false);
     const imageHolderRef = useRef(null)
     const context = useThemeUI()
@@ -52,20 +52,26 @@ function Landing() {
     let [carrierData, setCarrierData] = useState([])
 
     useEffect(() => {
-        getCarrier().then(careerData => {
-            console.log(careerData)
-            careerData.forEach(entry => {
-                entry['company'] = entry['company']['name']
-                entry['role'] = contentToText(entry['content'])
-                entry['skills'] = entry.skills.map(s => ({ skill: s }))
-            })
-            setCarrierData(careerData)
-
-        }).catch(e => {
-            console.log(e)
-        })
-
-    }, [])
+        if (initialCarrierData) {
+            try {
+                let formattedData = JSON.parse(JSON.stringify(initialCarrierData));
+                formattedData.forEach(entry => {
+                    if (entry.company && entry.company.name) {
+                        entry.company = entry.company.name;
+                    }
+                    if (entry.content) {
+                        entry.role = contentToText(entry.content);
+                    }
+                    if (entry.skills) {
+                        entry.skills = entry.skills.map(s => ({ skill: s }));
+                    }
+                });
+                setCarrierData(formattedData);
+            } catch (e) {
+                console.log(e);
+            }
+        }
+    }, [initialCarrierData])
     useState(() => {
 
     }, [])

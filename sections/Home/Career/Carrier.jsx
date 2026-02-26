@@ -100,7 +100,7 @@ const CarrierCard = ({ id, date, end, role, tags, company, skills }) => {
 }
 
 
-function Carrier({ title, text }) {
+function Carrier({ title, text, careerData = [] }) {
     let [data, setData] = useState([])
     let [state, setState] = useState(0)
     const index = useBreakpointIndex()
@@ -115,19 +115,17 @@ function Carrier({ title, text }) {
     }
     const loadData = () => {
         setState(0)
-        getCarrier().then(careerData => {
+        if (careerData && careerData.length > 0) {
             setData(careerData)
             setState(1)
-
-        }).catch(e => {
+        } else {
             setState(-1)
-            console.log(e)
-        })
+        }
     }
     useEffect(() => {
 
         loadData()
-    }, [])
+    }, [careerData])
 
 
     return (
